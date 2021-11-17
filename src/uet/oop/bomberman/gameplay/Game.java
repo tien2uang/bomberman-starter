@@ -1,0 +1,76 @@
+package uet.oop.bomberman.gameplay;
+
+import javafx.animation.AnimationTimer;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.stage.Stage;
+import uet.oop.bomberman.BombermanGame;
+import uet.oop.bomberman.graphics.NewSprite;
+
+public class Game {
+    public static final double BOARD_WIDTH = 17;
+    public static final double BOARD_HEIGHT = 13;
+    public static final double INFO_WIDTH = 17;
+    public static final double INFO_HEIGHT = 1.5;
+    public static final double WIDTH = BOARD_WIDTH;
+    public static final double HEIGHT = BOARD_HEIGHT + INFO_HEIGHT;
+    public static Stage stage = BombermanGame.getPrimaryStage();
+    private static AnimationTimer timer;
+    private static long currentGameTime = 0;
+    private static long startNanoTime;
+    private static boolean isPaused = false;
+
+    protected static GraphicsContext gc;
+    protected static Canvas canvas;
+
+
+    public static void start() {
+        canvas = new Canvas(NewSprite.SCALED_SIZE * WIDTH, NewSprite.SCALED_SIZE * HEIGHT);
+        gc = canvas.getGraphicsContext2D();
+
+        // Tao root container
+        Group root = new Group();
+        root.getChildren().add(canvas);
+
+        // Tao scene
+        Scene scene = new Scene(root);
+
+        // Them scene vao stage
+        stage.setScene(scene);
+        stage.show();
+
+        currentGameTime = 0;
+        startNanoTime = System.nanoTime();
+
+        timer = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                if ((l - startNanoTime) / (1000000000 / 60) > currentGameTime) {
+                    if (isPaused) {
+                        startNanoTime += (1000000000 / 60);
+                    } else {
+                        ++currentGameTime;
+                    }
+                }
+                if (!isPaused) {
+
+                    render();
+                    update();
+                }
+
+            }
+        };
+        timer.start();
+        Board.createMap();
+    }
+
+    private static void update() {
+
+    }
+
+    private static void render() {
+        Board.render();
+    }
+}

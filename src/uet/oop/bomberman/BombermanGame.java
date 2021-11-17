@@ -6,11 +6,14 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import uet.oop.bomberman.entities.characters.Bomber;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.mapMaterials.Grass;
 import uet.oop.bomberman.entities.mapMaterials.Wall;
+import uet.oop.bomberman.gameplay.Game;
+import uet.oop.bomberman.graphics.NewSprite;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.ArrayList;
@@ -25,6 +28,11 @@ public class BombermanGame extends Application {
     private Canvas canvas;
     private List<Entity> entities = new ArrayList<>();
     private List<Entity> stillObjects = new ArrayList<>();
+    private static Stage primaryStage;
+
+    public static Stage getPrimaryStage() {
+        return primaryStage;
+    }
 
 
     public static void main(String[] args) {
@@ -33,37 +41,40 @@ public class BombermanGame extends Application {
 
     @Override
     public void start(Stage stage) {
-        // Tao Canvas
-        canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
-        gc = canvas.getGraphicsContext2D();
-
-        // Tao root container
-        Group root = new Group();
-        root.getChildren().add(canvas);
-
-        // Tao scene
-        Scene scene = new Scene(root);
-
-        // Them scene vao stage
-        stage.setScene(scene);
-        stage.show();
-
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long l) {
-                render();
-                update();
-            }
-        };
-        timer.start();
-
-        createMap();
-
-        Entity bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        Entity wall= new Wall(1,1,Sprite.wall.getFxImage());
-
-        entities.add(wall);
-        entities.add(bomberman);
+        this.primaryStage = stage;
+//        // Tao Canvas
+//        canvas = new Canvas(NewSprite.SCALED_SIZE * WIDTH, NewSprite.SCALED_SIZE * HEIGHT);
+//        gc = canvas.getGraphicsContext2D();
+//
+//        // Tao root container
+//        Group root = new Group();
+//        root.getChildren().add(canvas);
+//
+//        // Tao scene
+//        Scene scene = new Scene(root);
+//
+//        // Them scene vao stage
+//        stage.setScene(scene);
+//        stage.show();
+//
+//        AnimationTimer timer = new AnimationTimer() {
+//            @Override
+//            public void handle(long l) {
+//                render();
+//                update();
+//            }
+//        };
+//        timer.start();
+//
+//        createMap();
+//
+//        //Entity bomberman = new Bomber(1, 1, NewSprite.portal_7.getFxImage());
+//        Entity wall= new Wall(2,1,NewSprite.wall.getFxImage());
+//
+//
+//        entities.add(wall);
+//    //    entities.add(bomberman);
+        Game.start();
     }
 
     public void createMap() {
@@ -71,10 +82,10 @@ public class BombermanGame extends Application {
             for (int j = 0; j < HEIGHT; j++) {
                 Entity object;
                 if (j == 0 || j == HEIGHT - 1 || i == 0 || i == WIDTH - 1) {
-                    object = new Wall(i, j, Sprite.wall.getFxImage());
+                    object = new Wall(i, j, NewSprite.wall.getFxImage());
                 }
                 else {
-                    object = new Grass(i, j, Sprite.grass.getFxImage());
+                    object = new Grass(i, j, NewSprite.ground.getFxImage());
                 }
                 stillObjects.add(object);
             }
