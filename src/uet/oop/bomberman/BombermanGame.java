@@ -1,20 +1,14 @@
 package uet.oop.bomberman;
 
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import uet.oop.bomberman.entities.characters.Bomber;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.mapMaterials.Grass;
+import uet.oop.bomberman.entities.mapMaterials.Ground;
 import uet.oop.bomberman.entities.mapMaterials.Wall;
 import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
-import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,10 +76,10 @@ public class BombermanGame extends Application {
             for (int j = 0; j < HEIGHT; j++) {
                 Entity object;
                 if (j == 0 || j == HEIGHT - 1 || i == 0 || i == WIDTH - 1) {
-                    object = new Wall(i, j, NewSprite.wall.getFxImage());
+                    object = new Wall(i, j);
                 }
                 else {
-                    object = new Grass(i, j, NewSprite.ground.getFxImage());
+                    object = new Ground(i, j);
                 }
                 stillObjects.add(object);
             }

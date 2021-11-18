@@ -8,22 +8,25 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.graphics.NewSprite;
+import uet.oop.bomberman.levels.LevelLoader;
 
 public class Game {
     public static final double BOARD_WIDTH = 17;
     public static final double BOARD_HEIGHT = 13;
     public static final double INFO_WIDTH = 17;
-    public static final double INFO_HEIGHT = 1.5;
+    public static final double INFO_HEIGHT = 54/36;
     public static final double WIDTH = BOARD_WIDTH;
     public static final double HEIGHT = BOARD_HEIGHT + INFO_HEIGHT;
     public static Stage stage = BombermanGame.getPrimaryStage();
     private static AnimationTimer timer;
     private static long currentGameTime = 0;
     private static long startNanoTime;
+    private static long count = 0;
     private static boolean isPaused = false;
 
     protected static GraphicsContext gc;
     protected static Canvas canvas;
+    private static LevelLoader levelLoader = new LevelLoader(new Board(),1);
 
 
     public static void start() {
@@ -44,6 +47,7 @@ public class Game {
         currentGameTime = 0;
         startNanoTime = System.nanoTime();
 
+
         timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -60,10 +64,11 @@ public class Game {
                     update();
                 }
 
+
             }
         };
         timer.start();
-        Board.createMap();
+        levelLoader.loadLevel(1);
     }
 
     private static void update() {

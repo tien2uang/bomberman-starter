@@ -1,12 +1,16 @@
 package uet.oop.bomberman.entities.mapMaterials;
+
+import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.NewSprite;
 
-public class Portal extends Entity {
-    public Portal(double x, double y){
+public class Ground extends Entity {
+
+
+    public Ground(double x, double y) {
         super(x, y);
-        img= NewSprite.portal_1.getFxImage();
-        this.layerPower=1;
+       this.layerPower=0;
+        this.img= NewSprite.ground.getFxImage();
     }
 
     @Override

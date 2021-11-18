@@ -1,15 +1,25 @@
 package uet.oop.bomberman.entities;
 
-import javafx.scene.image.Image;
+import javafx.scene.canvas.GraphicsContext;
 
-public class LayeredEntity extends Entity{
-    public LayeredEntity(double x, double y, Image image)
-    {
-     super(x, y, image);
+import java.util.Stack;
+
+public class LayeredEntity extends Entity {
+    private Stack<Entity> stackEntities;
+
+    public LayeredEntity(double x, double y, Stack<Entity> stackEntities) {
+        super(x, y);
+        this.stackEntities = stackEntities;
+
     }
 
     @Override
     public void update() {
 
+    }
+
+    @Override
+    public void render(GraphicsContext gc) {
+        stackEntities.peek().render(gc);
     }
 }

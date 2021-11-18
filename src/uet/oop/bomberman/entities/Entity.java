@@ -16,12 +16,17 @@ public abstract class Entity {
     protected double y;
 
     protected Image img;
+    public int layerPower=0;
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
     public Entity( double xUnit, double yUnit, Image img) {
         this.x = xUnit * NewSprite.SCALED_SIZE;
         this.y = yUnit * NewSprite.SCALED_SIZE;
         this.img = img;
+    }
+    public Entity(double xUnit, double yUnit){
+        this.x = xUnit * NewSprite.SCALED_SIZE;
+        this.y = yUnit * NewSprite.SCALED_SIZE;
     }
 
     public void render(GraphicsContext gc) {

@@ -1,9 +1,10 @@
 package uet.oop.bomberman.gameplay;
 
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.mapMaterials.Grass;
+import uet.oop.bomberman.entities.mapMaterials.Ground;
 import uet.oop.bomberman.entities.mapMaterials.Wall;
 import uet.oop.bomberman.graphics.NewSprite;
+import uet.oop.bomberman.levels.LevelLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ public class Board extends Game {
     public static final double BOARD_COORDINATE_Y = Game.INFO_HEIGHT;
     private static List<Entity> entities = new ArrayList<>();
     private static List<Entity> stillObjects = new ArrayList<>();
+
 
     public void update() {
 
@@ -30,12 +32,16 @@ public class Board extends Game {
             for (int j = 0; j < BOARD_HEIGHT; j++) {
                 Entity object;
                 if (j == 0 || j == BOARD_HEIGHT - 1 || i == 0 || i == BOARD_WIDTH - 1) {
-                    object = new Wall(i, j + BOARD_COORDINATE_Y, NewSprite.wall.getFxImage());
+                    object = new Wall(i, j + BOARD_COORDINATE_Y);
                 } else {
-                    object = new Grass(i, j + BOARD_COORDINATE_Y, NewSprite.ground.getFxImage());
+                    object = new Ground(i, j + BOARD_COORDINATE_Y);
                 }
                 stillObjects.add(object);
             }
         }
+    }
+
+    public static List<Entity> getEntitiesList() {
+        return entities;
     }
 }
