@@ -4,7 +4,7 @@ l2  l  p g g g g g g g g g g g g r  r3
 l3  l  g w g w g w g w g w g w g r  r10
 l9  l  g g g g g g g g g g g g g r  r7
 l10 l  g w g w g w g w g w g w g r  r8
-l7  l  g g g g g g g b g g g g g r  r2
+l7  l  g g g g g g g b g g t g g r  r2
 l7  l  g w g w g w g w g w b w g r  r3
 l7  l  g g g g g g g g g g g g g r  r4
 l3  l  g w g w g w g w g w g w g r  r6
