@@ -20,11 +20,13 @@ public class Board extends Game {
     public static void update() {
         //AnimatedEntity.animate();
         entities.forEach(g -> g.update());
+        stillObjects.forEach(g -> g.update());
     }
 
     public static void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         entities.forEach(g -> g.render(gc));
+        stillObjects.forEach(g -> g.render(gc));
     }
 
 
@@ -32,4 +34,9 @@ public class Board extends Game {
     public static List<Entity> getEntitiesList() {
         return entities;
     }
+
+    public static List<Entity> getStillObjectsList() {
+        return stillObjects;
+    }
+
 }

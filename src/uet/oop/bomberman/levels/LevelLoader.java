@@ -29,6 +29,7 @@ public class LevelLoader {
     public void loadLevel(int level) {
         try {
             List<Entity> entitiesList = board.getEntitiesList();
+            List<Entity> stillObjList = board.getStillObjectsList();
             String path = "res/levels/Level1-" + level + ".txt";
             Scanner scanner = new Scanner(new File(path));
             String _line = scanner.nextLine().trim();
@@ -46,6 +47,9 @@ public class LevelLoader {
                 StringTokenizer stringTokenizer = new StringTokenizer(line, " ");
                 while (stringTokenizer.hasMoreTokens()) {
                     String temp = stringTokenizer.nextToken().trim();
+                    if (temp.equals("p")) {
+                        addEntity(stillObjList, temp, tempX, tempY);
+                    }
                     addEntity(entitiesList,temp,tempX,tempY);
                     tempX++;
                 }
