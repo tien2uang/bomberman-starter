@@ -145,4 +145,17 @@ public class NewSprite {
 
     }
 
+    public static Image getMoveSprite(Image x0, Image x1, Image x2, int animate, int time) {
+        int calc = animate % time;
+        int diff = time / 3;
+
+        if (calc < diff) {
+            return x0;
+        }
+        if (calc < diff*2) {
+            return x1;
+        }
+        return x2;
+    }
+
 }

@@ -10,7 +10,6 @@ public class LayeredEntity extends Entity {
     public LayeredEntity(double x, double y, Stack<Entity> stackEntities) {
         super(x, y);
         this.stackEntities = stackEntities;
-
     }
 
     @Override

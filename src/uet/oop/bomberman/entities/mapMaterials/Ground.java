@@ -9,7 +9,7 @@ public class Ground extends Entity {
 
     public Ground(double x, double y) {
         super(x, y);
-       this.layerPower=0;
+        this.layerPower=0;
         this.img= NewSprite.ground.getFxImage();
     }
 

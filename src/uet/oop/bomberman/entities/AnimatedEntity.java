@@ -4,16 +4,19 @@ import javafx.scene.image.Image;
 
 public class AnimatedEntity extends Entity {
     protected static int animate = 0;
-    public final int MAX_ANIMATE = 6000;
+    public static final int MAX_ANIMATE = 6000;
     public AnimatedEntity(double x, double y, Image image) {
         super(x, y, image);
     }
     public AnimatedEntity(double x, double y){
         super(x,y);
     }
-    public static void animate()
-    {
-        animate++;
+    public static void animate() {
+        if (animate < MAX_ANIMATE) {
+            animate++;
+        } else {
+            animate = 0;
+        }
     }
 
     public static int getAnimate() {

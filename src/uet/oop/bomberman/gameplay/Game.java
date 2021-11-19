@@ -8,6 +8,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.graphics.NewSprite;
+import uet.oop.bomberman.input.Keyboard;
 import uet.oop.bomberman.levels.LevelLoader;
 
 public class Game {
@@ -46,7 +47,7 @@ public class Game {
 
         currentGameTime = 0;
         startNanoTime = System.nanoTime();
-
+        Keyboard.keyboardHandle(scene);
         loadLevel(1);
         timer = new AnimationTimer() {
             @Override
