@@ -20,7 +20,7 @@ public class Game {
     public static final double HEIGHT = BOARD_HEIGHT + INFO_HEIGHT;
     public static Stage stage = BombermanGame.getPrimaryStage();
     private static AnimationTimer timer;
-    private static long currentGameTime = 0;
+    public static long currentGameTime = 0;
     private static long startNanoTime;
     private static long count = 0;
     private static boolean isPaused = false;
@@ -28,6 +28,7 @@ public class Game {
     protected static GraphicsContext gc;
     protected static Canvas canvas;
     private static LevelLoader levelLoader = new LevelLoader(new Board(),1);
+
 
 
     public static void start() {

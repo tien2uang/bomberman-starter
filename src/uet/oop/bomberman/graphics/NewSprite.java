@@ -5,6 +5,8 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static uet.oop.bomberman.graphics.Sprite.portal;
+
 public class NewSprite {
 
     private static final int SIZE = 16;
@@ -85,6 +87,9 @@ public class NewSprite {
     public static NewSprite portal_5 = new NewSprite(SIZE, 0, 0, "portal4");
     public static NewSprite portal_6 = new NewSprite(SIZE, 0, 0, "portal5");
     public static NewSprite portal_7 = new NewSprite(SIZE, 0, 0, "portal6");
+
+    public static ArrayList<NewSprite>portalList = new ArrayList<NewSprite>(Arrays.asList(
+            portal_1, portal_2, portal_3, portal_4, portal_5, portal_6,portal_7));
 
     //ground
     public static NewSprite ground = new NewSprite(SIZE, 0, 0, "ground");

@@ -18,7 +18,7 @@ public class Board extends Game {
 
 
     public static void update() {
-        //AnimatedEntity.animate();
+        Game.currentGameTime++;
         entities.forEach(g -> g.update());
         stillObjects.forEach(g -> g.update());
     }

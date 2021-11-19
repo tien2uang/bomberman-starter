@@ -10,10 +10,10 @@ import uet.oop.bomberman.graphics.NewSprite;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.input.Keyboard;
 
-import static uet.oop.bomberman.entities.AnimatedEntity.animate;
-import static uet.oop.bomberman.entities.AnimatedEntity.getAnimate;
+import  uet.oop.bomberman.entities.AnimatedEntity;
 
-public class Bomber extends Entity {
+
+public class Bomber extends AnimatedEntity{
 
     public int direction;
     public static double speed;

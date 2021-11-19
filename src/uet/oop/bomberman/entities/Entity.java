@@ -11,6 +11,9 @@ import uet.oop.bomberman.graphics.Sprite;
 public abstract class Entity {
     //Tọa độ X tính từ góc trái trên trong Canvas
     protected double x;
+    protected int status;
+    public static final int VALID=0;
+    public static final int INVALID=1;
 
     //Tọa độ Y tính từ góc trái trên trong Canvas
     protected double y;
@@ -23,14 +26,20 @@ public abstract class Entity {
         this.x = xUnit * NewSprite.SCALED_SIZE;
         this.y = yUnit * NewSprite.SCALED_SIZE;
         this.img = img;
+        this.status=VALID;
     }
     public Entity(double xUnit, double yUnit){
         this.x = xUnit * NewSprite.SCALED_SIZE;
         this.y = yUnit * NewSprite.SCALED_SIZE;
+        this.status=VALID;
     }
 
     public void render(GraphicsContext gc) {
         gc.drawImage(img, x, y);
     }
     public abstract void update();
+
+    public int getStatus() {
+        return status;
+    }
 }
