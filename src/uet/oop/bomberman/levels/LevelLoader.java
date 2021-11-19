@@ -2,6 +2,7 @@ package uet.oop.bomberman.levels;
 
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.LayeredEntity;
+import uet.oop.bomberman.entities.mapMaterials.Brick;
 import uet.oop.bomberman.entities.mapMaterials.Ground;
 import uet.oop.bomberman.entities.mapMaterials.Wall;
 import uet.oop.bomberman.entities.mapMaterials.border.*;
@@ -54,7 +55,9 @@ public class LevelLoader {
         }
     }
     private void addEntity(List<Entity> entitiesList,String temp,double tempX,double tempY){
+        Stack<Entity>stackEntities;
         switch (temp) {
+
             case "#":
                 entitiesList.add(new TopBorder(tempX, tempY));
                 break;
@@ -83,11 +86,16 @@ public class LevelLoader {
                 entitiesList.add(new BotRightCorner(tempX, tempY));
                 break;
             case"w":
-                Stack<Entity>stackEntities= new Stack<Entity>();
+                stackEntities= new Stack<Entity>();
                 stackEntities.push(new Ground(tempX,tempY));
                 stackEntities.push(new Wall(tempX,tempY));
                 entitiesList.add(new LayeredEntity(tempX,tempY,stackEntities));
                 break;
+            case"b":
+                stackEntities= new Stack<Entity>();
+                stackEntities.push(new Ground(tempX,tempY));
+                stackEntities.push(new Brick(tempX,tempY));
+                entitiesList.add(new LayeredEntity(tempX,tempY,stackEntities));
             default:
                 entitiesList.add(new Sky(tempX,tempY,temp));
         }

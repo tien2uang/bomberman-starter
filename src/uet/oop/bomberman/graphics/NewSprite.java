@@ -2,6 +2,9 @@ package uet.oop.bomberman.graphics;
 
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class NewSprite {
 
     private static final int SIZE = 16;
@@ -32,12 +35,15 @@ public class NewSprite {
 
     //bomb
     public static NewSprite bomb1_1 = new NewSprite(SIZE, 0, 0, "1-bomb-1");
-    public static NewSprite bomb2_1 = new NewSprite(SIZE, 0, 0, "1-bomb-2");
-    public static NewSprite bomb3_1 = new NewSprite(SIZE, 0, 0, "1-bomb-3");
+    public static NewSprite bomb1_2 = new NewSprite(SIZE, 0, 0, "1-bomb-2");
+    public static NewSprite bomb1_3 = new NewSprite(SIZE, 0, 0, "1-bomb-3");
 
-    public static NewSprite bomb1_2 = new NewSprite(SIZE, 0, 0, "2-bomb-1");
+    public static NewSprite bomb2_1 = new NewSprite(SIZE, 0, 0, "2-bomb-1");
     public static NewSprite bomb2_2 = new NewSprite(SIZE, 0, 0, "2-bomb-2");
-    public static NewSprite bomb3_2 = new NewSprite(SIZE, 0, 0, "2-bomb-3");
+    public static NewSprite bomb2_3 = new NewSprite(SIZE, 0, 0, "2-bomb-3");
+
+    public static ArrayList<NewSprite> bomb1List = new ArrayList<NewSprite>(Arrays.asList(bomb1_1, bomb1_2, bomb1_3));
+    public static ArrayList<NewSprite> bomb2List = new ArrayList<NewSprite>(Arrays.asList(bomb2_1, bomb2_2, bomb2_3));
 
     //brick
     public static NewSprite brick = new NewSprite(SIZE, 0, 0, "brick");
@@ -48,6 +54,9 @@ public class NewSprite {
     public static NewSprite brick_broken_4 = new NewSprite(SIZE, 0, 0, "brick-4");
     public static NewSprite brick_broken_5 = new NewSprite(SIZE, 0, 0, "brick-5");
     public static NewSprite brick_broken_6 = new NewSprite(SIZE, 0, 0, "brick-6");
+
+    public static ArrayList<NewSprite> brickBrokenList = new ArrayList<NewSprite>(Arrays.asList(
+            brick_broken_1, brick_broken_2, brick_broken_3, brick_broken_4, brick_broken_5, brick_broken_6));
 
     //explosion
     public static NewSprite explosion_horizontal_1 = new NewSprite(SIZE, 0, 0, "explosion-horizontal");
@@ -126,5 +135,14 @@ public class NewSprite {
     public static NewSprite balloon_right = new NewSprite(SIZE, 0, 0, "balloon-right");
     public static NewSprite balloon_right_1 = new NewSprite(SIZE, 0, 0, "balloon-right1");
     public static NewSprite balloon_right_2 = new NewSprite(SIZE, 0, 0, "balloon-right2");
+
+    public static NewSprite movingSprite(ArrayList<NewSprite> spritesList, int animate, int time) {
+        int calc = animate % time;
+        double diff = time / (spritesList.size()-1);
+        int index = calc / (int) diff;
+        System.out.println(index);
+        return spritesList.get(index);
+
+    }
 
 }

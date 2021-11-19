@@ -15,7 +15,8 @@ public class LayeredEntity extends Entity {
 
     @Override
     public void update() {
-
+        stackEntities.peek().update();
+        
     }
 
     @Override

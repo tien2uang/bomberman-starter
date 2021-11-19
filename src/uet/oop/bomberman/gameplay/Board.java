@@ -1,10 +1,10 @@
 package uet.oop.bomberman.gameplay;
 
+import uet.oop.bomberman.entities.AnimatedEntity;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.mapMaterials.Ground;
 import uet.oop.bomberman.entities.mapMaterials.Wall;
-import uet.oop.bomberman.graphics.NewSprite;
-import uet.oop.bomberman.levels.LevelLoader;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,29 +17,17 @@ public class Board extends Game {
     private static List<Entity> stillObjects = new ArrayList<>();
 
 
-    public void update() {
-
+    public static void update() {
+        AnimatedEntity.animate();
+        entities.forEach(g -> g.update());
     }
 
     public static void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        stillObjects.forEach(g -> g.render(gc));
         entities.forEach(g -> g.render(gc));
     }
 
-    public static void createMap() {
-        for (int i = 0; i < BOARD_WIDTH; i++) {
-            for (int j = 0; j < BOARD_HEIGHT; j++) {
-                Entity object;
-                if (j == 0 || j == BOARD_HEIGHT - 1 || i == 0 || i == BOARD_WIDTH - 1) {
-                    object = new Wall(i, j + BOARD_COORDINATE_Y);
-                } else {
-                    object = new Ground(i, j + BOARD_COORDINATE_Y);
-                }
-                stillObjects.add(object);
-            }
-        }
-    }
+
 
     public static List<Entity> getEntitiesList() {
         return entities;

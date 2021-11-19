@@ -47,7 +47,7 @@ public class Game {
         currentGameTime = 0;
         startNanoTime = System.nanoTime();
 
-
+        loadLevel(1);
         timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -68,13 +68,15 @@ public class Game {
             }
         };
         timer.start();
-        levelLoader.loadLevel(1);
+
     }
 
     private static void update() {
-
+        Board.update();
     }
-
+    public static void loadLevel(int level){
+        levelLoader.loadLevel(1);
+    }
     private static void render() {
         Board.render();
     }
