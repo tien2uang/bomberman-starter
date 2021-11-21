@@ -17,6 +17,8 @@ public abstract class Entity {
 
     //Tọa độ Y tính từ góc trái trên trong Canvas
     protected double y;
+    protected double xUnit;
+    protected double yUnit;
 
     protected Image img;
     public int layerPower=0;
@@ -32,6 +34,16 @@ public abstract class Entity {
         this.x = xUnit * NewSprite.SCALED_SIZE;
         this.y = yUnit * NewSprite.SCALED_SIZE;
         this.status=VALID;
+        this.xUnit=xUnit;
+        this.yUnit=yUnit;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
     }
 
     public void render(GraphicsContext gc) {

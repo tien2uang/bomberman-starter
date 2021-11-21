@@ -82,17 +82,13 @@ public class Bomber extends AnimatedEntity{
                 return NewSprite.getMoveSprite(Sprite.player_dead1.getFxImage(), Sprite.player_dead2.getFxImage(),
                         Sprite.player_dead3.getFxImage(), getAnimate(), 70);
             case 1:
-                return NewSprite.getMoveSprite(Sprite.player_left.getFxImage(), Sprite.player_left_1.getFxImage(),
-                        Sprite.player_left_2.getFxImage(), getAnimate(), 24);
+                return NewSprite.movingSprite(NewSprite.playerLeftList,animate,24).getFxImage();
             case 2:
-                return NewSprite.getMoveSprite(Sprite.player_right.getFxImage(), Sprite.player_right_1.getFxImage(),
-                        Sprite.player_right_2.getFxImage(), getAnimate(), 24);
+                return NewSprite.movingSprite(NewSprite.playerRightList,animate,30).getFxImage();
             case 3:
-                return NewSprite.getMoveSprite(Sprite.player_up.getFxImage(), Sprite.player_up_1.getFxImage(),
-                        Sprite.player_up_2.getFxImage(), getAnimate(), 24);
+                return NewSprite.movingSprite(NewSprite.playerUpList,animate,24).getFxImage();
             default:
-                return NewSprite.getMoveSprite(Sprite.player_down.getFxImage(), Sprite.player_down_1.getFxImage(),
-                        Sprite.player_down_2.getFxImage(), getAnimate(), 24);
+                return NewSprite.movingSprite(NewSprite.playerDownList,animate,24).getFxImage();
         }
     }
 
@@ -100,5 +96,10 @@ public class Bomber extends AnimatedEntity{
     public void update() {
         calculateMove();
         img = chooseImage(direction);
+    }
+
+    @Override
+    public void render(GraphicsContext gc) {
+        gc.drawImage(img, x,y);
     }
 }
