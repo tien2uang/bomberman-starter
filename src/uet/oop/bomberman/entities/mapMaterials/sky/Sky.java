@@ -6,7 +6,7 @@ import uet.oop.bomberman.graphics.NewSprite;
 public class Sky extends Entity {
     public Sky(double x, double y, String name) {
         super(x, y);
-        this.layerPower=6;
+        this.layerPower=5;
         switch (name) {
             case "l1":
                 this.img = NewSprite.sky_left_1.getFxImage();

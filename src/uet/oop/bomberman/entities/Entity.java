@@ -21,7 +21,7 @@ public abstract class Entity {
     protected double yUnit;
 
     protected Image img;
-    public int layerPower=0;
+    public double layerPower=0;
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
     public Entity( double xUnit, double yUnit, Image img) {
@@ -35,7 +35,7 @@ public abstract class Entity {
         this.y = yUnit * NewSprite.SCALED_SIZE;
         this.status=VALID;
         this.xUnit=xUnit;
-        this.yUnit=yUnit;
+        this.yUnit=Coordinate.canvasToBoardTileY(yUnit);
     }
 
     public double getX() {
@@ -46,6 +46,14 @@ public abstract class Entity {
         return y;
     }
 
+    public double getXUnit() {
+        return xUnit;
+    }
+
+    public double getYUnit() {
+        return yUnit;
+    }
+
     public void render(GraphicsContext gc) {
         gc.drawImage(img, x, y);
     }
@@ -53,5 +61,12 @@ public abstract class Entity {
 
     public int getStatus() {
         return status;
+    }
+
+    public double getLayerPower() {
+        return layerPower;
+    }
+    public boolean canCrossOver(Entity entity) {
+        return this.layerPower>=entity.getLayerPower();
     }
 }

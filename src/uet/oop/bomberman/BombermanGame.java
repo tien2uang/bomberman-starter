@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.mapMaterials.Ground;
 import uet.oop.bomberman.entities.mapMaterials.Wall;
+import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
 
@@ -31,6 +32,7 @@ public class BombermanGame extends Application {
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
+
     }
 
     @Override
@@ -69,6 +71,7 @@ public class BombermanGame extends Application {
 //        entities.add(wall);
 //    //    entities.add(bomberman);
         Game.start();
+
     }
 
     public void createMap() {

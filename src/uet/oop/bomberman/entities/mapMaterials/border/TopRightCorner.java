@@ -7,7 +7,7 @@ public class TopRightCorner extends Entity {
     public TopRightCorner(double x, double y){
         super(x,y);
         this.img= NewSprite.stage_top_right.getFxImage();
-        this.layerPower=6;
+        this.layerPower=5;
     }
 
     @Override

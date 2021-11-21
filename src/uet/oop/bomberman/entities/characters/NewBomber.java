@@ -20,6 +20,7 @@ public class NewBomber extends Character {
         this.currentSprite = NewSprite.player_down_1;
         this.animate = 0;
         this.isMoving = false;
+        this.layerPower = 2;
     }
 
     public void move(double p, double q) {
@@ -36,33 +37,28 @@ public class NewBomber extends Character {
 
     public void calculateMove() {
         double X = 0, Y = 0;
-        if (Keyboard.isLeft()) {
-            direction = 1;
-            X = -1.6 ;
-         //   System.out.println("X:" + X);
-            animate();
-        }
         if (Keyboard.isRight()) {
             direction = 2;
-            X = 1.6 ;
-          //  System.out.println("X:" + X);
+            X = 1.6;
+
             animate();
-        }
-        if (Keyboard.isUp()) {
+        } else if (Keyboard.isLeft()) {
+            direction = 1;
+
+            animate();
+        } else if (Keyboard.isUp()) {
+
             direction = 3;
-            Y = -1.6 ;
-        //    System.out.println("Y: " + Y);
+
             animate();
-        }
-        if (Keyboard.isDown()) {
+        } else if (Keyboard.isDown()) {
             direction = 4;
-            Y = 1.6 ;
-          //  System.out.println("Y: " + Y);
+
             animate();
         }
 
         if (X != 0 || Y != 0) {
-           // System.out.println("YES");
+            // System.out.println("YES");
             move(X, Y);
         }
 

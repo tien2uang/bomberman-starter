@@ -5,18 +5,22 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static uet.oop.bomberman.graphics.Sprite.portal;
+
 
 public class NewSprite {
 
     private static final int SIZE = 16;
     public static final int SCALED_SIZE = SIZE * 36 / 16;
+    public static double SCALED_FACTOR =2.25;
     private int distanceToTopLeftX;
     private int distanceToTopLeftY;
     private Image image;
+    private String name;//tạm thời
 
-    public NewSprite(int size, int distanceToTopLeftX, int distanceToTopLeftY, String name) {
+
+    public NewSprite(int originalSize, int distanceToTopLeftX, int distanceToTopLeftY, String name) {
         String path = "./newsprites/" + name + ".png";
+
         try {
             image = new Image(path, SCALED_SIZE, SCALED_SIZE, false, false);
         } catch (Exception e) {
@@ -25,6 +29,27 @@ public class NewSprite {
         }
         this.distanceToTopLeftX = distanceToTopLeftX;
         this.distanceToTopLeftY = distanceToTopLeftY;
+        this.name = name;
+    }
+
+    public NewSprite(int originalSize, int distanceToTopLeftX, int distanceToTopLeftY, double originalWidth, double originalHeight, String name) {
+        String path = "./newsprites/" + name + ".png";
+        try {
+            image = new Image(path, (double) (originalWidth) * SCALED_FACTOR, (double) (originalHeight) * SCALED_FACTOR, false, false);
+            System.out.println(name + " " + originalWidth + " " + originalWidth * SCALED_FACTOR + " "
+                    + originalHeight + " " + originalHeight * SCALED_FACTOR);
+        } catch (Exception e) {
+
+            System.out.println("khong tim thay file sprite " + name);
+        }
+        this.distanceToTopLeftX = distanceToTopLeftX;
+        this.distanceToTopLeftY = distanceToTopLeftY;
+        this.name=name;
+
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Image getFxImage() {
@@ -88,8 +113,8 @@ public class NewSprite {
     public static NewSprite portal_6 = new NewSprite(SIZE, 0, 0, "portal5");
     public static NewSprite portal_7 = new NewSprite(SIZE, 0, 0, "portal6");
 
-    public static ArrayList<NewSprite>portalList = new ArrayList<NewSprite>(Arrays.asList(
-            portal_1, portal_2, portal_3, portal_4, portal_5, portal_6,portal_7));
+    public static ArrayList<NewSprite> portalList = new ArrayList<NewSprite>(Arrays.asList(
+            portal_1, portal_2, portal_3, portal_4, portal_5, portal_6, portal_7));
 
     //ground
     public static NewSprite ground = new NewSprite(SIZE, 0, 0, "ground");
@@ -131,6 +156,38 @@ public class NewSprite {
     public static NewSprite sky_right_9 = new NewSprite(SIZE, 0, 0, "sky-right8");
     public static NewSprite sky_right_10 = new NewSprite(SIZE, 0, 0, "sky-right9");
 
+    /**
+     * player
+     */
+    public static NewSprite player_down_1 = new NewSprite(SIZE, 0, 5, 17, 20, "player-down");
+    public static NewSprite player_down_2 = new NewSprite(SIZE, -1, 5, 17, 20, "player-down1");
+    public static NewSprite player_down_3 = new NewSprite(SIZE, 1, 5, 17, 20, "player-down2");
+    public static ArrayList<NewSprite> playerDownList = new ArrayList<NewSprite>(Arrays.asList(
+            player_down_1, player_down_2, player_down_3
+    ));
+
+    public static NewSprite player_left_1 = new NewSprite(SIZE, 0, 5, 18, 21, "player-left");
+    public static NewSprite player_left_2 = new NewSprite(SIZE, 1, 5, 17, 21, "player-left1");
+    public static NewSprite player_left_3 = new NewSprite(SIZE, 1, 5, 18, 21, "player-left2");
+    public static ArrayList<NewSprite> playerLeftList = new ArrayList<NewSprite>(Arrays.asList(
+            player_left_1, player_left_2, player_left_3
+    ));
+
+    public static NewSprite player_right_1 = new NewSprite(SIZE, 2, 5, 18, 21, "player-right");
+    public static NewSprite player_right_2 = new NewSprite(SIZE, 0, 5, 17, 21, "player-right1");
+    public static NewSprite player_right_3 = new NewSprite(SIZE, 1, 5, 18, 21, "player-right2");
+    public static ArrayList<NewSprite> playerRightList = new ArrayList<NewSprite>(Arrays.asList(
+            player_right_1,
+            player_right_2
+            , player_right_3
+    ));
+
+    public static NewSprite player_up_1 = new NewSprite(SIZE, 0, 5, 17, 20, "player-up");
+    public static NewSprite player_up_2 = new NewSprite(SIZE, -1, 5, 17, 20, "player-up1");
+    public static NewSprite player_up_3 = new NewSprite(SIZE, 1, 5, 17, 20, "player-up2");
+    public static ArrayList<NewSprite> playerUpList = new ArrayList<NewSprite>(Arrays.asList(
+            player_up_1, player_up_2, player_up_3
+    ));
 
     /**
      * enemies
@@ -143,11 +200,18 @@ public class NewSprite {
 
     public static NewSprite movingSprite(ArrayList<NewSprite> spritesList, int animate, int time) {
         int calc = animate % time;
-        double diff = time / (spritesList.size()-1);
-        int index = calc / (int) diff;
-        System.out.println(index);
+        double diff = time / (spritesList.size());
+        int index = calc / ((int) diff + 1);
         return spritesList.get(index);
 
+    }
+
+    public int getDistanceToTopLeftX() {
+        return distanceToTopLeftX;
+    }
+
+    public int getDistanceToTopLeftY() {
+        return distanceToTopLeftY;
     }
 
     public static Image getMoveSprite(Image x0, Image x1, Image x2, int animate, int time) {
@@ -157,10 +221,12 @@ public class NewSprite {
         if (calc < diff) {
             return x0;
         }
-        if (calc < diff*2) {
+        if (calc < diff * 2) {
             return x1;
         }
         return x2;
+
+
     }
 
 }

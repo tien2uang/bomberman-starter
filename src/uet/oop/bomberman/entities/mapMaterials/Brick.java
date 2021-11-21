@@ -13,7 +13,7 @@ public class Brick extends AnimatedEntity {
     public Brick(double x, double y) {
         super(x, y);
         img = NewSprite.brick.getFxImage();
-        this.layerPower = 4;
+        this.layerPower = 3.5;
         destroyed = false;
 
 

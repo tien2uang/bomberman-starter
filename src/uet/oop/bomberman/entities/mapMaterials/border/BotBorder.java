@@ -6,7 +6,7 @@ public class BotBorder extends Entity {
     public BotBorder(double x, double y){
         super(x,y);
         this.img= NewSprite.stage_bot.getFxImage();
-        this.layerPower=6;
+        this.layerPower=5;
     }
 
     @Override

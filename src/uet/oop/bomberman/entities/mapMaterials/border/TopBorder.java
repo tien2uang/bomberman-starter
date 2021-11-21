@@ -7,7 +7,7 @@ public class TopBorder extends Entity {
     public TopBorder(double x, double y){
         super(x,y);
         this.img= NewSprite.stage_top.getFxImage();
-        this.layerPower=6;
+        this.layerPower=5;
     }
 
     @Override

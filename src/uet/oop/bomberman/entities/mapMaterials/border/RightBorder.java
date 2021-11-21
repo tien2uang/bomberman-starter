@@ -6,7 +6,7 @@ public class RightBorder extends Entity {
     public RightBorder(double x, double y){
         super(x, y);
         this.img= NewSprite.stage_right_1.getFxImage();
-        this.layerPower=6;
+        this.layerPower=5;
     }
 
     @Override

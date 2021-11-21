@@ -26,4 +26,9 @@ public class LayeredEntity extends Entity {
     public void render(GraphicsContext gc) {
         stackEntities.peek().render(gc);
     }
+
+    @Override
+    public double getLayerPower() {
+        return stackEntities.peek().getLayerPower();
+    }
 }

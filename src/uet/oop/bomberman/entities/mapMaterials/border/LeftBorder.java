@@ -7,7 +7,7 @@ public class LeftBorder extends Entity {
     public LeftBorder(double x, double y){
         super(x, y);
         this.img= NewSprite.stage_left_1.getFxImage();
-        this.layerPower=6;
+        this.layerPower=5;
     }
 
     @Override

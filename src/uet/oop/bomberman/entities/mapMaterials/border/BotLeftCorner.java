@@ -6,7 +6,7 @@ public class BotLeftCorner extends Entity {
     public BotLeftCorner(double x, double y){
         super(x,y);
         this.img= NewSprite.stage_bot_left.getFxImage();
-        this.layerPower=6;
+        this.layerPower=5;
     }
 
     @Override
