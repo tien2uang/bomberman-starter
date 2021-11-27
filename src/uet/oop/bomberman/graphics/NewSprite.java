@@ -61,6 +61,15 @@ public class NewSprite {
      */
 
     //bomb
+    public static NewSprite bomb_exploded = new NewSprite(SIZE, 0, 0, "bomb-exploded");
+    public static NewSprite bomb_exploded_1 = new NewSprite(SIZE, 0, 0, "bomb-exploded1");
+    public static NewSprite bomb_exploded_2 = new NewSprite(SIZE, 0, 0, "bomb-exploded2");
+    public static NewSprite bomb_exploded_3 = new NewSprite(SIZE, 0, 0, "bomb-exploded3");
+    public static NewSprite bomb_exploded_4 = new NewSprite(SIZE, 0, 0, "bomb-exploded4");
+
+    public static ArrayList<NewSprite> bombExplosionCentral = new ArrayList<NewSprite>(Arrays.asList(bomb_exploded, bomb_exploded_1, bomb_exploded_2, bomb_exploded_3, bomb_exploded_4
+    ));
+
     public static NewSprite bomb1_1 = new NewSprite(SIZE, 0, 0, "1-bomb-1");
     public static NewSprite bomb1_2 = new NewSprite(SIZE, 0, 0, "1-bomb-2");
     public static NewSprite bomb1_3 = new NewSprite(SIZE, 0, 0, "1-bomb-3");
@@ -69,8 +78,60 @@ public class NewSprite {
     public static NewSprite bomb2_2 = new NewSprite(SIZE, 0, 0, "2-bomb-2");
     public static NewSprite bomb2_3 = new NewSprite(SIZE, 0, 0, "2-bomb-3");
 
+    public static ArrayList<NewSprite> bombExplosion1 = new ArrayList<NewSprite>(Arrays.asList(bomb1_1, bomb1_2, bomb1_3
+    ));
+
+    public static ArrayList<NewSprite> bombExplosion2 = new ArrayList<NewSprite>(Arrays.asList(bomb2_1, bomb2_2, bomb2_3
+    ));
+
+
+
+    public static NewSprite explosion_horizontal = new NewSprite(SIZE, 0, 0, "explosion-horizontal");
+    public static NewSprite explosion_horizontal_1 = new NewSprite(SIZE, 0, 0, "explosion-horizontal1");
+    public static NewSprite explosion_horizontal_2 = new NewSprite(SIZE, 0, 0, "explosion-horizontal2");
+    public static NewSprite explosion_horizontal_3 = new NewSprite(SIZE, 0, 0, "explosion-horizontal3");
+    public static NewSprite explosion_horizontal_4 = new NewSprite(SIZE, 0, 0, "explosion-horizontal4");
+
+    public static NewSprite explosion_horizontal_left_last = new NewSprite(SIZE, 0, 0, "explosion-horizontal-leftlast");
+    public static NewSprite explosion_horizontal_left_last_1 = new NewSprite(SIZE, 0, 0, "explosion-horizontal-leftlast1");
+    public static NewSprite explosion_horizontal_left_last_2 = new NewSprite(SIZE, 0, 0, "explosion-horizontal-leftlast2");
+    public static NewSprite explosion_horizontal_left_last_3 = new NewSprite(SIZE, 0, 0, "explosion-horizontal-leftlast3");
+    public static NewSprite explosion_horizontal_left_last_4 = new NewSprite(SIZE, 0, 0, "explosion-horizontal-leftlast4");
+
+    public static NewSprite explosion_horizontal_right_last = new NewSprite(SIZE, 0, 0, "explosion-horizontal-rightlast");
+    public static NewSprite explosion_horizontal_right_last_1 = new NewSprite(SIZE, 0, 0, "explosion-horizontal-rightlast1");
+    public static NewSprite explosion_horizontal_right_last_2 = new NewSprite(SIZE, 0, 0, "explosion-horizontal-rightlast2");
+    public static NewSprite explosion_horizontal_right_last_3 = new NewSprite(SIZE, 0, 0, "explosion-horizontal-rightlast3");
+    public static NewSprite explosion_horizontal_right_last_4 = new NewSprite(SIZE, 0, 0, "explosion-horizontal-rightlast4");
+
+    public static NewSprite explosion_vertical = new NewSprite(SIZE, 0, 0, "explosion-vertical");
+    public static NewSprite explosion_vertical_1 = new NewSprite(SIZE, 0, 0, "explosion-vertical1");
+    public static NewSprite explosion_vertical_2 = new NewSprite(SIZE, 0, 0, "explosion-vertical2");
+    public static NewSprite explosion_vertical_3 = new NewSprite(SIZE, 0, 0, "explosion-vertical3");
+    public static NewSprite explosion_vertical_4 = new NewSprite(SIZE, 0, 0, "explosion-vertical4");
+
+    public static NewSprite explosion_vertical_bot_last = new NewSprite(SIZE, 0, 0, "explosion-vertical-botlast");
+    public static NewSprite explosion_vertical_bot_last_1 = new NewSprite(SIZE, 0, 0, "explosion-vertical-botlast1");
+    public static NewSprite explosion_vertical_bot_last_2 = new NewSprite(SIZE, 0, 0, "explosion-vertical-botlast2");
+    public static NewSprite explosion_vertical_bot_last_3 = new NewSprite(SIZE, 0, 0, "explosion-vertical-botlast3");
+    public static NewSprite explosion_vertical_bot_last_4 = new NewSprite(SIZE, 0, 0, "explosion-vertical-botlast4");
+
+    public static NewSprite explosion_vertical_top_last = new NewSprite(SIZE, 0, 0, "explosion-vertical-toplast");
+    public static NewSprite explosion_vertical_top_last_1 = new NewSprite(SIZE, 0, 0, "explosion-vertical-toplast1");
+    public static NewSprite explosion_vertical_top_last_2 = new NewSprite(SIZE, 0, 0, "explosion-vertical-toplast2");
+    public static NewSprite explosion_vertical_top_last_3 = new NewSprite(SIZE, 0, 0, "explosion-vertical-toplast3");
+    public static NewSprite explosion_vertical_top_last_4 = new NewSprite(SIZE, 0, 0, "explosion-vertical-toplast4");
+
+
+
     public static ArrayList<NewSprite> bomb1List = new ArrayList<NewSprite>(Arrays.asList(bomb1_1, bomb1_2, bomb1_3));
     public static ArrayList<NewSprite> bomb2List = new ArrayList<NewSprite>(Arrays.asList(bomb2_1, bomb2_2, bomb2_3));
+    public static ArrayList<NewSprite> bombExplosionVertical = new ArrayList<NewSprite>(Arrays.asList(explosion_vertical, explosion_vertical_1, explosion_vertical_2, explosion_vertical_3, explosion_vertical_4
+    ));
+    public static ArrayList<NewSprite> bombExplosionVerticalTop = new ArrayList<NewSprite>(Arrays.asList(explosion_vertical_top_last, explosion_vertical_top_last_1, explosion_vertical_top_last_2, explosion_vertical_top_last_3, explosion_vertical_top_last_4
+    ));
+    public static ArrayList<NewSprite> bombExplosionHorizontalBot = new ArrayList<NewSprite>(Arrays.asList(explosion_vertical_bot_last, explosion_vertical_bot_last_1, explosion_vertical_bot_last_2, explosion_vertical_bot_last_3, explosion_vertical_bot_last_4
+    ));
 
     //brick
     public static NewSprite brick = new NewSprite(SIZE, 0, 0, "brick");
@@ -84,7 +145,7 @@ public class NewSprite {
 
     public static ArrayList<NewSprite> brickBrokenList = new ArrayList<NewSprite>(Arrays.asList(
             brick_broken_1, brick_broken_2, brick_broken_3, brick_broken_4, brick_broken_5, brick_broken_6));
-
+    /*
     //explosion
     public static NewSprite explosion_horizontal_1 = new NewSprite(SIZE, 0, 0, "explosion-horizontal");
     public static NewSprite explosion_horizontal_2 = new NewSprite(SIZE, 0, 0, "explosion-horizontal1");
@@ -103,7 +164,7 @@ public class NewSprite {
 
     public static NewSprite explosion_vertical_bot_last_1 = new NewSprite(SIZE, 0, 0, "explosion-vertical-botlast");
     public static NewSprite explosion_vertical_bot_last_2 = new NewSprite(SIZE, 0, 0, "explosion-vertical-botlast1");
-
+    */
     //portal
     public static NewSprite portal_1 = new NewSprite(SIZE, 0, 0, "portal");
     public static NewSprite portal_2 = new NewSprite(SIZE, 0, 0, "portal1");

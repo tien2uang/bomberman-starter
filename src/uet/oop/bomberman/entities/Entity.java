@@ -5,6 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -22,6 +23,7 @@ public abstract class Entity {
 
     protected Image img;
     public double layerPower=0;
+    public boolean removeBomb = false;
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
     public Entity( double xUnit, double yUnit, Image img) {
@@ -69,4 +71,8 @@ public abstract class Entity {
     public boolean canCrossOver(Entity entity) {
         return this.layerPower>=entity.getLayerPower();
     }
+    public boolean isRemoveBomb() {
+        return removeBomb;
+    }
+
 }

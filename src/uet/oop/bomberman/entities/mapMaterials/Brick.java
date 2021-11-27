@@ -1,14 +1,15 @@
 package uet.oop.bomberman.entities.mapMaterials;
 
 import uet.oop.bomberman.entities.AnimatedEntity;
+import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
 
 
 public class Brick extends AnimatedEntity {
-    protected int deathTime;
-    protected boolean destroyed;
-    public static final int ANIMATION_CIRCLE = 70;
+    public static int deathTime;
+    public static boolean destroyed;
+    public static final int ANIMATION_CIRCLE = 150;
 
     public Brick(double x, double y) {
         super(x, y);
@@ -21,9 +22,9 @@ public class Brick extends AnimatedEntity {
 
     @Override
     public void update() {
-        if(Game.currentGameTime==50){
+        /*if(Game.currentGameTime == 50) {
             setDestroyed(true);
-        }
+        }*/
         if (destroyed) {
             img = NewSprite.movingSprite(NewSprite.brickBrokenList, getAnimate(), ANIMATION_CIRCLE).getFxImage();
             animate();
@@ -35,8 +36,8 @@ public class Brick extends AnimatedEntity {
 
     }
 
-    public void setDestroyed(boolean destroyed) {
-        this.destroyed = destroyed;
-        this.deathTime= (int)Game.currentGameTime;
+    public static void setDestroyed(boolean destroyed) {
+        Brick.destroyed = destroyed;
+        Brick.deathTime= (int)Game.currentGameTime;
     }
 }

@@ -2,11 +2,15 @@ package uet.oop.bomberman.entities.characters;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.input.Keyboard;
+
+import java.util.Iterator;
+import java.util.Vector;
 
 public class NewBomber extends Character {
 
@@ -14,6 +18,7 @@ public class NewBomber extends Character {
     private boolean isMoving;
     public static double speed = 1.6;
     private NewSprite currentSprite;
+    public static Vector<Bom> bombs = new Vector<>();
 
     public NewBomber(double x, double y) {
         super(x, y);
@@ -105,16 +110,27 @@ public class NewBomber extends Character {
         if (!isMoving()) {
             animate = 0;
         }
+
         calculateMove();
         img = chooseImage(direction);
 
+        if (Keyboard.isSetBomb()) {
+            setBomb();
+            Keyboard.setSetBomb();
+        }
+    }
 
+    public void setBomb() {
+        double x = (this.x + NewSprite.SCALED_SIZE/2)/36;
+        double y = (this.y + NewSprite.SCALED_SIZE/2)/36;
+        double xUnitToPlace = (double)((int)x);
+        double yUnitToPlace = (double)((int)y);
+        Bom bomb = new Bom(xUnitToPlace, yUnitToPlace);
+        Board.getBombs().add(bomb);
     }
 
     @Override
     public void render(GraphicsContext gc) {
-
-
         double x = this.x - (double) (currentSprite.getDistanceToTopLeftX()) * NewSprite.SCALED_FACTOR;
         double y = this.y - (double) (currentSprite.getDistanceToTopLeftY()) * NewSprite.SCALED_FACTOR;
         // System.out.println(this.x + " " + this.y +  ":"+currentSprite.getName());

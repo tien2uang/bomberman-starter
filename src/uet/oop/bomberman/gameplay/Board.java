@@ -11,18 +11,21 @@ public class Board extends Game {
     public static final double BOARD_COORDINATE_Y = Game.INFO_HEIGHT;
     private static List<Entity> mapEntities = new ArrayList<>();
     private static List<Entity> nonMapEntities = new ArrayList<>();
+    private static List<Entity> bombs = new ArrayList<>();
 
 
     public static void update() {
         Game.currentGameTime++;
         mapEntities.forEach(g -> g.update());
         nonMapEntities.forEach(g -> g.update());
+        bombs.forEach(g -> g.update());
     }
 
     public static void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         mapEntities.forEach(g -> g.render(gc));
         nonMapEntities.forEach(g -> g.render(gc));
+        bombs.forEach(g -> g.render(gc));
     }
 
     public static Entity getMostPoweredEntityAt(double x, double y) {
@@ -54,6 +57,10 @@ public class Board extends Game {
 
     public static List<Entity> getStillObjectsList() {
         return nonMapEntities;
+    }
+
+    public static List<Entity> getBombs() {
+        return bombs;
     }
 
 }

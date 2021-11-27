@@ -3,7 +3,7 @@ package uet.oop.bomberman.input;
 import javafx.scene.Scene;
 
 public class Keyboard {
-    private static boolean up = false, down = false, left = false, right = false;
+    private static boolean up = false, down = false, left = false, right = false, setBomb = false;
 
     private static boolean inverted = false;
 
@@ -37,6 +37,9 @@ public class Keyboard {
                     } else {
                         left = true;
                     }
+                    break;
+                case SPACE:
+                    setBomb = true;
                     break;
             }
         });
@@ -91,7 +94,10 @@ public class Keyboard {
         return right;
     }
 
-    public static void setInverted(boolean state) {
-        inverted = state;
+    public static boolean isSetBomb() {
+        return setBomb;
+    }
+    public static void setSetBomb() {
+        setBomb = false;
     }
 }
