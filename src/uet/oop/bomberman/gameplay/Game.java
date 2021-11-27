@@ -47,7 +47,7 @@ public class Game {
         stage.show();
 
         currentGameTime = 0;
-        startNanoTime = System.nanoTime();
+
         Keyboard.keyboardHandle(scene);
         loadLevel(1);
         timer = new AnimationTimer() {

@@ -291,4 +291,10 @@ public class NewBomber extends Character {
         }
 
     }
+    public void placeBomb(){
+        double x = this.x+NewSprite.SCALED_SIZE/2;
+        double y = this.y+NewSprite.SCALED_SIZE/2;
+        double xUnitToPlace=(double)((int)x);
+        double yUnitToPlace=(double)((int)y);
+    }
 }

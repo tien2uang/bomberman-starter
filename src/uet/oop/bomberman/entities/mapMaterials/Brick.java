@@ -7,14 +7,14 @@ import uet.oop.bomberman.graphics.NewSprite;
 
 public class Brick extends AnimatedEntity {
     protected int deathTime;
-    protected boolean destroyed;
+    protected boolean destroy;
     public static final int ANIMATION_CIRCLE = 70;
 
     public Brick(double x, double y) {
         super(x, y);
         img = NewSprite.brick.getFxImage();
         this.layerPower = 3.5;
-        destroyed = false;
+        destroy = false;
 
 
     }
@@ -22,21 +22,24 @@ public class Brick extends AnimatedEntity {
     @Override
     public void update() {
         if(Game.currentGameTime==50){
-            setDestroyed(true);
+            setDestroy(true);
         }
-        if (destroyed) {
-            img = NewSprite.movingSprite(NewSprite.brickBrokenList, getAnimate(), ANIMATION_CIRCLE).getFxImage();
-            animate();
-            if(getAnimate()==ANIMATION_CIRCLE){
-                this.status=INVALID;
-            }
+        if (destroy) {
+           destroy();
         }
 
 
     }
 
-    public void setDestroyed(boolean destroyed) {
-        this.destroyed = destroyed;
+    public void setDestroy(boolean destroy) {
+        this.destroy = destroy;
         this.deathTime= (int)Game.currentGameTime;
+    }
+    private void destroy() {
+        img = NewSprite.movingSprite(NewSprite.brickBrokenList, getAnimate(), ANIMATION_CIRCLE).getFxImage();
+        animate();
+        if(getAnimate()==ANIMATION_CIRCLE){
+            this.status=INVALID;
+        }
     }
 }

@@ -13,6 +13,7 @@ public class Portal extends AnimatedEntity {
 
     @Override
     public void update() {
-        img = NewSprite.movingSprite(NewSprite.portalList, animate, 90).getFxImage();
+        img = NewSprite.movingSprite(NewSprite.portalList, animate, 160).getFxImage();
+        animate();
     }
 }

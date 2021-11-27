@@ -14,10 +14,7 @@ import uet.oop.bomberman.gameplay.Board;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Stack;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class LevelLoader {
     private Board board;
@@ -62,7 +59,7 @@ public class LevelLoader {
         }
     }
     private void addEntity(List<Entity> mapEntities,List<Entity> notMapEntities,String temp,double tempX,double tempY){
-        Stack<Entity>stackEntities;
+        ArrayList<Entity> arrayEntities;
         switch (temp) {
             case "p":
                 mapEntities.add(new Ground(tempX, tempY));
@@ -99,16 +96,16 @@ public class LevelLoader {
                 mapEntities.add(new BotRightCorner(tempX, tempY));
                 break;
             case"w":
-                stackEntities= new Stack<Entity>();
-                stackEntities.push(new Ground(tempX,tempY));
-                stackEntities.push(new Wall(tempX,tempY));
-                mapEntities.add(new LayeredEntity(tempX,tempY,stackEntities));
+                arrayEntities= new ArrayList<Entity>();
+                arrayEntities.add(0,new Ground(tempX,tempY));
+                arrayEntities.add(0,new Wall(tempX,tempY));
+                mapEntities.add(new LayeredEntity(tempX,tempY,arrayEntities));
                 break;
             case"b":
-                stackEntities= new Stack<Entity>();
-                stackEntities.push(new Ground(tempX,tempY));
-                stackEntities.push(new Brick(tempX,tempY));
-                mapEntities.add(new LayeredEntity(tempX,tempY,stackEntities));
+                arrayEntities= new ArrayList<Entity>();
+                arrayEntities.add(0,new Ground(tempX,tempY));
+                arrayEntities.add(0,new Brick(tempX,tempY));
+                mapEntities.add(new LayeredEntity(tempX,tempY,arrayEntities));
                 break;
             default:
                 mapEntities.add(new Sky(tempX,tempY,temp));
