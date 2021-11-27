@@ -2,33 +2,37 @@ package uet.oop.bomberman.entities;
 
 import javafx.scene.canvas.GraphicsContext;
 
-import java.util.Stack;
+import java.util.ArrayList;
 
 public class LayeredEntity extends Entity {
-    private Stack<Entity> stackEntities;
+    private ArrayList<Entity> arrayEntities;
 
-    public LayeredEntity(double x, double y, Stack<Entity> stackEntities) {
+    public LayeredEntity(double x, double y, ArrayList<Entity>entities) {
         super(x, y);
-        this.stackEntities = stackEntities;
+        this.arrayEntities = entities;
     }
 
     @Override
     public void update() {
-        if(stackEntities.peek().getStatus()==VALID) {
-            stackEntities.peek().update();
+        if(arrayEntities.get(0).getStatus()==VALID) {
+            arrayEntities.get(0).update();
         }else{
-            stackEntities.pop();
+            arrayEntities.remove(0);
+            System.out.println(arrayEntities.size());
         }
         
     }
 
     @Override
     public void render(GraphicsContext gc) {
-        stackEntities.peek().render(gc);
+        if(arrayEntities.size()>=2){
+            arrayEntities.get(1).render(gc);
+        }
+        arrayEntities.get(0).render(gc);
     }
 
     @Override
     public double getLayerPower() {
-        return stackEntities.peek().getLayerPower();
+        return arrayEntities.get(0).getLayerPower();
     }
 }

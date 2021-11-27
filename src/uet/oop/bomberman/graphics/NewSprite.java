@@ -6,12 +6,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-
 public class NewSprite {
 
     private static final int SIZE = 16;
     public static final int SCALED_SIZE = SIZE * 36 / 16;
-    public static double SCALED_FACTOR =2.25;
+    public static double SCALED_FACTOR = 2.25;
     private int distanceToTopLeftX;
     private int distanceToTopLeftY;
     private Image image;
@@ -44,7 +43,7 @@ public class NewSprite {
         }
         this.distanceToTopLeftX = distanceToTopLeftX;
         this.distanceToTopLeftY = distanceToTopLeftY;
-        this.name=name;
+        this.name = name;
 
     }
 
@@ -175,7 +174,7 @@ public class NewSprite {
     public static NewSprite portal_7 = new NewSprite(SIZE, 0, 0, "portal6");
 
     public static ArrayList<NewSprite> portalList = new ArrayList<NewSprite>(Arrays.asList(
-            portal_1, portal_2, portal_3, portal_4, portal_5, portal_6, portal_7));
+            portal_1, portal_2, portal_3, portal_4, portal_3, portal_2, portal_1, portal_5, portal_6, portal_7, portal_6, portal_5));
 
     //ground
     public static NewSprite ground = new NewSprite(SIZE, 0, 0, "ground");

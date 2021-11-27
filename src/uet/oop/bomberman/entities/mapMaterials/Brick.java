@@ -1,7 +1,6 @@
 package uet.oop.bomberman.entities.mapMaterials;
 
 import uet.oop.bomberman.entities.AnimatedEntity;
-import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
 
