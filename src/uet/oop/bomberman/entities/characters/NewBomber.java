@@ -114,13 +114,13 @@ public class NewBomber extends Character {
         calculateMove();
         img = chooseImage(direction);
 
-        if (Keyboard.isSetBomb()) {
-            setBomb();
-            Keyboard.setSetBomb();
+        if (Keyboard.isPlaceBomb()) {
+            placeBomb();
+            Keyboard.setPlaceBomb();
         }
     }
 
-    public void setBomb() {
+    public void placeBomb() {
         double x = (this.x + NewSprite.SCALED_SIZE/2)/36;
         double y = (this.y + NewSprite.SCALED_SIZE/2)/36;
         double xUnitToPlace = (double)((int)x);
