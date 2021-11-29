@@ -292,10 +292,65 @@ public class NewSprite {
      * enemies
      */
     //balloon
-    public static NewSprite balloon_dead = new NewSprite(SIZE, 0, 0, "balloon-dead");
+
     public static NewSprite balloon_right = new NewSprite(SIZE, 0, 0, "balloon-right");
     public static NewSprite balloon_right_1 = new NewSprite(SIZE, 0, 0, "balloon-right1");
     public static NewSprite balloon_right_2 = new NewSprite(SIZE, 0, 0, "balloon-right2");
+    public static ArrayList<NewSprite> BalloonRightList = new ArrayList<NewSprite>(Arrays.asList(
+            balloon_right, balloon_right_1, balloon_right_2));
+
+
+    public static NewSprite balloon_left = new NewSprite(SIZE, 0, 0, "balloon-left");
+    public static NewSprite balloon_left1 = new NewSprite(SIZE, 0, 0, "balloon-left1");
+    public static NewSprite balloon_left2 = new NewSprite(SIZE, 0, 0, "balloon-left2");
+    public static ArrayList<NewSprite> BalloonLeftList = new ArrayList<NewSprite>(Arrays.asList(
+            balloon_left, balloon_left1, balloon_left2));
+
+    // bat
+    public static NewSprite bat_up = new NewSprite(SIZE, 0, 0, "bat-up");
+    public static NewSprite bat_up1 = new NewSprite(SIZE, 0, 0, "bat-up1");
+    public static NewSprite bat_up2 = new NewSprite(SIZE, 0, 0, "bat-up2");
+    public static ArrayList<NewSprite> BatUpList = new ArrayList<>(Arrays.asList(bat_up,bat_up1,bat_up2));
+
+    public static NewSprite bat_down = new NewSprite(SIZE, 0, 0, "bat-down");
+    public static NewSprite bat_down1 = new NewSprite(SIZE, 0, 0, "bat-down1");
+    public static NewSprite bat_down2 = new NewSprite(SIZE, 0, 0, "bat-down2");
+    public static ArrayList<NewSprite> BatDownList = new ArrayList<>(Arrays.asList(bat_down,bat_down1,bat_down2));
+
+    public static NewSprite bat_left = new NewSprite(SIZE, 0, 0, "bat-left");
+    public static NewSprite bat_left1 = new NewSprite(SIZE, 0, 0, "bat-left1");
+    public static NewSprite bat_left2 = new NewSprite(SIZE, 0, 0, "bat-left2");
+    public static ArrayList<NewSprite> BatLeftList = new ArrayList<>(Arrays.asList(bat_left,bat_left1,bat_left2));
+
+    public static NewSprite bat_right = new NewSprite(SIZE, 0, 0, "bat-right");
+    public static NewSprite bat_right1 = new NewSprite(SIZE, 0, 0, "bat-right1");
+    public static NewSprite bat_right2 = new NewSprite(SIZE, 0, 0, "bat-right2");
+    public static ArrayList<NewSprite> BatRightList = new ArrayList<>(Arrays.asList(bat_right,bat_right1,bat_right2));
+
+
+    // frog
+    public static NewSprite frog = new NewSprite(SIZE, 0, 0, "frog");
+    public static NewSprite frog1 = new NewSprite(SIZE, 0, 0, "frog1");
+    public static NewSprite frog2 = new NewSprite(SIZE, 0, 0, "frog2");
+    public static ArrayList<NewSprite> frogList = new ArrayList<>(Arrays.asList(frog,frog1,frog2));
+
+
+    //enemy dead
+    public static NewSprite enemy_dead = new NewSprite(SIZE, 0, 0, "enemy-dead");
+    public static NewSprite enemy_dead1 = new NewSprite(SIZE, 0, 0, "enemy-dead1");
+    public static NewSprite enemy_dead2 = new NewSprite(SIZE, 0, 0, "enemy-dead2");
+    public static NewSprite enemy_dead3 = new NewSprite(SIZE, 0, 0, "enemy-dead3");
+    public static NewSprite enemy_dead4 = new NewSprite(SIZE, 0, 0, "enemy-dead4");
+
+    public static NewSprite balloon_dead_ = new NewSprite(SIZE, 0, 0, "balloon-dead");
+    public static NewSprite bat_dead_ = new NewSprite(SIZE, 0, 0, "bat-dead");
+    public static NewSprite frog_dead_ = new NewSprite(SIZE, 0, 0, "frog-dead");
+
+    public static ArrayList<NewSprite> frog_Dead = new ArrayList<>(Arrays.asList(frog_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
+    public static ArrayList<NewSprite> balloon_dead = new ArrayList<>(Arrays.asList(balloon_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
+    public static ArrayList<NewSprite> bat_dead = new ArrayList<>(Arrays.asList(frog_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
+
+
 
     public static NewSprite movingSprite(ArrayList<NewSprite> spritesList, int animate, int time) {
         int calc = animate % time;
