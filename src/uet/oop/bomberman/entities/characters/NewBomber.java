@@ -2,6 +2,7 @@ package uet.oop.bomberman.entities.characters;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import uet.oop.bomberman.entities.items.bomb.NewBomb;
 import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
@@ -119,11 +120,11 @@ public class NewBomber extends Character {
     }
 
     public void placeBomb() {
-        double x = (this.x + NewSprite.SCALED_SIZE/2)/36;
-        double y = (this.y + NewSprite.SCALED_SIZE/2)/36;
+        double x = (this.x + NewSprite.SCALED_SIZE/2)/NewSprite.SCALED_SIZE;
+        double y = (this.y + NewSprite.SCALED_SIZE/2)/NewSprite.SCALED_SIZE;
         double xUnitToPlace = (double)((int)x);
         double yUnitToPlace = (double)((int)y);
-        Bomb bomb = new Bomb(xUnitToPlace, yUnitToPlace);
+        NewBomb bomb = new NewBomb(xUnitToPlace, yUnitToPlace-1);
         Board.getBombs().add(bomb);
     }
 
