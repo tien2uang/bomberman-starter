@@ -2,7 +2,6 @@ package uet.oop.bomberman.entities.characters;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.mapMaterials.Brick;
 import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.graphics.NewSprite;
 
@@ -19,7 +18,7 @@ public class Flame extends Entity {
     @Override
     public void update() {
         for (Entity bomb : Board.getBombs()) {
-            Bom b = (Bom) bomb;
+            Bomb b = (Bomb) bomb;
             if (bomb.getXUnit() == getXUnit() && bomb.getYUnit() == getYUnit()) {
                 if (!b.isExploded()) {
                     b.explode();

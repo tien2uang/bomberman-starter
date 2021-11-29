@@ -1,15 +1,9 @@
 package uet.oop.bomberman;
 
 import javafx.application.Application;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.mapMaterials.Ground;
-import uet.oop.bomberman.entities.mapMaterials.Wall;
-import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.gameplay.Game;
-import uet.oop.bomberman.graphics.NewSprite;
 
 import java.util.ArrayList;
 import java.util.List;

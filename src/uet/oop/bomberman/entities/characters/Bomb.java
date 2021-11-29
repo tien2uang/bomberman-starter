@@ -12,11 +12,11 @@ import uet.oop.bomberman.graphics.NewSprite;
 
 import java.util.ArrayList;
 
-public class Bom extends AnimatedEntity {
+public class Bomb extends AnimatedEntity {
     int timer = 200;
     boolean exploded = false;
     ArrayList<Flame> flames = new ArrayList<>();
-    public Bom(double xUnit, double yUnit) {
+    public Bomb(double xUnit, double yUnit) {
         super(xUnit, yUnit);
         this.img = NewSprite.bomb1_1.getFxImage();
         this.layerPower = 2;
@@ -55,7 +55,7 @@ public class Bom extends AnimatedEntity {
         if (Board.getMostPoweredEntityAt((int) (xUnit + 0.5), (int) (newUnitUp - 0.5)).getLayerPower() >= 5) {
 
         } else if (Board.getMostPoweredEntityAt((int) (xUnit + 0.5), (int) (newUnitUp - 0.5)).getLayerPower() == 3.5) {
-            Brick.setDestroyed(true);
+            //Brick.setDestroyed(true);
         } else {
             flames.add(new Flame(xUnit, newUnitUp, NewSprite.explosion_vertical_top_last_2.getFxImage()));
         }
@@ -64,7 +64,7 @@ public class Bom extends AnimatedEntity {
         if (Board.getMostPoweredEntityAt((int) (xUnit + 0.5), (int) (newUnitDown - 0.5)).getLayerPower() >= 5) {
 
         } else if (Board.getMostPoweredEntityAt((int) (xUnit + 0.5), (int) (newUnitDown - 0.5)).getLayerPower() == 3.5) {
-            Brick.setDestroyed(true);
+            //Brick.setDestroyed(true);
         } else {
             flames.add(new Flame(xUnit, newUnitDown, NewSprite.explosion_vertical_bot_last_2.getFxImage()));
         }
@@ -73,7 +73,7 @@ public class Bom extends AnimatedEntity {
         if (Board.getMostPoweredEntityAt((int) (newUnitRight + 0.5), (int) (yUnit - 0.5)).getLayerPower() >= 5) {
 
         } else if (Board.getMostPoweredEntityAt((int) (newUnitRight + 0.5), (int) (yUnit - 0.5)).getLayerPower() == 3.5) {
-            Brick.setDestroyed(true);
+            //Brick.setDestroyed(true);
         } else {
             flames.add(new Flame(newUnitRight, yUnit, NewSprite.explosion_horizontal_right_last_2.getFxImage()));
         }
@@ -83,7 +83,7 @@ public class Bom extends AnimatedEntity {
         if (Board.getMostPoweredEntityAt((int) (newUnitLeft + 0.5), (int) (yUnit - 0.5)).getLayerPower() >= 5) {
 
         } else if (Board.getMostPoweredEntityAt((int) (newUnitLeft + 0.5), (int) (yUnit - 0.5)).getLayerPower() == 3.5) {
-            Brick.setDestroyed(true);
+           // Brick.setDestroyed(true);
         } else {
             flames.add(new Flame(newUnitLeft, yUnit, NewSprite.explosion_horizontal_left_last_2.getFxImage()));
         }
@@ -97,7 +97,7 @@ public class Bom extends AnimatedEntity {
         if (Board.getMostPoweredEntityAt((int) (xUnit + 0.5), (int) (newUnitUp - 0.5)).getLayerPower() >= 5) {
 
         } else if (Board.getMostPoweredEntityAt((int) (xUnit + 0.5), (int) (newUnitUp - 0.5)).getLayerPower() == 3.5) {
-            Brick.setDestroyed(true);
+          //  Brick.setDestroyed(true);
         } else {
             flames.add(new Flame(xUnit, newUnitUp, NewSprite.explosion_vertical_top_last.getFxImage()));
         }
@@ -106,7 +106,7 @@ public class Bom extends AnimatedEntity {
         if (Board.getMostPoweredEntityAt((int) (xUnit + 0.5), (int) (newUnitDown - 0.5)).getLayerPower() >= 5) {
 
         } else if (Board.getMostPoweredEntityAt((int) (xUnit + 0.5), (int) (newUnitDown - 0.5)).getLayerPower() == 3.5) {
-            Brick.setDestroyed(true);
+           // Brick.setDestroyed(true);
         } else {
             flames.add(new Flame(xUnit, newUnitDown, NewSprite.explosion_vertical_bot_last.getFxImage()));
         }
@@ -115,7 +115,7 @@ public class Bom extends AnimatedEntity {
         if (Board.getMostPoweredEntityAt((int) (newUnitRight + 0.5), (int) (yUnit - 0.5)).getLayerPower() >= 5) {
 
         } else if (Board.getMostPoweredEntityAt((int) (newUnitRight + 0.5), (int) (yUnit - 0.5)).getLayerPower() == 3.5) {
-            Brick.setDestroyed(true);
+           // Brick.setDestroyed(true);
         } else {
             flames.add(new Flame(newUnitRight, yUnit, NewSprite.explosion_horizontal_right_last.getFxImage()));
         }
@@ -125,7 +125,7 @@ public class Bom extends AnimatedEntity {
         if (Board.getMostPoweredEntityAt((int) (newUnitLeft + 0.5), (int) (yUnit - 0.5)).getLayerPower() >= 5) {
 
         } else if (Board.getMostPoweredEntityAt((int) (newUnitLeft + 0.5), (int) (yUnit - 0.5)).getLayerPower() == 3.5) {
-            Brick.setDestroyed(true);
+           // Brick.setDestroyed(true);
         } else {
             flames.add(new Flame(newUnitLeft, yUnit, NewSprite.explosion_horizontal_left_last.getFxImage()));
         }

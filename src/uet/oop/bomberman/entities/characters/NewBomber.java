@@ -2,14 +2,12 @@ package uet.oop.bomberman.entities.characters;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.input.Keyboard;
 
-import java.util.Iterator;
 import java.util.Vector;
 
 public class NewBomber extends Character {
@@ -18,7 +16,7 @@ public class NewBomber extends Character {
     private boolean isMoving;
     public static double speed = 1.6;
     private NewSprite currentSprite;
-    public static Vector<Bom> bombs = new Vector<>();
+    public static Vector<Bomb> bombs = new Vector<>();
 
     public NewBomber(double x, double y) {
         super(x, y);
@@ -125,7 +123,7 @@ public class NewBomber extends Character {
         double y = (this.y + NewSprite.SCALED_SIZE/2)/36;
         double xUnitToPlace = (double)((int)x);
         double yUnitToPlace = (double)((int)y);
-        Bom bomb = new Bom(xUnitToPlace, yUnitToPlace);
+        Bomb bomb = new Bomb(xUnitToPlace, yUnitToPlace);
         Board.getBombs().add(bomb);
     }
 
@@ -307,10 +305,10 @@ public class NewBomber extends Character {
         }
 
     }
-    public void placeBomb(){
-        double x = this.x+NewSprite.SCALED_SIZE/2;
-        double y = this.y+NewSprite.SCALED_SIZE/2;
-        double xUnitToPlace=(double)((int)x);
-        double yUnitToPlace=(double)((int)y);
-    }
+//    public void placeBomb(){
+//        double x = this.x+NewSprite.SCALED_SIZE/2;
+//        double y = this.y+NewSprite.SCALED_SIZE/2;
+//        double xUnitToPlace=(double)((int)x);
+//        double yUnitToPlace=(double)((int)y);
+//    }
 }

@@ -6,15 +6,17 @@ import uet.oop.bomberman.graphics.NewSprite;
 
 
 public class Brick extends AnimatedEntity {
-    public static int deathTime;
-    public static boolean destroyed;
-    public static final int ANIMATION_CIRCLE = 150;
+    public int deathTime;
+    public boolean destroyed;
+    public final int ANIMATION_CIRCLE = 150;
+    public boolean onFire;
 
     public Brick(double x, double y) {
         super(x, y);
         img = NewSprite.brick.getFxImage();
         this.layerPower = 3.5;
         destroyed = false;
+        onFire = false;
 
 
     }
@@ -27,16 +29,25 @@ public class Brick extends AnimatedEntity {
         if (destroyed) {
             img = NewSprite.movingSprite(NewSprite.brickBrokenList, getAnimate(), ANIMATION_CIRCLE).getFxImage();
             animate();
-            if(getAnimate()==ANIMATION_CIRCLE){
-                this.status=INVALID;
+            if (getAnimate() == ANIMATION_CIRCLE) {
+                this.status = INVALID;
             }
         }
 
 
     }
 
-    public static void setDestroyed(boolean destroyed) {
-        Brick.destroyed = destroyed;
-        Brick.deathTime= (int)Game.currentGameTime;
+    public  void setDestroyed(boolean destroyed) {
+        this.destroyed = destroyed;
+        this.deathTime = (int) Game.currentGameTime;
+        setOnFire(true);
+    }
+
+    public boolean isOnFire() {
+        return onFire;
+    }
+
+    public void setOnFire(boolean onFire) {
+        this.onFire = onFire;
     }
 }

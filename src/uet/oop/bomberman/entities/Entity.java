@@ -1,20 +1,15 @@
 package uet.oop.bomberman.entities;
 
-import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
-import uet.oop.bomberman.graphics.Sprite;
 
 public abstract class Entity {
     //Tọa độ X tính từ góc trái trên trong Canvas
     protected double x;
     protected int status;
-    public static final int VALID=0;
-    public static final int INVALID=1;
+    public static final int VALID = 0;
+    public static final int INVALID = 1;
 
     //Tọa độ Y tính từ góc trái trên trong Canvas
     protected double y;
@@ -22,22 +17,23 @@ public abstract class Entity {
     protected double yUnit;
 
     protected Image img;
-    public double layerPower=0;
+    public double layerPower = 0;
     public boolean removeBomb = false;
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
-    public Entity( double xUnit, double yUnit, Image img) {
+    public Entity(double xUnit, double yUnit, Image img) {
         this.x = xUnit * NewSprite.SCALED_SIZE;
         this.y = yUnit * NewSprite.SCALED_SIZE;
         this.img = img;
-        this.status=VALID;
+        this.status = VALID;
     }
-    public Entity(double xUnit, double yUnit){
+
+    public Entity(double xUnit, double yUnit) {
         this.x = xUnit * NewSprite.SCALED_SIZE;
         this.y = yUnit * NewSprite.SCALED_SIZE;
-        this.status=VALID;
-        this.xUnit=xUnit;
-        this.yUnit=Coordinate.canvasToBoardTileY(yUnit);
+        this.status = VALID;
+        this.xUnit = xUnit;
+        this.yUnit = Coordinate.canvasToBoardTileY(yUnit);
     }
 
     public double getX() {
@@ -59,6 +55,7 @@ public abstract class Entity {
     public void render(GraphicsContext gc) {
         gc.drawImage(img, x, y);
     }
+
     public abstract void update();
 
     public int getStatus() {
@@ -68,11 +65,17 @@ public abstract class Entity {
     public double getLayerPower() {
         return layerPower;
     }
+
     public boolean canCrossOver(Entity entity) {
-        return this.layerPower>=entity.getLayerPower();
+        return this.layerPower >= entity.getLayerPower();
     }
+
     public boolean isRemoveBomb() {
         return removeBomb;
+    }
+
+    public Entity getMostPoweredEntity() {
+        return this;
     }
 
 }

@@ -35,4 +35,9 @@ public class LayeredEntity extends Entity {
     public double getLayerPower() {
         return arrayEntities.get(0).getLayerPower();
     }
+
+    @Override
+    public Entity getMostPoweredEntity() {
+        return arrayEntities.get(0);
+    }
 }
