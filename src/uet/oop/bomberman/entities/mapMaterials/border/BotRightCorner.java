@@ -2,7 +2,7 @@ package uet.oop.bomberman.entities.mapMaterials.border;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.NewSprite;
 
-public class BotRightCorner extends Entity {
+public class BotRightCorner extends Border {
     public BotRightCorner(double x, double y)
     {
         super(x, y);

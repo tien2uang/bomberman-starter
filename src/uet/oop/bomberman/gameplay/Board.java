@@ -9,18 +9,18 @@ public class Board extends Game {
     public static final double BOARD_WIDTH = 17;
     public static final double BOARD_HEIGHT = 13;
     public static final double BOARD_COORDINATE_Y = Game.INFO_HEIGHT;
-    private static List<Entity> mapEntities = new ArrayList<>();
-    private static List<Entity> nonMapEntities = new ArrayList<>();
-    private static List<Entity> bombs = new ArrayList<>();
-    private static List<Entity> flames= new ArrayList<>();
+    public static List<Entity> mapEntities = new ArrayList<>();
+    public static List<Entity> character = new ArrayList<>();
+    public static List<Entity> bombs = new ArrayList<>();
+    public static List<Entity> flames = new ArrayList<>();
 
 
     public static void update() {
         Game.currentGameTime++;
-        mapEntities.forEach(g -> g.update());
-        nonMapEntities.forEach(g -> g.update());
-        flames.forEach(g -> g.update());
-        bombs.forEach(g -> g.update());
+        updateMap();
+        updateBombs();
+        updateFlames();
+        updateCharacter();
     }
 
     public static void render() {
@@ -28,24 +28,24 @@ public class Board extends Game {
         mapEntities.forEach(g -> g.render(gc));
         bombs.forEach(g -> g.render(gc));
         flames.forEach(g -> g.render(gc));
-        nonMapEntities.forEach(g -> g.render(gc));
+        character.forEach(g -> g.render(gc));
 
     }
 
-    public static Entity getMostPoweredEntityAt(double x, double y) {
+    public static Entity getMostPoweredEntityAt(double xUnit, double yUnit) {
         Entity result = null;
         double temp = 0;
         for (Entity entity : mapEntities) {
 
-            if (Double.compare(x, entity.getXUnit()) == 0 && Double.compare(y, entity.getYUnit()) == 0) {
+            if (Double.compare(xUnit, entity.getXUnit()) == 0 && Double.compare(yUnit, entity.getYUnit()) == 0) {
                 if (entity.getLayerPower() >= temp) {
                     result = entity.getMostPoweredEntity();
                     temp = entity.getLayerPower();
                 }
             }
         }
-        for (Entity entity : nonMapEntities) {
-            if (Double.compare(x, entity.getX()) == 0 && Double.compare(y, entity.getY()) == 0) {
+        for (Entity entity : character) {
+            if (Double.compare(xUnit, entity.getXUnit()) == 0 && Double.compare(yUnit, entity.getYUnit()) == 0) {
                 if (entity.getLayerPower() >= temp) {
                     result = entity.getMostPoweredEntity();
                     temp = entity.getLayerPower();
@@ -60,7 +60,7 @@ public class Board extends Game {
     }
 
     public static List<Entity> getStillObjectsList() {
-        return nonMapEntities;
+        return character;
     }
 
     public static List<Entity> getBombs() {
@@ -69,5 +69,28 @@ public class Board extends Game {
 
     public static List<Entity> getFlames() {
         return flames;
+    }
+
+    private static void updateMap() {
+        mapEntities.forEach(g -> g.update());
+    }
+    private static void updateBombs() {
+        bombs.forEach(g -> g.update());
+        for(int i=0;i<bombs.size();i++){
+            if(bombs.get(i).getStatus()==Entity.INVALID){
+                bombs.remove(i);
+            }
+        }
+    }
+    private static void updateCharacter() {
+        character.forEach(g -> g.update());
+    }
+    private static void updateFlames(){
+        flames.forEach(g -> g.update());
+        for(int i=0;i<flames.size();i++){
+            if(flames.get(i).getStatus()==Entity.INVALID){
+                flames.remove(i);
+            }
+        }
     }
 }

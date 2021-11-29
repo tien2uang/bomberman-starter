@@ -2,7 +2,7 @@ package uet.oop.bomberman.entities.mapMaterials.border;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.NewSprite;
 
-public class RightBorder extends Entity {
+public class RightBorder extends Border {
     public RightBorder(double x, double y){
         super(x, y);
         this.img= NewSprite.stage_right_1.getFxImage();

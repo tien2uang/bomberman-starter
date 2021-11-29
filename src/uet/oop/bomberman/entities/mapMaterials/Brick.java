@@ -23,9 +23,7 @@ public class Brick extends AnimatedEntity {
 
     @Override
     public void update() {
-        /*if(Game.currentGameTime == 50) {
-            setDestroyed(true);
-        }*/
+
         if (destroyed) {
             img = NewSprite.movingSprite(NewSprite.brickBrokenList, getAnimate(), ANIMATION_CIRCLE).getFxImage();
             animate();
