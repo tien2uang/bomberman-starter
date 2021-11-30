@@ -2,17 +2,12 @@ package uet.oop.bomberman.entities.enemies;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import sun.security.krb5.internal.CredentialsUtil;
 import uet.oop.bomberman.entities.AnimatedEntity;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.characters.Bomber;
 import uet.oop.bomberman.gameplay.Board;
-import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
 
-import javax.management.StandardMBean;
 import java.util.Random;
-import java.util.concurrent.locks.StampedLock;
 
 public abstract class Enemy  extends AnimatedEntity {
 
