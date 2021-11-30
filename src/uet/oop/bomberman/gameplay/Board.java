@@ -84,6 +84,11 @@ public class Board extends Game {
     }
     private static void updateCharacter() {
         character.forEach(g -> g.update());
+        for(int i=0;i<character.size();i++){
+            if(character.get(i).getStatus()==Entity.INVALID){
+                character.remove(i);
+            }
+        }
     }
     private static void updateFlames(){
         flames.forEach(g -> g.update());

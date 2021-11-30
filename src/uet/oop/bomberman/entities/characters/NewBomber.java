@@ -6,7 +6,6 @@ import uet.oop.bomberman.entities.items.bomb.NewBomb;
 import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
-import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.input.Keyboard;
 
 import java.util.Vector;
@@ -15,9 +14,10 @@ public class NewBomber extends Character {
 
     public int direction;
     private boolean isMoving;
-    public static double speed = 1.6;
+    public static double speed = 1.8;
     private NewSprite currentSprite;
     public static Vector<Bomb> bombs = new Vector<>();
+    private boolean isAlive;
 
     public NewBomber(double x, double y) {
         super(x, y);
@@ -27,6 +27,7 @@ public class NewBomber extends Character {
         this.animate = 0;
         this.isMoving = false;
         this.layerPower = 2;
+        isAlive = true;
     }
 
     public void move(double p, double q) {
@@ -84,10 +85,6 @@ public class NewBomber extends Character {
 
     public Image chooseImage(int direction) {
         switch (direction) {
-            case -1:
-
-                return NewSprite.getMoveSprite(Sprite.player_dead1.getFxImage(), Sprite.player_dead2.getFxImage(),
-                        Sprite.player_dead3.getFxImage(), getAnimate(), 70);
             case 1:
                 currentSprite = NewSprite.movingSprite(NewSprite.playerLeftList, animate, 33);
                 return NewSprite.movingSprite(NewSprite.playerLeftList, animate, 33).getFxImage();
@@ -106,25 +103,43 @@ public class NewBomber extends Character {
 
     @Override
     public void update() {
-        if (!isMoving()) {
-            animate = 0;
+        if(Game.currentGameTime==100){
+            setAlive(false);
         }
+        if (isAlive) {
+            if (!isMoving()) {
+                animate = 0;
+            }
 
-        calculateMove();
-        img = chooseImage(direction);
+            calculateMove();
+            img = chooseImage(direction);
 
-        if (Keyboard.isPlaceBomb()) {
-            placeBomb();
-            Keyboard.setPlaceBomb();
+            if (Keyboard.isPlaceBomb()) {
+                placeBomb();
+                Keyboard.setPlaceBomb();
+            }
+        } else {
+            currentSprite = NewSprite.movingSprite(NewSprite.playerDeadList, animate, 90);
+            img=currentSprite.getFxImage();
+            animate();
+            if(getAnimate()==90){
+                this.status=INVALID;
+            }
         }
     }
 
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+        animate = 0;
+
+    }
+
     public void placeBomb() {
-        double x = (this.x + NewSprite.SCALED_SIZE/2)/NewSprite.SCALED_SIZE;
-        double y = (this.y + NewSprite.SCALED_SIZE/2)/NewSprite.SCALED_SIZE;
-        double xUnitToPlace = (double)((int)x);
-        double yUnitToPlace = (double)((int)y);
-        NewBomb bomb = new NewBomb(xUnitToPlace, yUnitToPlace-1);
+        double x = (this.x + NewSprite.SCALED_SIZE / 2) / NewSprite.SCALED_SIZE;
+        double y = (this.y + NewSprite.SCALED_SIZE / 2) / NewSprite.SCALED_SIZE;
+        double xUnitToPlace = (double) ((int) x);
+        double yUnitToPlace = (double) ((int) y);
+        NewBomb bomb = new NewBomb(xUnitToPlace, yUnitToPlace - 1);
         Board.getBombs().add(bomb);
     }
 
@@ -132,7 +147,6 @@ public class NewBomber extends Character {
     public void render(GraphicsContext gc) {
         double x = this.x - (double) (currentSprite.getDistanceToTopLeftX()) * NewSprite.SCALED_FACTOR;
         double y = this.y - (double) (currentSprite.getDistanceToTopLeftY()) * NewSprite.SCALED_FACTOR;
-        // System.out.println(this.x + " " + this.y +  ":"+currentSprite.getName());
         gc.drawImage(img, x, y);
     }
 
@@ -306,10 +320,5 @@ public class NewBomber extends Character {
         }
 
     }
-//    public void placeBomb(){
-//        double x = this.x+NewSprite.SCALED_SIZE/2;
-//        double y = this.y+NewSprite.SCALED_SIZE/2;
-//        double xUnitToPlace=(double)((int)x);
-//        double yUnitToPlace=(double)((int)y);
-//    }
+
 }

@@ -70,7 +70,7 @@ public class NewSprite {
     ));
     public static ArrayList<NewSprite> newBombExplosionCentral = new ArrayList<NewSprite>(Arrays.asList(
             bomb_exploded, bomb_exploded_1, bomb_exploded_2, bomb_exploded_3, bomb_exploded_4,
-            bomb_exploded_3,bomb_exploded_2,bomb_exploded_1,bomb_exploded
+            bomb_exploded_3, bomb_exploded_2, bomb_exploded_1, bomb_exploded
     ));
 
     public static NewSprite bomb1_1 = new NewSprite(SIZE, 0, 0, "1-bomb-1");
@@ -89,12 +89,12 @@ public class NewSprite {
     //new bomb
     public static ArrayList<NewSprite> normalBomb = new ArrayList<NewSprite>(Arrays.asList(
             bomb1_1, bomb1_2, bomb1_3,
-            bomb1_2,bomb1_1,
+            bomb1_2, bomb1_1,
             bomb1_1, bomb1_2, bomb1_3
     ));
-    public static ArrayList<NewSprite> powerBomb= new ArrayList<NewSprite>(Arrays.asList(
+    public static ArrayList<NewSprite> powerBomb = new ArrayList<NewSprite>(Arrays.asList(
             bomb2_1, bomb2_2, bomb2_3,
-            bomb2_2,bomb2_1,
+            bomb2_2, bomb2_1,
             bomb2_1, bomb2_2, bomb2_3
     ));
 
@@ -168,7 +168,7 @@ public class NewSprite {
     ));
     public static ArrayList<NewSprite> newBombExplosionHorizontalLeftLast = new ArrayList<NewSprite>(Arrays.asList(
             explosion_horizontal_left_last, explosion_horizontal_left_last_1, explosion_horizontal_left_last_2, explosion_horizontal_left_last_3, explosion_horizontal_left_last_4,
-            explosion_horizontal_left_last_3,explosion_horizontal_left_last_2,explosion_horizontal_left_last_1, explosion_horizontal_left_last
+            explosion_horizontal_left_last_3, explosion_horizontal_left_last_2, explosion_horizontal_left_last_1, explosion_horizontal_left_last
     ));
 
     //brick
@@ -183,26 +183,8 @@ public class NewSprite {
 
     public static ArrayList<NewSprite> brickBrokenList = new ArrayList<NewSprite>(Arrays.asList(
             brick_broken_1, brick_broken_2, brick_broken_3, brick_broken_4, brick_broken_5, brick_broken_6));
-    /*
-    //explosion
-    public static NewSprite explosion_horizontal_1 = new NewSprite(SIZE, 0, 0, "explosion-horizontal");
-    public static NewSprite explosion_horizontal_2 = new NewSprite(SIZE, 0, 0, "explosion-horizontal1");
 
-    public static NewSprite explosion_horizontal_left_last_1 = new NewSprite(SIZE, 0, 0, "explosion-horizontal-leftlast");
-    public static NewSprite explosion_horizontal_left_last_2 = new NewSprite(SIZE, 0, 0, "explosion-horizontal-leftlast1");
 
-    public static NewSprite explosion_horizontal_right_last_1 = new NewSprite(SIZE, 0, 0, "explosion-horizontal-rightlast");
-    public static NewSprite explosion_horizontal_right_last_2 = new NewSprite(SIZE, 0, 0, "explosion-horizontal-leftlast1");
-
-    public static NewSprite explosion_vertical_1 = new NewSprite(SIZE, 0, 0, "explosion-vertical");
-    public static NewSprite explosion_vertical_2 = new NewSprite(SIZE, 0, 0, "explosion-vertical1");
-
-    public static NewSprite explosion_vertical_top_last_1 = new NewSprite(SIZE, 0, 0, "explosion-vertical-toplast");
-    public static NewSprite explosion_vertical_top_last_2 = new NewSprite(SIZE, 0, 0, "explosion-vertical-toplast1");
-
-    public static NewSprite explosion_vertical_bot_last_1 = new NewSprite(SIZE, 0, 0, "explosion-vertical-botlast");
-    public static NewSprite explosion_vertical_bot_last_2 = new NewSprite(SIZE, 0, 0, "explosion-vertical-botlast1");
-    */
     //portal
     public static NewSprite portal_1 = new NewSprite(SIZE, 0, 0, "portal");
     public static NewSprite portal_2 = new NewSprite(SIZE, 0, 0, "portal1");
@@ -288,14 +270,38 @@ public class NewSprite {
             player_up_1, player_up_2, player_up_3
     ));
 
+    public static NewSprite player_dead_1= new NewSprite(SIZE,2,5,20,20,"player-dead");
+    public static NewSprite player_dead_2= new NewSprite(SIZE,1,5,19,20,"player-dead1");
+    public static NewSprite player_dead_3= new NewSprite(SIZE,2,5,21,21,"player-dead2");
+    public static NewSprite player_dead_4= new NewSprite(SIZE,1,5,19,21,"player-dead3");
+    public static NewSprite player_dead_5= new NewSprite(SIZE,1,5,19,21,"player-dead4");
+    public static NewSprite player_dead_6= new NewSprite(SIZE,2,5,21,21,"player-dead5");
+    public static NewSprite player_dead_7= new NewSprite(SIZE,3,5,22,22,"player-dead6");
+
+    public static ArrayList<NewSprite>playerDeadList= new ArrayList<>(Arrays.asList(
+       player_dead_1,player_dead_2,player_dead_3,player_dead_4,player_dead_5,player_dead_6,player_dead_7
+    ));
+
     /**
      * enemies
      */
+
+    //enemy dead
+    public static NewSprite enemy_dead_1 = new NewSprite(SIZE, 0, 0, "enemy-dead");
+    public static NewSprite enemy_dead_2 = new NewSprite(SIZE, 0, 0, "enemy-dead1");
+    public static NewSprite enemy_dead_3 = new NewSprite(SIZE, 0, 0, "enemy-dead2");
+    public static NewSprite enemy_dead_4 = new NewSprite(SIZE, 0, 0, "enemy-dead3");
+    public static NewSprite enemy_dead_5 = new NewSprite(SIZE, 0, 0, "enemy-dead4");
+
+    public static ArrayList<NewSprite> enemyDeadList = new ArrayList<>(Arrays.asList(
+            enemy_dead_1, enemy_dead_2, enemy_dead_3, enemy_dead_4, enemy_dead_5
+    ));
     //balloon
     public static NewSprite balloon_dead = new NewSprite(SIZE, 0, 0, "balloon-dead");
     public static NewSprite balloon_right = new NewSprite(SIZE, 0, 0, "balloon-right");
     public static NewSprite balloon_right_1 = new NewSprite(SIZE, 0, 0, "balloon-right1");
     public static NewSprite balloon_right_2 = new NewSprite(SIZE, 0, 0, "balloon-right2");
+
 
     public static NewSprite movingSprite(ArrayList<NewSprite> spritesList, int animate, int time) {
         int calc = animate % time;

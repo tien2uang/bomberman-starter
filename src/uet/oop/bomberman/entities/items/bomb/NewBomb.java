@@ -121,7 +121,7 @@ public class NewBomb extends AnimatedEntity {
                 Iterator<NewFlame> it = flames.iterator();
                 while (it.hasNext()) {
                     NewFlame flame = it.next();
-                    if(flame.getYUnit()<= this.getYUnit() - i){
+                    if(flame.getYUnit()>= this.getYUnit() + i){
                         it.remove();
                     }
                 }

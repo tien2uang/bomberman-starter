@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class NewFlame extends AnimatedEntity {
     private ArrayList<NewSprite> flames;
-    private final int ANIMATION_CIRCLE=100;
+    private final int ANIMATION_CIRCLE=35;
     public NewFlame(double xUnit, double yUnit, String type) {
         super(xUnit, yUnit);
         chooseFlames(type);

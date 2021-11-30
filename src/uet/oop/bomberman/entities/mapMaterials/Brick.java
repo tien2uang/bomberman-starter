@@ -8,13 +8,13 @@ import uet.oop.bomberman.graphics.NewSprite;
 public class Brick extends AnimatedEntity {
     public int deathTime;
     public boolean destroyed;
-    public final int ANIMATION_CIRCLE = 150;
+    public final int ANIMATION_CIRCLE = 35;
     public boolean onFire;
 
     public Brick(double x, double y) {
         super(x, y);
         img = NewSprite.brick.getFxImage();
-        this.layerPower = 3.5;
+        this.layerPower = 3;
         destroyed = false;
         onFire = false;
 
