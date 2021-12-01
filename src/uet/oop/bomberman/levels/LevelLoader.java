@@ -2,7 +2,6 @@ package uet.oop.bomberman.levels;
 
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.LayeredEntity;
-import uet.oop.bomberman.entities.characters.Bomber;
 import uet.oop.bomberman.entities.characters.NewBomber;
 import uet.oop.bomberman.entities.enemies.Balloon;
 import uet.oop.bomberman.entities.enemies.Bat;
@@ -30,8 +29,8 @@ public class LevelLoader {
 
     public void loadLevel(int level) {
         try {
-            List<Entity> entitiesList = board.getEntitiesList();
-            List<Entity> stillObjList = board.getStillObjectsList();
+            List<Entity> entitiesList = board.getMapEntitiesList();
+            List<Entity> stillObjList = board.getCharacterList();
             String path = "res/levels/Level1-" + level + ".txt";
             Scanner scanner = new Scanner(new File(path));
             String _line = scanner.nextLine().trim();

@@ -163,7 +163,7 @@ public abstract class Enemy extends AnimatedEntity {
                 return false;
             }
         }
-        for (Entity entity : Board.getEntitiesList()) {
+        for (Entity entity : Board.getMapEntitiesList()) {
             if(a == (int) entity.getXUnit() && b == (int) entity.getYUnit()) {
                 if(this.getLayerPower() >= entity.getLayerPower()) {
                     return true;

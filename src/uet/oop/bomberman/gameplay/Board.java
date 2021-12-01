@@ -1,6 +1,7 @@
 package uet.oop.bomberman.gameplay;
 
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.characters.NewBomber;
 import uet.oop.bomberman.entities.items.bomb.NewFlame;
 
 import java.util.ArrayList;
@@ -41,12 +42,14 @@ public class Board extends Game {
         bombs.forEach(g -> g.render(gc));
         flames.forEach(g -> g.render(gc));
         character.forEach(g -> g.render(gc));
+
     }
 
     public static Entity getMostPoweredEntityAt(double xUnit, double yUnit) {
         Entity result = null;
         double temp = 0;
         for (Entity entity : mapEntities) {
+
             if (Double.compare(xUnit, entity.getXUnit()) == 0 && Double.compare(yUnit, entity.getYUnit()) == 0) {
                 if (entity.getLayerPower() >= temp) {
                     result = entity.getMostPoweredEntity();
@@ -65,12 +68,11 @@ public class Board extends Game {
         return result;
     }
 
-
-    public static List<Entity> getEntitiesList() {
+    public static List<Entity> getMapEntitiesList() {
         return mapEntities;
     }
 
-    public static List<Entity> getStillObjectsList() {
+    public static List<Entity> getCharacterList() {
         return character;
     }
 
@@ -95,13 +97,14 @@ public class Board extends Game {
     }
     private static void updateCharacter() {
         for (Iterator<Entity> e = character.iterator(); e.hasNext();) {
-            Entity entity = e.next();
-            entity.update();
-            if (!entity.isAlive()) {
+            Entity mob = e.next();
+            mob.update();
+            if (!mob.isAlive()) {
                 e.remove();
             }
         }
     }
+
     private static void updateFlames(){
         flames.forEach(g -> g.update());
         for(int i=0;i<flames.size();i++){
@@ -117,5 +120,9 @@ public class Board extends Game {
 
     public static double getBomberSpeed() {
         return bomberSpeed;
+    }
+
+    public static int getBombRange() {
+        return bombRange;
     }
 }

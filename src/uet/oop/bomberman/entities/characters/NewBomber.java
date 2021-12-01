@@ -35,6 +35,7 @@ public class NewBomber extends Character {
         this.layerPower = 2;
     }
 
+
     public void calculateMove() {
         double X = 0, Y = 0;
         if (Keyboard.isRight()) {
@@ -53,6 +54,7 @@ public class NewBomber extends Character {
 
         } else if (Keyboard.isDown()) {
             direction = 4;
+
             animate();
             down();
         }
@@ -79,7 +81,7 @@ public class NewBomber extends Character {
     }
 
     public void collideEnemy() {
-        for (Entity entity: Board.getStillObjectsList()) {
+        for (Entity entity: Board.getCharacterList()) {
             if (!(entity instanceof NewBomber)) {
                 if (Math.round(x / NewSprite.SCALED_SIZE) == (int) entity.getXUnit() && Math.round(y / NewSprite.SCALED_SIZE) == (int) (entity.getYUnit() + Board.BOARD_COORDINATE_Y)) {
                     killed();
