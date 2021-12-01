@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 public class AnimatedEntity extends Entity {
     protected int animate = 0;
     public static final int MAX_ANIMATE = 6000;
+    protected boolean killed = false;
 
     public AnimatedEntity(double x, double y, Image image) {
         super(x, y, image);
@@ -27,7 +28,9 @@ public class AnimatedEntity extends Entity {
     public void update() {
 
     }
-
+    public void killed() {
+        killed = true;
+    }
     @Override
     public void render(GraphicsContext gc) {
         super.render(gc);

@@ -14,9 +14,9 @@ import javax.management.StandardMBean;
 import java.util.Random;
 import java.util.concurrent.locks.StampedLock;
 
-public abstract class Enemy  extends AnimatedEntity {
+public abstract class Enemy extends AnimatedEntity {
 
-    public static double speed = 1;
+    public static double speed = 0.5;
     public int direction;
 
     public final double MAX_UP = 72;
@@ -30,6 +30,7 @@ public abstract class Enemy  extends AnimatedEntity {
 
     public boolean isMovingUP = false;
     public boolean isMovingDOWN = false;
+    protected int death_animate = 100;
 
     public final double temp = speed / (double) NewSprite.SCALED_SIZE;
 
@@ -43,14 +44,16 @@ public abstract class Enemy  extends AnimatedEntity {
 
     @Override
     public void update() {
-        animate();
-        calculateMove();
-
+        if (killed) {
+            die();
+        } else {
+            animate();
+            calculateMove();
+        }
     }
 
     @Override
     public void render(GraphicsContext gc) {
-
         chooseImg();
         gc.drawImage(img, (xUnit ) * 36, (yUnit + 1) * 36 );
     }
@@ -69,7 +72,7 @@ public abstract class Enemy  extends AnimatedEntity {
 
     public void calculateMove() {
         double xa = 0, ya = 0;
-        if(_steps <= 0){
+        if(_steps <= 0) {
             rand = random_();
             _steps = MAX_STEPS;
         }
@@ -154,20 +157,37 @@ public abstract class Enemy  extends AnimatedEntity {
     public boolean getAt(double xx, double yy) {
         int a = (int) ( xx);
         int b = (int) ( yy);
+        for (Entity entity: Board.getFlames()) {
+            if (a == entity.getXUnit() && b == entity.getYUnit()) {
+                killed();
+                return false;
+            }
+        }
         for (Entity entity : Board.getEntitiesList()) {
             if(a == (int) entity.getXUnit() && b == (int) entity.getYUnit()) {
                 if(this.getLayerPower() >= entity.getLayerPower()) {
                     return true;
-
                 }
             }
         }
+
+
         return false;
 
     }
 
 
     public abstract void chooseImg();
+
+    public void die() {
+        if (death_animate > 0) {
+            direction = -1;
+            animate();
+            death_animate--;
+        } else {
+            isAlive = false;
+        }
+    }
 
 }
 

@@ -18,7 +18,6 @@ public class Brick extends AnimatedEntity {
         destroyed = false;
         onFire = false;
 
-
     }
 
     @Override

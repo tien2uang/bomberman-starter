@@ -1,5 +1,6 @@
 package uet.oop.bomberman.entities.enemies;
 
+import javafx.scene.canvas.GraphicsContext;
 import uet.oop.bomberman.graphics.NewSprite;
 
 public class Bat extends Enemy {
@@ -14,9 +15,11 @@ public class Bat extends Enemy {
 
     @Override
     public void chooseImg() {
+        if (direction == -1) img = NewSprite.movingSprite(NewSprite.bat_dead, getAnimate(), 200).getFxImage();
         if (direction == 0) img = NewSprite.movingSprite(NewSprite.BatLeftList,getAnimate(),30).getFxImage();
         if (direction == 1) img = NewSprite.movingSprite(NewSprite.BatRightList,getAnimate(),30).getFxImage();
         if (direction == 2) img = NewSprite.movingSprite(NewSprite.BatDownList,getAnimate(),30).getFxImage();
         if (direction == 3) img = NewSprite.movingSprite(NewSprite.BatUpList,getAnimate(),30).getFxImage();
     }
+
 }

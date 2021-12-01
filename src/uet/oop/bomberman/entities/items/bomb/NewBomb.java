@@ -2,6 +2,10 @@ package uet.oop.bomberman.entities.items.bomb;
 
 import javafx.scene.canvas.GraphicsContext;
 import uet.oop.bomberman.entities.AnimatedEntity;
+import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.characters.NewBomber;
+import uet.oop.bomberman.entities.enemies.Balloon;
+import uet.oop.bomberman.entities.enemies.Enemy;
 import uet.oop.bomberman.entities.mapMaterials.Brick;
 import uet.oop.bomberman.entities.mapMaterials.Wall;
 import uet.oop.bomberman.entities.mapMaterials.border.Border;
@@ -18,7 +22,7 @@ public class NewBomb extends AnimatedEntity {
     private ArrayList<NewSprite> bombs;
     private ArrayList<NewFlame> flames;
     private int type;
-    private int range;
+    private int range = Board.bombRange;
     private final int ANIMATION_CIRCLE = 90;
 
     public NewBomb(double xUnit, double yUnit) {
@@ -26,8 +30,8 @@ public class NewBomb extends AnimatedEntity {
         this.img = NewSprite.bomb1_1.getFxImage();
         this.layerPower = 2;
         type = 0;
-        range = 2;
         bombs = NewSprite.normalBomb;
+        range = Board.bombRange;
         flames = new ArrayList<NewFlame>(Arrays.asList(
                 new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT, "central"),
                 new NewFlame(this.xUnit + 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
@@ -48,7 +52,6 @@ public class NewBomb extends AnimatedEntity {
             bombs = NewSprite.powerBomb;
             range = 3;
         }
-
     }
 
     @Override
@@ -61,7 +64,6 @@ public class NewBomb extends AnimatedEntity {
                 Board.getFlames().add(newFlame);
             }
             this.status = INVALID;
-
         }
     }
 

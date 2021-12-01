@@ -18,7 +18,7 @@ public abstract class Entity {
 
     protected Image img;
     public double layerPower = 0;
-    public boolean removeBomb = false;
+    protected boolean isAlive = true;
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
     public Entity(double xUnit, double yUnit, Image img) {
@@ -70,12 +70,12 @@ public abstract class Entity {
         return this.layerPower >= entity.getLayerPower();
     }
 
-    public boolean isRemoveBomb() {
-        return removeBomb;
-    }
-
     public Entity getMostPoweredEntity() {
         return this;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
     }
 
 }

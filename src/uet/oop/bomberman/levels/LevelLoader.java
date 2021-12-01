@@ -6,6 +6,7 @@ import uet.oop.bomberman.entities.characters.Bomber;
 import uet.oop.bomberman.entities.characters.NewBomber;
 import uet.oop.bomberman.entities.enemies.Balloon;
 import uet.oop.bomberman.entities.enemies.Bat;
+import uet.oop.bomberman.entities.items.bomb.SpeedItem;
 import uet.oop.bomberman.entities.mapMaterials.Brick;
 import uet.oop.bomberman.entities.mapMaterials.Ground;
 import uet.oop.bomberman.entities.mapMaterials.Portal;
@@ -114,6 +115,7 @@ public class LevelLoader {
             case"b":
                 arrayEntities= new ArrayList<Entity>();
                 arrayEntities.add(0,new Ground(tempX,tempY));
+                arrayEntities.add(0, new SpeedItem(tempX, tempY));
                 arrayEntities.add(0,new Brick(tempX,tempY));
                 mapEntities.add(new LayeredEntity(tempX,tempY,arrayEntities));
                 break;

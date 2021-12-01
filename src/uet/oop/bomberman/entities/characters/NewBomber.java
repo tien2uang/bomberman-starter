@@ -2,7 +2,11 @@ package uet.oop.bomberman.entities.characters;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.enemies.Enemy;
+import uet.oop.bomberman.entities.items.bomb.Item;
 import uet.oop.bomberman.entities.items.bomb.NewBomb;
+import uet.oop.bomberman.entities.items.bomb.SpeedItem;
 import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
@@ -15,9 +19,11 @@ public class NewBomber extends Character {
 
     public int direction;
     private boolean isMoving;
-    public static double speed = 1.6;
+    //public static double speed = 1.6;
     private NewSprite currentSprite;
     public static Vector<Bomb> bombs = new Vector<>();
+    public int dead_animation = 100;
+    public int item_animation = 600;
 
     public NewBomber(double x, double y) {
         super(x, y);
@@ -27,18 +33,6 @@ public class NewBomber extends Character {
         this.animate = 0;
         this.isMoving = false;
         this.layerPower = 2;
-    }
-
-    public void move(double p, double q) {
-
-
-        if (canMove(x, y + q)) {
-            y += q;
-        }
-
-        if (canMove(x + p, y)) {
-            x += p;
-        }
     }
 
     public void calculateMove() {
@@ -59,7 +53,6 @@ public class NewBomber extends Character {
 
         } else if (Keyboard.isDown()) {
             direction = 4;
-
             animate();
             down();
         }
@@ -75,19 +68,31 @@ public class NewBomber extends Character {
         if (Keyboard.isLeft() || Keyboard.isRight() || Keyboard.isDown() || Keyboard.isUp()) {
             return true;
         }
+        for (Entity entity: Board.getFlames()) {
+            double x = this.x - (double) (currentSprite.getDistanceToTopLeftX()) * NewSprite.SCALED_FACTOR;
+            double y = this.y - (double) (currentSprite.getDistanceToTopLeftY()) * NewSprite.SCALED_FACTOR;
+            if ((int)(x/NewSprite.SCALED_SIZE) == entity.getXUnit() && (int)(y/NewSprite.SCALED_SIZE) == entity.getYUnit()) {
+                killed();
+            }
+        }
         return false;
     }
 
-    public boolean canMove(double xx, double yy) {
-        return true;
+    public void collideEnemy() {
+        for (Entity entity: Board.getStillObjectsList()) {
+            if (!(entity instanceof NewBomber)) {
+                if (Math.round(x / NewSprite.SCALED_SIZE) == (int) entity.getXUnit() && Math.round(y / NewSprite.SCALED_SIZE) == (int) (entity.getYUnit() + Board.BOARD_COORDINATE_Y)) {
+                    killed();
+                }
+            }
+        }
     }
 
     public Image chooseImage(int direction) {
         switch (direction) {
             case -1:
-
-                return NewSprite.getMoveSprite(Sprite.player_dead1.getFxImage(), Sprite.player_dead2.getFxImage(),
-                        Sprite.player_dead3.getFxImage(), getAnimate(), 70);
+                currentSprite = NewSprite.movingSprite(NewSprite.frogList, animate, 33);
+                return NewSprite.movingSprite(NewSprite.frogList, animate, 33).getFxImage();
             case 1:
                 currentSprite = NewSprite.movingSprite(NewSprite.playerLeftList, animate, 33);
                 return NewSprite.movingSprite(NewSprite.playerLeftList, animate, 33).getFxImage();
@@ -109,9 +114,20 @@ public class NewBomber extends Character {
         if (!isMoving()) {
             animate = 0;
         }
-
-        calculateMove();
-        img = chooseImage(direction);
+        if (killed) {
+            if (dead_animation > 0) {
+                animate();
+                img = chooseImage(-1);
+                dead_animation--;
+            } else {
+                isAlive = false;
+            }
+        } else {
+            calculateMove();
+            collideEnemy();
+            pickUpItem();
+            img = chooseImage(direction);
+        }
 
         if (Keyboard.isPlaceBomb()) {
             placeBomb();
@@ -142,13 +158,13 @@ public class NewBomber extends Character {
                 int x = (int) (this.getXUnit());
                 int y = (int) (this.getYUnit());
                 if (canCrossOver(Board.getMostPoweredEntityAt((double) x, (double) (y - 1)))) {
-                    this.y -= speed;
-                    double temp = speed / (double) NewSprite.SCALED_SIZE;
+                    this.y -= Board.getBomberSpeed();
+                    double temp = Board.getBomberSpeed() / (double) NewSprite.SCALED_SIZE;
                     this.yUnit -= temp;
                 }
             } else {
-                this.y -= speed;
-                double temp = speed / (double) NewSprite.SCALED_SIZE;
+                this.y -= Board.getBomberSpeed();
+                double temp = Board.getBomberSpeed() / (double) NewSprite.SCALED_SIZE;
                 this.yUnit -= temp;
                 if (Math.abs(this.yUnit - Math.round(this.yUnit)) <= temp) {
                     this.yUnit = (double) Math.round(this.yUnit);
@@ -158,16 +174,16 @@ public class NewBomber extends Character {
         } else {
             int tempX = (int) (this.getXUnit());
             if (canCrossOver(Board.getMostPoweredEntityAt((double) tempX, this.getYUnit() - 1))) {
-                this.x -= speed;
-                double temp = speed / (double) NewSprite.SCALED_SIZE;
+                this.x -= Board.getBomberSpeed();
+                double temp = Board.getBomberSpeed() / (double) NewSprite.SCALED_SIZE;
                 this.xUnit -= temp;
                 if (Math.abs(this.xUnit - Math.round(this.xUnit)) <= temp) {
                     this.xUnit = (double) Math.round(this.xUnit);
                     this.x = xUnit * (double) NewSprite.SCALED_SIZE;
                 }
             } else if (canCrossOver(Board.getMostPoweredEntityAt((double) (tempX + 1), this.getYUnit() - 1))) {
-                this.x += speed;
-                double temp = speed / (double) NewSprite.SCALED_SIZE;
+                this.x += Board.getBomberSpeed();
+                double temp = Board.getBomberSpeed() / (double) NewSprite.SCALED_SIZE;
                 this.xUnit += temp;
                 if (Math.abs(this.xUnit - Math.round(this.xUnit)) <= temp) {
                     this.xUnit = (double) Math.round(this.xUnit);
@@ -184,13 +200,13 @@ public class NewBomber extends Character {
                 int x = (int) (this.getXUnit());
                 int y = (int) (this.getYUnit());
                 if (canCrossOver(Board.getMostPoweredEntityAt((double) x, (double) (y + 1)))) {
-                    this.y += speed;
-                    double temp = speed / (double) NewSprite.SCALED_SIZE;
+                    this.y += Board.getBomberSpeed();
+                    double temp = Board.getBomberSpeed() / (double) NewSprite.SCALED_SIZE;
                     this.yUnit += temp;
                 }
             } else {
-                this.y += speed;
-                double temp = speed / (double) NewSprite.SCALED_SIZE;
+                this.y += Board.getBomberSpeed();
+                double temp = Board.getBomberSpeed() / (double) NewSprite.SCALED_SIZE;
                 this.yUnit += temp;
                 if (Math.abs(this.yUnit - Math.round(this.yUnit)) <= temp) {
                     this.yUnit = (double) Math.round(this.yUnit);
@@ -200,16 +216,16 @@ public class NewBomber extends Character {
         } else {
             int tempX = (int) (this.getXUnit());
             if (canCrossOver(Board.getMostPoweredEntityAt((double) tempX, this.getYUnit() + 1))) {
-                this.x -= speed;
-                double temp = speed / (double) NewSprite.SCALED_SIZE;
+                this.x -= Board.getBomberSpeed();
+                double temp = Board.getBomberSpeed() / (double) NewSprite.SCALED_SIZE;
                 this.xUnit -= temp;
                 if (Math.abs(this.xUnit - Math.round(this.xUnit)) <= temp) {
                     this.xUnit = (double) Math.round(this.xUnit);
                     this.x = xUnit * (double) NewSprite.SCALED_SIZE;
                 }
             } else if (canCrossOver(Board.getMostPoweredEntityAt((double) (tempX + 1), this.getYUnit() + 1))) {
-                this.x += speed;
-                double temp = speed / (double) NewSprite.SCALED_SIZE;
+                this.x += Board.getBomberSpeed();
+                double temp = Board.getBomberSpeed() / (double) NewSprite.SCALED_SIZE;
                 this.xUnit += temp;
                 if (Math.abs(this.xUnit - Math.round(this.xUnit)) <= temp) {
                     this.xUnit = (double) Math.round(this.xUnit);
@@ -226,13 +242,13 @@ public class NewBomber extends Character {
                 int x = (int) (this.getXUnit());
                 int y = (int) (this.getYUnit());
                 if (canCrossOver(Board.getMostPoweredEntityAt((double) (x - 1), (double) (y)))) {
-                    this.x -= speed;
-                    double temp = speed / (double) NewSprite.SCALED_SIZE;
+                    this.x -= Board.getBomberSpeed();
+                    double temp = Board.getBomberSpeed() / (double) NewSprite.SCALED_SIZE;
                     this.xUnit -= temp;
                 }
             } else {
-                this.x -= speed;
-                double temp = speed / (double) NewSprite.SCALED_SIZE;
+                this.x -= Board.getBomberSpeed();
+                double temp = Board.getBomberSpeed() / (double) NewSprite.SCALED_SIZE;
                 this.xUnit -= temp;
                 if (Math.abs(this.xUnit - Math.round(this.xUnit)) <= temp) {
                     this.xUnit = (double) Math.round(this.xUnit);
@@ -242,8 +258,8 @@ public class NewBomber extends Character {
         } else {
             int tempY = (int) (this.getYUnit());
             if (canCrossOver(Board.getMostPoweredEntityAt((double) this.getXUnit() - 1, tempY))) {
-                this.y -= speed;
-                double temp = speed / (double) NewSprite.SCALED_SIZE;
+                this.y -= Board.getBomberSpeed();
+                double temp = Board.getBomberSpeed() / (double) NewSprite.SCALED_SIZE;
                 this.yUnit -= temp;
                 if (Math.abs(this.yUnit - Math.round(this.yUnit)) <= temp) {
                     this.yUnit = (double) Math.round(this.yUnit);
@@ -251,8 +267,8 @@ public class NewBomber extends Character {
                 }
 
             } else if (canCrossOver(Board.getMostPoweredEntityAt((double) this.getXUnit() - 1, tempY + 1))) {
-                this.y += speed;
-                double temp = speed / (double) NewSprite.SCALED_SIZE;
+                this.y += Board.getBomberSpeed();
+                double temp = Board.getBomberSpeed() / (double) NewSprite.SCALED_SIZE;
                 this.yUnit += temp;
                 if (Math.abs(this.yUnit - Math.round(this.yUnit)) <= temp) {
                     this.yUnit = (double) Math.round(this.yUnit);
@@ -268,14 +284,14 @@ public class NewBomber extends Character {
                 int x = (int) (this.getXUnit());
                 int y = (int) (this.getYUnit());
                 if (canCrossOver(Board.getMostPoweredEntityAt((double) (x + 1), (double) (y)))) {
-                    this.x += speed;
-                    double temp = speed / (double) NewSprite.SCALED_SIZE;
+                    this.x += Board.getBomberSpeed();
+                    double temp = Board.getBomberSpeed() / (double) NewSprite.SCALED_SIZE;
                     this.xUnit += temp;
                 }
 
             } else {
-                this.x += speed;
-                double temp = speed / (double) NewSprite.SCALED_SIZE;
+                this.x += Board.getBomberSpeed();
+                double temp = Board.getBomberSpeed() / (double) NewSprite.SCALED_SIZE;
                 this.xUnit += temp;
                 if (Math.abs(this.xUnit - Math.round(this.xUnit)) <= temp) {
                     this.xUnit = (double) Math.round(this.xUnit);
@@ -286,8 +302,8 @@ public class NewBomber extends Character {
         } else {
             int tempY = (int) (this.getYUnit());
             if (canCrossOver(Board.getMostPoweredEntityAt((double) this.getXUnit() + 1, tempY))) {
-                this.y -= speed;
-                double temp = speed / (double) NewSprite.SCALED_SIZE;
+                this.y -= Board.getBomberSpeed();
+                double temp = Board.getBomberSpeed() / (double) NewSprite.SCALED_SIZE;
                 this.yUnit -= temp;
                 if (Math.abs(this.yUnit - Math.round(this.yUnit)) <= temp) {
                     this.yUnit = (double) Math.round(this.yUnit);
@@ -295,8 +311,8 @@ public class NewBomber extends Character {
                 }
 
             } else if (canCrossOver(Board.getMostPoweredEntityAt((double) this.getXUnit() + 1, tempY + 1))) {
-                this.y += speed;
-                double temp = speed / (double) NewSprite.SCALED_SIZE;
+                this.y += Board.getBomberSpeed();
+                double temp = Board.getBomberSpeed() / (double) NewSprite.SCALED_SIZE;
                 this.yUnit += temp;
                 if (Math.abs(this.yUnit - Math.round(this.yUnit)) <= temp) {
                     this.yUnit = (double) Math.round(this.yUnit);
@@ -305,6 +321,17 @@ public class NewBomber extends Character {
             }
         }
 
+    }
+
+    public void pickUpItem() {
+        if (SpeedItem.speed_quantity != 0) {
+            if (item_animation > 0) {
+                item_animation--;
+            } else {
+                Board.bomberSpeed = Board.BOMBER_SPEED;
+                SpeedItem.speed_quantity = 0;
+            }
+        }
     }
 //    public void placeBomb(){
 //        double x = this.x+NewSprite.SCALED_SIZE/2;

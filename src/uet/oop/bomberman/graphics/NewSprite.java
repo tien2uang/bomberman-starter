@@ -288,6 +288,8 @@ public class NewSprite {
             player_up_1, player_up_2, player_up_3
     ));
 
+
+
     /**
      * enemies
      */
@@ -348,7 +350,7 @@ public class NewSprite {
 
     public static ArrayList<NewSprite> frog_Dead = new ArrayList<>(Arrays.asList(frog_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
     public static ArrayList<NewSprite> balloon_dead = new ArrayList<>(Arrays.asList(balloon_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
-    public static ArrayList<NewSprite> bat_dead = new ArrayList<>(Arrays.asList(frog_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
+    public static ArrayList<NewSprite> bat_dead = new ArrayList<>(Arrays.asList(bat_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
 
 
 
