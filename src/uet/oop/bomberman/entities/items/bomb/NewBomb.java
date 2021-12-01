@@ -24,20 +24,20 @@ public class NewBomb extends AnimatedEntity {
     public NewBomb(double xUnit, double yUnit) {
         super(xUnit, yUnit+ Game.INFO_HEIGHT);
         this.img = NewSprite.bomb1_1.getFxImage();
-        this.layerPower = 2;
+        this.layerPower = 3.5;
         type = 0;
         range = 2;
         bombs = NewSprite.normalBomb;
         flames = new ArrayList<NewFlame>(Arrays.asList(
                 new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT, "central"),
-                new NewFlame(this.xUnit + 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
-                new NewFlame(this.xUnit - 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
-                new NewFlame(this.xUnit + 2, yUnit+ Game.INFO_HEIGHT, "rightLast"),
-                new NewFlame(this.xUnit - 2, yUnit+ Game.INFO_HEIGHT, "leftLast"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 1, "vertical"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 1, "vertical"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 2, "topLast"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 2, "botLast")
+//                new NewFlame(this.xUnit + 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
+//                new NewFlame(this.xUnit - 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit + 1, yUnit+ Game.INFO_HEIGHT, "rightLast"),
+                new NewFlame(this.xUnit - 1, yUnit+ Game.INFO_HEIGHT, "leftLast"),
+//                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 1, "vertical"),
+//                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 1, "vertical"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 1, "topLast"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 1, "botLast")
         ));
     }
 
@@ -48,6 +48,21 @@ public class NewBomb extends AnimatedEntity {
             bombs = NewSprite.powerBomb;
             range = 3;
         }
+        flames = new ArrayList<NewFlame>(Arrays.asList(
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT, "central"),
+                new NewFlame(this.xUnit + 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit + 2, yUnit+ Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit - 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit - 2, yUnit+ Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit + 3, yUnit+ Game.INFO_HEIGHT, "rightLast"),
+                new NewFlame(this.xUnit - 3, yUnit+ Game.INFO_HEIGHT, "leftLast"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 1, "vertical"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 2, "vertical"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 1, "vertical"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 2, "vertical"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 3, "topLast"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 3, "botLast")
+        ));
 
     }
 

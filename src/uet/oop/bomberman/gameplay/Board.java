@@ -24,7 +24,7 @@ public class Board extends Game {
     }
 
     public static void render() {
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
         mapEntities.forEach(g -> g.render(gc));
         bombs.forEach(g -> g.render(gc));
         flames.forEach(g -> g.render(gc));
@@ -55,11 +55,11 @@ public class Board extends Game {
         return result;
     }
 
-    public static List<Entity> getEntitiesList() {
+    public static List<Entity> getMapEntitiesList() {
         return mapEntities;
     }
 
-    public static List<Entity> getStillObjectsList() {
+    public static List<Entity> getCharacterList() {
         return character;
     }
 

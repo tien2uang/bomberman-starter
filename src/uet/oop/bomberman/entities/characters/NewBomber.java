@@ -103,9 +103,9 @@ public class NewBomber extends Character {
 
     @Override
     public void update() {
-        if(Game.currentGameTime==100){
-            setAlive(false);
-        }
+//        if(Game.currentGameTime==100){
+//            setAlive(false);
+//        }
         if (isAlive) {
             if (!isMoving()) {
                 animate = 0;
@@ -139,7 +139,7 @@ public class NewBomber extends Character {
         double y = (this.y + NewSprite.SCALED_SIZE / 2) / NewSprite.SCALED_SIZE;
         double xUnitToPlace = (double) ((int) x);
         double yUnitToPlace = (double) ((int) y);
-        NewBomb bomb = new NewBomb(xUnitToPlace, yUnitToPlace - 1);
+        NewBomb bomb = new NewBomb(xUnitToPlace, yUnitToPlace - Game.INFO_HEIGHT);
         Board.getBombs().add(bomb);
     }
 

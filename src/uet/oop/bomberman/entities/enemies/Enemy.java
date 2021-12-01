@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.AnimatedEntity;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.gameplay.Board;
+import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
 
 import java.util.Random;
@@ -47,7 +48,7 @@ public abstract class Enemy  extends AnimatedEntity {
     public void render(GraphicsContext gc) {
 
         chooseImg();
-        gc.drawImage(img, (xUnit ) * 36, (yUnit + 1) * 36 );
+        gc.drawImage(img, (xUnit ) * 36, (yUnit + Game.INFO_HEIGHT) * 36 );
     }
 
     public int random_() {
@@ -149,7 +150,9 @@ public abstract class Enemy  extends AnimatedEntity {
     public boolean getAt(double xx, double yy) {
         int a = (int) ( xx);
         int b = (int) ( yy);
-        for (Entity entity : Board.getEntitiesList()) {
+
+
+        for (Entity entity : Board.getMapEntitiesList()) {
             if(a == (int) entity.getXUnit() && b == (int) entity.getYUnit()) {
                 if(this.getLayerPower() >= entity.getLayerPower()) {
                     return true;
