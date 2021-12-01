@@ -15,7 +15,7 @@ public class Game {
     public static final double BOARD_WIDTH = 17;
     public static final double BOARD_HEIGHT = 13;
     public static final double INFO_WIDTH = 17;
-    public static final double INFO_HEIGHT = 1;
+    public static final double INFO_HEIGHT = 2;
     public static final double WIDTH = BOARD_WIDTH;
     public static final double HEIGHT = BOARD_HEIGHT + INFO_HEIGHT;
     public static Stage stage = BombermanGame.getPrimaryStage();

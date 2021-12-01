@@ -2,11 +2,7 @@ package uet.oop.bomberman.entities.characters;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.enemies.Enemy;
-import uet.oop.bomberman.entities.items.bomb.Item;
 import uet.oop.bomberman.entities.items.bomb.NewBomb;
-import uet.oop.bomberman.entities.items.bomb.SpeedItem;
 import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
@@ -33,6 +29,7 @@ public class NewBomber extends Character {
         this.animate = 0;
         this.isMoving = false;
         this.layerPower = 2;
+        isAlive = true;
     }
 
 
@@ -131,18 +128,53 @@ public class NewBomber extends Character {
             img = chooseImage(direction);
         }
 
+            if (Keyboard.isPlaceBomb()) {
+                placeBomb();
+                Keyboard.setPlaceBomb();
+            }
+        } else {
+            currentSprite = NewSprite.movingSprite(NewSprite.playerDeadList, animate, 90);
+            img=currentSprite.getFxImage();
+            animate();
+            if(getAnimate()==90){
+                this.status=INVALID;
+            }
+        }
+
+        if (isAlive) {
+        if (!isMoving()) {
+            animate = 0;
+        }
+
+        calculateMove();
+        img = chooseImage(direction);
+
         if (Keyboard.isPlaceBomb()) {
             placeBomb();
             Keyboard.setPlaceBomb();
         }
+    } else {
+        currentSprite = NewSprite.movingSprite(NewSprite.playerDeadList, animate, 90);
+        img=currentSprite.getFxImage();
+        animate();
+        if(getAnimate()==90){
+            this.status=INVALID;
+        }
+    }
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+        animate = 0;
+
     }
 
     public void placeBomb() {
-        double x = (this.x + NewSprite.SCALED_SIZE/2)/NewSprite.SCALED_SIZE;
-        double y = (this.y + NewSprite.SCALED_SIZE/2)/NewSprite.SCALED_SIZE;
-        double xUnitToPlace = (double)((int)x);
-        double yUnitToPlace = (double)((int)y);
-        NewBomb bomb = new NewBomb(xUnitToPlace, yUnitToPlace-1);
+        double x = (this.x + NewSprite.SCALED_SIZE / 2) / NewSprite.SCALED_SIZE;
+        double y = (this.y + NewSprite.SCALED_SIZE / 2) / NewSprite.SCALED_SIZE;
+        double xUnitToPlace = (double) ((int) x);
+        double yUnitToPlace = (double) ((int) y);
+        NewBomb bomb = new NewBomb(xUnitToPlace, yUnitToPlace - Game.INFO_HEIGHT);
         Board.getBombs().add(bomb);
     }
 

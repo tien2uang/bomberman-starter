@@ -35,8 +35,7 @@ public class NewSprite {
         String path = "./newsprites/" + name + ".png";
         try {
             image = new Image(path, (double) (originalWidth) * SCALED_FACTOR, (double) (originalHeight) * SCALED_FACTOR, false, false);
-            System.out.println(name + " " + originalWidth + " " + originalWidth * SCALED_FACTOR + " "
-                    + originalHeight + " " + originalHeight * SCALED_FACTOR);
+
         } catch (Exception e) {
 
             System.out.println("khong tim thay file sprite " + name);
@@ -46,6 +45,26 @@ public class NewSprite {
         this.name = name;
 
     }
+
+    public NewSprite(double originalWidth, double originalHeight, String name) {
+        String path;
+        if (name.length() == 1) {
+            path = "./newsprites/digits/" + name + ".png";
+        } else {
+            path = "./newsprites/InfoBar/" + name + ".png";
+        }
+        try {
+            image = new Image(path, (double) (originalWidth) * SCALED_FACTOR, (double) (originalHeight) * SCALED_FACTOR, false, false);
+
+        } catch (Exception e) {
+
+            System.out.println("khong tim thay file sprite " + name);
+        }
+        this.name = name;
+        this.distanceToTopLeftX = 0;
+        this.distanceToTopLeftY = 0;
+    }
+
 
     public String getName() {
         return name;
@@ -70,7 +89,7 @@ public class NewSprite {
     ));
     public static ArrayList<NewSprite> newBombExplosionCentral = new ArrayList<NewSprite>(Arrays.asList(
             bomb_exploded, bomb_exploded_1, bomb_exploded_2, bomb_exploded_3, bomb_exploded_4,
-            bomb_exploded_3,bomb_exploded_2,bomb_exploded_1,bomb_exploded
+            bomb_exploded_3, bomb_exploded_2, bomb_exploded_1, bomb_exploded
     ));
 
     public static NewSprite bomb1_1 = new NewSprite(SIZE, 0, 0, "1-bomb-1");
@@ -89,12 +108,12 @@ public class NewSprite {
     //new bomb
     public static ArrayList<NewSprite> normalBomb = new ArrayList<NewSprite>(Arrays.asList(
             bomb1_1, bomb1_2, bomb1_3,
-            bomb1_2,bomb1_1,
+            bomb1_2, bomb1_1,
             bomb1_1, bomb1_2, bomb1_3
     ));
-    public static ArrayList<NewSprite> powerBomb= new ArrayList<NewSprite>(Arrays.asList(
+    public static ArrayList<NewSprite> powerBomb = new ArrayList<NewSprite>(Arrays.asList(
             bomb2_1, bomb2_2, bomb2_3,
-            bomb2_2,bomb2_1,
+            bomb2_2, bomb2_1,
             bomb2_1, bomb2_2, bomb2_3
     ));
 
@@ -168,7 +187,7 @@ public class NewSprite {
     ));
     public static ArrayList<NewSprite> newBombExplosionHorizontalLeftLast = new ArrayList<NewSprite>(Arrays.asList(
             explosion_horizontal_left_last, explosion_horizontal_left_last_1, explosion_horizontal_left_last_2, explosion_horizontal_left_last_3, explosion_horizontal_left_last_4,
-            explosion_horizontal_left_last_3,explosion_horizontal_left_last_2,explosion_horizontal_left_last_1, explosion_horizontal_left_last
+            explosion_horizontal_left_last_3, explosion_horizontal_left_last_2, explosion_horizontal_left_last_1, explosion_horizontal_left_last
     ));
 
     //brick
@@ -183,26 +202,8 @@ public class NewSprite {
 
     public static ArrayList<NewSprite> brickBrokenList = new ArrayList<NewSprite>(Arrays.asList(
             brick_broken_1, brick_broken_2, brick_broken_3, brick_broken_4, brick_broken_5, brick_broken_6));
-    /*
-    //explosion
-    public static NewSprite explosion_horizontal_1 = new NewSprite(SIZE, 0, 0, "explosion-horizontal");
-    public static NewSprite explosion_horizontal_2 = new NewSprite(SIZE, 0, 0, "explosion-horizontal1");
 
-    public static NewSprite explosion_horizontal_left_last_1 = new NewSprite(SIZE, 0, 0, "explosion-horizontal-leftlast");
-    public static NewSprite explosion_horizontal_left_last_2 = new NewSprite(SIZE, 0, 0, "explosion-horizontal-leftlast1");
 
-    public static NewSprite explosion_horizontal_right_last_1 = new NewSprite(SIZE, 0, 0, "explosion-horizontal-rightlast");
-    public static NewSprite explosion_horizontal_right_last_2 = new NewSprite(SIZE, 0, 0, "explosion-horizontal-leftlast1");
-
-    public static NewSprite explosion_vertical_1 = new NewSprite(SIZE, 0, 0, "explosion-vertical");
-    public static NewSprite explosion_vertical_2 = new NewSprite(SIZE, 0, 0, "explosion-vertical1");
-
-    public static NewSprite explosion_vertical_top_last_1 = new NewSprite(SIZE, 0, 0, "explosion-vertical-toplast");
-    public static NewSprite explosion_vertical_top_last_2 = new NewSprite(SIZE, 0, 0, "explosion-vertical-toplast1");
-
-    public static NewSprite explosion_vertical_bot_last_1 = new NewSprite(SIZE, 0, 0, "explosion-vertical-botlast");
-    public static NewSprite explosion_vertical_bot_last_2 = new NewSprite(SIZE, 0, 0, "explosion-vertical-botlast1");
-    */
     //portal
     public static NewSprite portal_1 = new NewSprite(SIZE, 0, 0, "portal");
     public static NewSprite portal_2 = new NewSprite(SIZE, 0, 0, "portal1");
@@ -288,11 +289,32 @@ public class NewSprite {
             player_up_1, player_up_2, player_up_3
     ));
 
+    public static NewSprite player_dead_1 = new NewSprite(SIZE, 2, 5, 20, 20, "player-dead");
+    public static NewSprite player_dead_2 = new NewSprite(SIZE, 1, 5, 19, 20, "player-dead1");
+    public static NewSprite player_dead_3 = new NewSprite(SIZE, 2, 5, 21, 21, "player-dead2");
+    public static NewSprite player_dead_4 = new NewSprite(SIZE, 1, 5, 19, 21, "player-dead3");
+    public static NewSprite player_dead_5 = new NewSprite(SIZE, 1, 5, 19, 21, "player-dead4");
+    public static NewSprite player_dead_6 = new NewSprite(SIZE, 2, 5, 21, 21, "player-dead5");
+    public static NewSprite player_dead_7 = new NewSprite(SIZE, 3, 5, 22, 22, "player-dead6");
 
+    public static ArrayList<NewSprite> playerDeadList = new ArrayList<>(Arrays.asList(
+            player_dead_1, player_dead_2, player_dead_3, player_dead_4, player_dead_5, player_dead_6, player_dead_7
+    ));
 
     /**
      * enemies
      */
+
+    //enemy dead
+    public static NewSprite enemy_dead_1 = new NewSprite(SIZE, 0, 0, "enemy-dead");
+    public static NewSprite enemy_dead_2 = new NewSprite(SIZE, 0, 0, "enemy-dead1");
+    public static NewSprite enemy_dead_3 = new NewSprite(SIZE, 0, 0, "enemy-dead2");
+    public static NewSprite enemy_dead_4 = new NewSprite(SIZE, 0, 0, "enemy-dead3");
+    public static NewSprite enemy_dead_5 = new NewSprite(SIZE, 0, 0, "enemy-dead4");
+
+    public static ArrayList<NewSprite> enemyDeadList = new ArrayList<>(Arrays.asList(
+            enemy_dead_1, enemy_dead_2, enemy_dead_3, enemy_dead_4, enemy_dead_5
+    ));
     //balloon
 
     public static NewSprite balloon_right = new NewSprite(SIZE, 0, 0, "balloon-right");
@@ -312,29 +334,29 @@ public class NewSprite {
     public static NewSprite bat_up = new NewSprite(SIZE, 0, 0, "bat-up");
     public static NewSprite bat_up1 = new NewSprite(SIZE, 0, 0, "bat-up1");
     public static NewSprite bat_up2 = new NewSprite(SIZE, 0, 0, "bat-up2");
-    public static ArrayList<NewSprite> BatUpList = new ArrayList<>(Arrays.asList(bat_up,bat_up1,bat_up2));
+    public static ArrayList<NewSprite> BatUpList = new ArrayList<>(Arrays.asList(bat_up, bat_up1, bat_up2));
 
     public static NewSprite bat_down = new NewSprite(SIZE, 0, 0, "bat-down");
     public static NewSprite bat_down1 = new NewSprite(SIZE, 0, 0, "bat-down1");
     public static NewSprite bat_down2 = new NewSprite(SIZE, 0, 0, "bat-down2");
-    public static ArrayList<NewSprite> BatDownList = new ArrayList<>(Arrays.asList(bat_down,bat_down1,bat_down2));
+    public static ArrayList<NewSprite> BatDownList = new ArrayList<>(Arrays.asList(bat_down, bat_down1, bat_down2));
 
     public static NewSprite bat_left = new NewSprite(SIZE, 0, 0, "bat-left");
     public static NewSprite bat_left1 = new NewSprite(SIZE, 0, 0, "bat-left1");
     public static NewSprite bat_left2 = new NewSprite(SIZE, 0, 0, "bat-left2");
-    public static ArrayList<NewSprite> BatLeftList = new ArrayList<>(Arrays.asList(bat_left,bat_left1,bat_left2));
+    public static ArrayList<NewSprite> BatLeftList = new ArrayList<>(Arrays.asList(bat_left, bat_left1, bat_left2));
 
     public static NewSprite bat_right = new NewSprite(SIZE, 0, 0, "bat-right");
     public static NewSprite bat_right1 = new NewSprite(SIZE, 0, 0, "bat-right1");
     public static NewSprite bat_right2 = new NewSprite(SIZE, 0, 0, "bat-right2");
-    public static ArrayList<NewSprite> BatRightList = new ArrayList<>(Arrays.asList(bat_right,bat_right1,bat_right2));
+    public static ArrayList<NewSprite> BatRightList = new ArrayList<>(Arrays.asList(bat_right, bat_right1, bat_right2));
 
 
     // frog
     public static NewSprite frog = new NewSprite(SIZE, 0, 0, "frog");
     public static NewSprite frog1 = new NewSprite(SIZE, 0, 0, "frog1");
     public static NewSprite frog2 = new NewSprite(SIZE, 0, 0, "frog2");
-    public static ArrayList<NewSprite> frogList = new ArrayList<>(Arrays.asList(frog,frog1,frog2));
+    public static ArrayList<NewSprite> frogList = new ArrayList<>(Arrays.asList(frog, frog1, frog2));
 
 
     //enemy dead
@@ -350,8 +372,26 @@ public class NewSprite {
 
     public static ArrayList<NewSprite> frog_Dead = new ArrayList<>(Arrays.asList(frog_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
     public static ArrayList<NewSprite> balloon_dead = new ArrayList<>(Arrays.asList(balloon_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
-    public static ArrayList<NewSprite> bat_dead = new ArrayList<>(Arrays.asList(bat_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
+    public static ArrayList<NewSprite> bat_dead = new ArrayList<>(Arrays.asList(frog_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
 
+    /**
+     * Info Bar
+     */
+    //digits
+    public static NewSprite digit_0 = new NewSprite(8, 14, "0");
+    public static NewSprite digit_1 = new NewSprite(8, 14, "1");
+    public static NewSprite digit_2 = new NewSprite(8, 14, "2");
+    public static NewSprite digit_3 = new NewSprite(8, 14, "3");
+    public static NewSprite digit_4 = new NewSprite(8, 14, "4");
+    public static NewSprite digit_5 = new NewSprite(8, 14, "5");
+    public static NewSprite digit_6 = new NewSprite(8, 14, "6");
+    public static NewSprite digit_7 = new NewSprite(8, 14, "7");
+    public static NewSprite digit_8 = new NewSprite(8, 14, "8");
+    public static NewSprite digit_9 = new NewSprite(8, 14, "9");
+
+    //bars
+    public static NewSprite startBar= new NewSprite(272,32,"bar");
+    public static NewSprite inGameBar= new NewSprite(272,32,"bar1");
 
 
     public static NewSprite movingSprite(ArrayList<NewSprite> spritesList, int animate, int time) {

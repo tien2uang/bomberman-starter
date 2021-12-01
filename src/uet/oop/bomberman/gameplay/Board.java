@@ -1,11 +1,8 @@
 package uet.oop.bomberman.gameplay;
 
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.characters.NewBomber;
-import uet.oop.bomberman.entities.items.bomb.NewFlame;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Board extends Game {
@@ -37,7 +34,7 @@ public class Board extends Game {
     }
 
     public static void render() {
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
         mapEntities.forEach(g -> g.render(gc));
         bombs.forEach(g -> g.render(gc));
         flames.forEach(g -> g.render(gc));
@@ -96,15 +93,13 @@ public class Board extends Game {
         }
     }
     private static void updateCharacter() {
-        for (Iterator<Entity> e = character.iterator(); e.hasNext();) {
-            Entity mob = e.next();
-            mob.update();
-            if (!mob.isAlive()) {
-                e.remove();
+        character.forEach(g -> g.update());
+        for(int i=0;i<character.size();i++){
+            if(character.get(i).getStatus()==Entity.INVALID){
+                character.remove(i);
             }
         }
     }
-
     private static void updateFlames(){
         flames.forEach(g -> g.update());
         for(int i=0;i<flames.size();i++){

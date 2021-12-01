@@ -16,7 +16,7 @@ import java.util.concurrent.locks.StampedLock;
 
 public abstract class Enemy extends AnimatedEntity {
 
-    public static double speed = 0.5;
+    public static double speed = 1;
     public int direction;
 
     public final double MAX_UP = 72;
@@ -54,6 +54,7 @@ public abstract class Enemy extends AnimatedEntity {
 
     @Override
     public void render(GraphicsContext gc) {
+
         chooseImg();
         gc.drawImage(img, (xUnit ) * 36, (yUnit + 1) * 36 );
     }
@@ -72,7 +73,7 @@ public abstract class Enemy extends AnimatedEntity {
 
     public void calculateMove() {
         double xa = 0, ya = 0;
-        if(_steps <= 0) {
+        if(_steps <= 0){
             rand = random_();
             _steps = MAX_STEPS;
         }
@@ -167,11 +168,10 @@ public abstract class Enemy extends AnimatedEntity {
             if(a == (int) entity.getXUnit() && b == (int) entity.getYUnit()) {
                 if(this.getLayerPower() >= entity.getLayerPower()) {
                     return true;
+
                 }
             }
         }
-
-
         return false;
 
     }

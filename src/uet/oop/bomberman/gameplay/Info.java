@@ -2,6 +2,7 @@ package uet.oop.bomberman.gameplay;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
+import uet.oop.bomberman.graphics.NewSprite;
 
 public class Info extends Game{
     public static final double INFO_WIDTH = 17;
@@ -14,9 +15,8 @@ public class Info extends Game{
 
     }
     public static void render(){
-        gc.setFill(Color.BLACK);
-        gc.setTextAlign(TextAlignment.LEFT);
-        gc.fillText("Time: "+time,0,15);
+
+        gc.drawImage(NewSprite.inGameBar.getFxImage(),0,0);
     }
     public static void updateScore(){
 

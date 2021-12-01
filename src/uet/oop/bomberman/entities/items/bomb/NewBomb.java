@@ -2,10 +2,6 @@ package uet.oop.bomberman.entities.items.bomb;
 
 import javafx.scene.canvas.GraphicsContext;
 import uet.oop.bomberman.entities.AnimatedEntity;
-import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.characters.NewBomber;
-import uet.oop.bomberman.entities.enemies.Balloon;
-import uet.oop.bomberman.entities.enemies.Enemy;
 import uet.oop.bomberman.entities.mapMaterials.Brick;
 import uet.oop.bomberman.entities.mapMaterials.Wall;
 import uet.oop.bomberman.entities.mapMaterials.border.Border;
@@ -28,20 +24,20 @@ public class NewBomb extends AnimatedEntity {
     public NewBomb(double xUnit, double yUnit) {
         super(xUnit, yUnit+ Game.INFO_HEIGHT);
         this.img = NewSprite.bomb1_1.getFxImage();
-        this.layerPower = 2;
+        this.layerPower = 3.5;
         type = 0;
+        range = 2;
         bombs = NewSprite.normalBomb;
-        range = Board.bombRange;
         flames = new ArrayList<NewFlame>(Arrays.asList(
                 new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT, "central"),
-                new NewFlame(this.xUnit + 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
-                new NewFlame(this.xUnit - 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
-                new NewFlame(this.xUnit + 2, yUnit+ Game.INFO_HEIGHT, "rightLast"),
-                new NewFlame(this.xUnit - 2, yUnit+ Game.INFO_HEIGHT, "leftLast"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 1, "vertical"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 1, "vertical"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 2, "topLast"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 2, "botLast")
+//                new NewFlame(this.xUnit + 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
+//                new NewFlame(this.xUnit - 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit + 1, yUnit+ Game.INFO_HEIGHT, "rightLast"),
+                new NewFlame(this.xUnit - 1, yUnit+ Game.INFO_HEIGHT, "leftLast"),
+//                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 1, "vertical"),
+//                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 1, "vertical"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 1, "topLast"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 1, "botLast")
         ));
     }
 
@@ -52,6 +48,22 @@ public class NewBomb extends AnimatedEntity {
             bombs = NewSprite.powerBomb;
             range = 3;
         }
+        flames = new ArrayList<NewFlame>(Arrays.asList(
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT, "central"),
+                new NewFlame(this.xUnit + 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit + 2, yUnit+ Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit - 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit - 2, yUnit+ Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit + 3, yUnit+ Game.INFO_HEIGHT, "rightLast"),
+                new NewFlame(this.xUnit - 3, yUnit+ Game.INFO_HEIGHT, "leftLast"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 1, "vertical"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 2, "vertical"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 1, "vertical"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 2, "vertical"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 3, "topLast"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 3, "botLast")
+        ));
+
     }
 
     @Override
@@ -64,6 +76,7 @@ public class NewBomb extends AnimatedEntity {
                 Board.getFlames().add(newFlame);
             }
             this.status = INVALID;
+
         }
     }
 
@@ -123,7 +136,7 @@ public class NewBomb extends AnimatedEntity {
                 Iterator<NewFlame> it = flames.iterator();
                 while (it.hasNext()) {
                     NewFlame flame = it.next();
-                    if(flame.getYUnit()<= this.getYUnit() - i){
+                    if(flame.getYUnit()>= this.getYUnit() + i){
                         it.remove();
                     }
                 }
