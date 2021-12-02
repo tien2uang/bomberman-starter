@@ -1,9 +1,12 @@
 package uet.oop.bomberman.gameplay;
 
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.characters.NewBomber;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 public class Board extends Game {
     public static final double BOARD_WIDTH = 17;
@@ -13,22 +16,40 @@ public class Board extends Game {
     public static List<Entity> character = new ArrayList<>();
     public static List<Entity> bombs = new ArrayList<>();
     public static List<Entity> flames = new ArrayList<>();
+    public static long levelTime=250;
+    public static long startTime;
 
 
     public static void update() {
-        Game.currentGameTime++;
-        updateMap();
-        updateBombs();
-        updateFlames();
-        updateCharacter();
+
+
+        if(Game.isInGame){
+            updateMap();
+            updateBombs();
+            updateFlames();
+            updateCharacter();
+            levelTime=250-(Game.currentGameTime-startTime);
+        }
+        else {
+            updateMap();
+        }
     }
 
     public static void render() {
 
-        mapEntities.forEach(g -> g.render(gc));
-        bombs.forEach(g -> g.render(gc));
-        flames.forEach(g -> g.render(gc));
-        character.forEach(g -> g.render(gc));
+        if (Game.isInGame) {
+            mapEntities.forEach(g -> g.render(gc));
+            bombs.forEach(g -> g.render(gc));
+            flames.forEach(g -> g.render(gc));
+            character.forEach(g -> g.render(gc));
+        } else {
+            mapEntities.forEach(g -> g.render(gc));
+            for(Entity entity : character) {
+                if(entity instanceof NewBomber){
+                    entity.render(gc);
+                }
+            }
+        }
 
     }
 
