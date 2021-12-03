@@ -1,6 +1,7 @@
 package uet.oop.bomberman.gameplay;
 
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.characters.NewBomber;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,6 +11,8 @@ public class Board extends Game {
     public static final double BOARD_WIDTH = 17;
     public static final double BOARD_HEIGHT = 13;
     public static final double BOARD_COORDINATE_Y = Game.INFO_HEIGHT;
+    public static long levelTime=250;
+    public static long startTime;
 
     public static int BOMB_QUANTITY = 1;
     public static int BOMB_RANGE = 2;
@@ -31,19 +34,35 @@ public class Board extends Game {
 
 
     public static void update() {
-        Game.currentGameTime++;
-        updateMap();
-        updateBombs();
-        updateFlames();
-        updateCharacter();
+
+
+        if(Game.isInGame){
+            updateMap();
+            updateBombs();
+            updateFlames();
+            updateCharacter();
+            levelTime=250-(Game.currentGameTime-startTime);
+        }
+        else {
+            updateMap();
+        }
     }
 
     public static void render() {
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        mapEntities.forEach(g -> g.render(gc));
-        bombs.forEach(g -> g.render(gc));
-        flames.forEach(g -> g.render(gc));
-        character.forEach(g -> g.render(gc));
+
+        if (Game.isInGame) {
+            mapEntities.forEach(g -> g.render(gc));
+            bombs.forEach(g -> g.render(gc));
+            flames.forEach(g -> g.render(gc));
+            character.forEach(g -> g.render(gc));
+        } else {
+            mapEntities.forEach(g -> g.render(gc));
+            for(Entity entity : character) {
+                if(entity instanceof NewBomber){
+                    entity.render(gc);
+                }
+            }
+        }
 
     }
 

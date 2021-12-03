@@ -24,7 +24,7 @@ public class Game {
     private static long frameTime = 0;
     private static long count = 0;
     private static boolean isPaused = false;
-
+    protected static boolean isInGame = false;
     protected static GraphicsContext gc;
     protected static Canvas canvas;
     private static LevelLoader levelLoader = new LevelLoader(new Board(),1);
@@ -54,14 +54,9 @@ public class Game {
 
             @Override
             public void handle(long l) {
-//                if ((l - startNanoTime) / (1000000000 / 60) > currentGameTime) {
-//                    if (isPaused) {
-//                        startNanoTime += (1000000000 / 60);
-//                    } else {
-//                        ++currentGameTime;
-//                        System.out.println(currentGameTime);
-//                    }
-//                }
+
+
+
                 if (!isPaused) {
 
                     render();
@@ -90,5 +85,13 @@ public class Game {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         Board.render();
         Info.render();
+    }
+
+    public static boolean isIsInGame() {
+        return isInGame;
+    }
+
+    public static void setIsInGame(boolean isInGame) {
+        Game.isInGame = isInGame;
     }
 }

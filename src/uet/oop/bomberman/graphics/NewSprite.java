@@ -55,7 +55,7 @@ public class NewSprite {
         }
         try {
             image = new Image(path, (double) (originalWidth) * SCALED_FACTOR, (double) (originalHeight) * SCALED_FACTOR, false, false);
-
+            System.out.println((double) (originalWidth) * SCALED_FACTOR + " " + (double) (originalHeight) * SCALED_FACTOR + " " + name);
         } catch (Exception e) {
 
             System.out.println("khong tim thay file sprite " + name);
@@ -378,6 +378,7 @@ public class NewSprite {
      * Info Bar
      */
     //digits
+    public static NewSprite digit_10 = new NewSprite(8, 14, "p");
     public static NewSprite digit_0 = new NewSprite(8, 14, "0");
     public static NewSprite digit_1 = new NewSprite(8, 14, "1");
     public static NewSprite digit_2 = new NewSprite(8, 14, "2");
@@ -390,8 +391,13 @@ public class NewSprite {
     public static NewSprite digit_9 = new NewSprite(8, 14, "9");
 
     //bars
-    public static NewSprite startBar= new NewSprite(272,32,"bar");
-    public static NewSprite inGameBar= new NewSprite(272,32,"bar1");
+    public static NewSprite startBar = new NewSprite(272, 32, "bar");
+    public static NewSprite startBar_1 = new NewSprite(272,32,"bar2");
+    public static NewSprite inGameBar = new NewSprite(272, 32, "bar1");
+
+    public static ArrayList<NewSprite>startBarList = new ArrayList<>(Arrays.asList(startBar,startBar_1));
+    //clock
+    public static NewSprite clock = new NewSprite(32,14,"clock");
 
     public static NewSprite speed_item = new NewSprite(SIZE, 0, 0, "speed-item");
     public static NewSprite speed_item1 = new NewSprite(SIZE, 0, 0, "speed-item1");

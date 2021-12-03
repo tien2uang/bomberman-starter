@@ -1,6 +1,10 @@
 package uet.oop.bomberman.input;
 
 import javafx.scene.Scene;
+import uet.oop.bomberman.gameplay.Board;
+import uet.oop.bomberman.gameplay.Game;
+import uet.oop.bomberman.gameplay.Board;
+import uet.oop.bomberman.gameplay.Game;
 
 public class Keyboard {
     private static boolean up = false, down = false, left = false, right = false;
@@ -23,10 +27,17 @@ public class Keyboard {
                     right = true;
                     break;
                 case SPACE:
-                    if (System.currentTimeMillis() - press_last > 200) {
-                        placeBomb = true;
-                        press_last = System.currentTimeMillis();
+                    if(Game.isIsInGame()){
+                        if (System.currentTimeMillis() - press_last > 200) {
+                            placeBomb = true;
+                            press_last = System.currentTimeMillis();
+                        }
                     }
+                    else{
+                        Game.setIsInGame(true);
+                        Board.startTime=Game.currentGameTime;
+                    }
+
                     break;
             }
         });
