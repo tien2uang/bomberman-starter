@@ -3,80 +3,62 @@ package uet.oop.bomberman.input;
 import javafx.scene.Scene;
 
 public class Keyboard {
-    private static boolean up = false, down = false, left = false, right = false, placeBomb = false;
-
-    private static boolean inverted = false;
+    private static boolean up = false, down = false, left = false, right = false;
+    private static boolean placeBomb;
+    private static long press_last = 0;
 
     public static void keyboardHandle(Scene s) {
         s.setOnKeyPressed(keyEvent -> {
             switch (keyEvent.getCode()) {
                 case UP:
-                    if (!inverted){
-                        up = true;
-                    } else {
-                        down = true;
-                    }
+                    up = true;
                     break;
                 case DOWN:
-                    if (!inverted) {
-                        down = true;
-                    } else {
-                        up = true;
-                    }
+                    down = true;
                     break;
                 case LEFT:
-                    if (!inverted) {
-                        left = true;
-                    } else {
-                        right = true;
-                    }
+                    left = true;
                     break;
                 case RIGHT:
-                    if (!inverted) {
-                        right = true;
-                    } else {
-                        left = true;
-                    }
+                    right = true;
                     break;
                 case SPACE:
-                    placeBomb = true;
+                    if (System.currentTimeMillis() - press_last > 200) {
+                        placeBomb = true;
+                        press_last = System.currentTimeMillis();
+                    }
                     break;
             }
         });
         s.setOnKeyReleased(keyEvent -> {
             switch (keyEvent.getCode()) {
                 case UP:
-                    if (!inverted){
-                        up = false;
-                    } else {
-                        down = false;
-                    }
+                    up = false;
                     break;
                 case DOWN:
-                    if (!inverted) {
-                        down = false;
-                    } else {
-                        up = false;
-                    }
+                    down = false;
                     break;
                 case LEFT:
-                    if (!inverted) {
-                        left = false;
-                    } else {
-                        right = false;
-                    }
+                    left = false;
                     break;
                 case RIGHT:
-                    if (!inverted) {
-                        right = false;
-                    } else {
-                        left = false;
-                    }
+                    right = false;
                     break;
             }
         });
     }
 
+    public static boolean isPlaceBomb() {
+        return placeBomb;
+    }
+
+    public static void setNotPlaceBomb() {
+        placeBomb = false;
+    }
+
+    public static void setPlaceBomb() {
+        placeBomb = true;
+    }
 
     public static boolean isUp() {
         return up;
@@ -94,10 +76,5 @@ public class Keyboard {
         return right;
     }
 
-    public static boolean isPlaceBomb() {
-        return placeBomb;
-    }
-    public static void setPlaceBomb() {
-        placeBomb = false;
-    }
+
 }

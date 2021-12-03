@@ -5,6 +5,8 @@ import uet.oop.bomberman.entities.LayeredEntity;
 import uet.oop.bomberman.entities.characters.NewBomber;
 import uet.oop.bomberman.entities.enemies.Balloon;
 import uet.oop.bomberman.entities.enemies.Bat;
+import uet.oop.bomberman.entities.items.bomb.BombItem;
+import uet.oop.bomberman.entities.items.bomb.FlameItem;
 import uet.oop.bomberman.entities.items.bomb.SpeedItem;
 import uet.oop.bomberman.entities.mapMaterials.Brick;
 import uet.oop.bomberman.entities.mapMaterials.Ground;
@@ -111,10 +113,30 @@ public class LevelLoader {
                 arrayEntities.add(0,new Wall(tempX,tempY));
                 mapEntities.add(new LayeredEntity(tempX,tempY,arrayEntities));
                 break;
-            case"b":
+            case"s":
                 arrayEntities= new ArrayList<Entity>();
                 arrayEntities.add(0,new Ground(tempX,tempY));
                 arrayEntities.add(0, new SpeedItem(tempX, tempY));
+                arrayEntities.add(0,new Brick(tempX,tempY));
+                mapEntities.add(new LayeredEntity(tempX,tempY,arrayEntities));
+                break;
+            case"b":
+                arrayEntities= new ArrayList<Entity>();
+                arrayEntities.add(0,new Ground(tempX,tempY));
+                arrayEntities.add(0,new Brick(tempX,tempY));
+                mapEntities.add(new LayeredEntity(tempX,tempY,arrayEntities));
+                break;
+            case"f":
+                arrayEntities= new ArrayList<Entity>();
+                arrayEntities.add(0,new Ground(tempX,tempY));
+                arrayEntities.add(0, new FlameItem(tempX, tempY));
+                arrayEntities.add(0,new Brick(tempX,tempY));
+                mapEntities.add(new LayeredEntity(tempX,tempY,arrayEntities));
+                break;
+            case"i":
+                arrayEntities= new ArrayList<Entity>();
+                arrayEntities.add(0,new Ground(tempX,tempY));
+                arrayEntities.add(0, new BombItem(tempX, tempY));
                 arrayEntities.add(0,new Brick(tempX,tempY));
                 mapEntities.add(new LayeredEntity(tempX,tempY,arrayEntities));
                 break;

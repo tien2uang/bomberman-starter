@@ -3,6 +3,7 @@ package uet.oop.bomberman.gameplay;
 import uet.oop.bomberman.entities.Entity;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Board extends Game {
@@ -10,14 +11,18 @@ public class Board extends Game {
     public static final double BOARD_HEIGHT = 13;
     public static final double BOARD_COORDINATE_Y = Game.INFO_HEIGHT;
 
-    public static int BOMB_RATE = 1;
+    public static int BOMB_QUANTITY = 1;
     public static int BOMB_RANGE = 2;
     public static double BOMBER_SPEED = 1.6;
 
 
-    public static int bombRate = BOMB_RATE;
+    public static int bombQuantity = BOMB_QUANTITY;
     public static int bombRange = BOMB_RANGE;
     public static double bomberSpeed = BOMBER_SPEED;
+
+    public static int speedItem_quantity = 0;
+    public static int flameItem_quantity = 0;
+    public static int bombItem_quantity = 0;
 
     public static List<Entity> mapEntities = new ArrayList<>();
     public static List<Entity> character = new ArrayList<>();
@@ -34,7 +39,7 @@ public class Board extends Game {
     }
 
     public static void render() {
-
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         mapEntities.forEach(g -> g.render(gc));
         bombs.forEach(g -> g.render(gc));
         flames.forEach(g -> g.render(gc));
@@ -93,10 +98,17 @@ public class Board extends Game {
         }
     }
     private static void updateCharacter() {
-        character.forEach(g -> g.update());
+        /*character.forEach(g -> g.update());
         for(int i=0;i<character.size();i++){
             if(character.get(i).getStatus()==Entity.INVALID){
                 character.remove(i);
+            }
+        }*/
+        for (Iterator<Entity> entity = character.iterator(); entity.hasNext();) {
+            Entity mob = entity.next();
+            mob.update();
+            if (mob.getStatus() == Entity.INVALID) {
+                entity.remove();
             }
         }
     }
@@ -109,8 +121,8 @@ public class Board extends Game {
         }
     }
 
-    public static void increaseSpeed(double i) {
-        bomberSpeed += i;
+    public static void increaseSpeed(double add) {
+        bomberSpeed = bomberSpeed + add;
     }
 
     public static double getBomberSpeed() {
@@ -119,5 +131,13 @@ public class Board extends Game {
 
     public static int getBombRange() {
         return bombRange;
+    }
+
+    public static int getBombQuantity() {
+        return bombQuantity;
+    }
+
+    public static void increaseBombQuantity(int add) {
+        bombQuantity = bombQuantity + add;
     }
 }

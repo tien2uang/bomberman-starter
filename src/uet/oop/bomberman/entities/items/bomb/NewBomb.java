@@ -26,7 +26,7 @@ public class NewBomb extends AnimatedEntity {
         this.img = NewSprite.bomb1_1.getFxImage();
         this.layerPower = 3.5;
         type = 0;
-        range = 2;
+        range = 1;
         bombs = NewSprite.normalBomb;
         flames = new ArrayList<NewFlame>(Arrays.asList(
                 new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT, "central"),
@@ -72,11 +72,15 @@ public class NewBomb extends AnimatedEntity {
         animate();
         if (getAnimate() == ANIMATION_CIRCLE) {
             checkCollisionWithMapForFlames();
+            if (Board.bombQuantity == 0) {
+                Board.bombQuantity++;
+            } else if (Board.bombQuantity == 1) {
+                Board.bombItem_quantity--;
+            }
             for (NewFlame newFlame : flames) {
                 Board.getFlames().add(newFlame);
             }
             this.status = INVALID;
-
         }
     }
 

@@ -372,7 +372,7 @@ public class NewSprite {
 
     public static ArrayList<NewSprite> frog_Dead = new ArrayList<>(Arrays.asList(frog_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
     public static ArrayList<NewSprite> balloon_dead = new ArrayList<>(Arrays.asList(balloon_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
-    public static ArrayList<NewSprite> bat_dead = new ArrayList<>(Arrays.asList(frog_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
+    public static ArrayList<NewSprite> bat_dead = new ArrayList<>(Arrays.asList(bat_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
 
     /**
      * Info Bar
@@ -392,6 +392,18 @@ public class NewSprite {
     //bars
     public static NewSprite startBar= new NewSprite(272,32,"bar");
     public static NewSprite inGameBar= new NewSprite(272,32,"bar1");
+
+    public static NewSprite speed_item = new NewSprite(SIZE, 0, 0, "speed-item");
+    public static NewSprite speed_item1 = new NewSprite(SIZE, 0, 0, "speed-item1");
+    public static ArrayList<NewSprite> speedItem = new ArrayList<>(Arrays.asList(speed_item, speed_item1));
+
+    public static NewSprite flame_item = new NewSprite(SIZE, 0, 0, "flame-item");
+    public static NewSprite flame_item1 = new NewSprite(SIZE, 0, 0, "flame-item1");
+    public static ArrayList<NewSprite> flameItem = new ArrayList<>(Arrays.asList(flame_item, flame_item1));
+
+    public static NewSprite bomb_item = new NewSprite(SIZE, 0, 0, "bomb-item");
+    public static NewSprite bomb_item1 = new NewSprite(SIZE, 0, 0, "bomb-item1");
+    public static ArrayList<NewSprite> bombItem = new ArrayList<>(Arrays.asList(bomb_item, bomb_item1));
 
 
     public static NewSprite movingSprite(ArrayList<NewSprite> spritesList, int animate, int time) {

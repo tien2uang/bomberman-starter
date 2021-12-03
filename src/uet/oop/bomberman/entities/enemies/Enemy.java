@@ -16,7 +16,7 @@ import java.util.concurrent.locks.StampedLock;
 
 public abstract class Enemy extends AnimatedEntity {
 
-    public static double speed = 1;
+    public static double speed = 0.5;
     public int direction;
 
     public final double MAX_UP = 72;
@@ -56,7 +56,7 @@ public abstract class Enemy extends AnimatedEntity {
     public void render(GraphicsContext gc) {
 
         chooseImg();
-        gc.drawImage(img, (xUnit ) * 36, (yUnit + 1) * 36 );
+        gc.drawImage(img, (xUnit ) * 36, (yUnit + Game.INFO_HEIGHT) * 36 );
     }
 
     public int random_() {
@@ -159,7 +159,7 @@ public abstract class Enemy extends AnimatedEntity {
         int a = (int) ( xx);
         int b = (int) ( yy);
         for (Entity entity: Board.getFlames()) {
-            if (a == entity.getXUnit() && b == entity.getYUnit()) {
+            if (a == (int) entity.getXUnit() && b == (int) entity.getYUnit()) {
                 killed();
                 return false;
             }
@@ -185,7 +185,7 @@ public abstract class Enemy extends AnimatedEntity {
             animate();
             death_animate--;
         } else {
-            isAlive = false;
+            this.status = INVALID;
         }
     }
 

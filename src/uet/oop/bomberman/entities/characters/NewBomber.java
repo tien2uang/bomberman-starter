@@ -2,7 +2,9 @@ package uet.oop.bomberman.entities.characters;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.items.bomb.NewBomb;
+import uet.oop.bomberman.entities.items.bomb.SpeedItem;
 import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
@@ -18,8 +20,8 @@ public class NewBomber extends Character {
     //public static double speed = 1.6;
     private NewSprite currentSprite;
     public static Vector<Bomb> bombs = new Vector<>();
-    public int dead_animation = 100;
-    public int item_animation = 600;
+    public int speedItem_animation = 600;
+    public static int bombQuantity;
 
     public NewBomber(double x, double y) {
         super(x, y);
@@ -30,6 +32,7 @@ public class NewBomber extends Character {
         this.isMoving = false;
         this.layerPower = 2;
         isAlive = true;
+        bombQuantity = Board.getBombQuantity();
     }
 
 
@@ -67,22 +70,20 @@ public class NewBomber extends Character {
         if (Keyboard.isLeft() || Keyboard.isRight() || Keyboard.isDown() || Keyboard.isUp()) {
             return true;
         }
-        for (Entity entity: Board.getFlames()) {
-            double x = this.x - (double) (currentSprite.getDistanceToTopLeftX()) * NewSprite.SCALED_FACTOR;
-            double y = this.y - (double) (currentSprite.getDistanceToTopLeftY()) * NewSprite.SCALED_FACTOR;
-            if ((int)(x/NewSprite.SCALED_SIZE) == entity.getXUnit() && (int)(y/NewSprite.SCALED_SIZE) == entity.getYUnit()) {
-                killed();
-            }
-        }
         return false;
     }
 
-    public void collideEnemy() {
+    public void collide() {
         for (Entity entity: Board.getCharacterList()) {
             if (!(entity instanceof NewBomber)) {
-                if (Math.round(x / NewSprite.SCALED_SIZE) == (int) entity.getXUnit() && Math.round(y / NewSprite.SCALED_SIZE) == (int) (entity.getYUnit() + Board.BOARD_COORDINATE_Y)) {
-                    killed();
+                if ((int)(this.getXUnit()) == (int) entity.getXUnit() && (int)(this.getYUnit()) == (int) (entity.getYUnit())) {
+                    isAlive = false;
                 }
+            }
+        }
+        for (Entity entity: Board.getFlames()) {
+            if ((int)(this.getXUnit()) == (int) entity.getXUnit() && (int)(this.getYUnit()) == (int) entity.getYUnit()) {
+                isAlive = false;
             }
         }
     }
@@ -110,27 +111,18 @@ public class NewBomber extends Character {
 
     @Override
     public void update() {
-        if (!isMoving()) {
-            animate = 0;
-        }
-        if (killed) {
-            if (dead_animation > 0) {
-                animate();
-                img = chooseImage(-1);
-                dead_animation--;
-            } else {
-                isAlive = false;
+        System.out.println(Board.bombItem_quantity);
+        if (isAlive) {
+            if (!isMoving()) {
+                animate = 0;
             }
-        } else {
             calculateMove();
-            collideEnemy();
+            collide();
             pickUpItem();
             img = chooseImage(direction);
-        }
-
             if (Keyboard.isPlaceBomb()) {
                 placeBomb();
-                Keyboard.setPlaceBomb();
+                Keyboard.setNotPlaceBomb();
             }
         } else {
             currentSprite = NewSprite.movingSprite(NewSprite.playerDeadList, animate, 90);
@@ -140,27 +132,6 @@ public class NewBomber extends Character {
                 this.status=INVALID;
             }
         }
-
-        if (isAlive) {
-        if (!isMoving()) {
-            animate = 0;
-        }
-
-        calculateMove();
-        img = chooseImage(direction);
-
-        if (Keyboard.isPlaceBomb()) {
-            placeBomb();
-            Keyboard.setPlaceBomb();
-        }
-    } else {
-        currentSprite = NewSprite.movingSprite(NewSprite.playerDeadList, animate, 90);
-        img=currentSprite.getFxImage();
-        animate();
-        if(getAnimate()==90){
-            this.status=INVALID;
-        }
-    }
     }
 
     public void setAlive(boolean alive) {
@@ -174,8 +145,17 @@ public class NewBomber extends Character {
         double y = (this.y + NewSprite.SCALED_SIZE / 2) / NewSprite.SCALED_SIZE;
         double xUnitToPlace = (double) ((int) x);
         double yUnitToPlace = (double) ((int) y);
-        NewBomb bomb = new NewBomb(xUnitToPlace, yUnitToPlace - Game.INFO_HEIGHT);
-        Board.getBombs().add(bomb);
+        NewBomb bomb;
+        if (Board.getBombQuantity() > 0) {
+            if (Board.flameItem_quantity != 0) {
+                bomb = new NewBomb(xUnitToPlace, yUnitToPlace - Game.INFO_HEIGHT, 1);
+                Board.flameItem_quantity--;
+            } else {
+                bomb = new NewBomb(xUnitToPlace, yUnitToPlace - Game.INFO_HEIGHT);
+            }
+            Board.getBombs().add(bomb);
+            Board.bombQuantity--;
+        }
     }
 
     @Override
@@ -358,12 +338,12 @@ public class NewBomber extends Character {
     }
 
     public void pickUpItem() {
-        if (SpeedItem.speed_quantity != 0) {
-            if (item_animation > 0) {
-                item_animation--;
+        if (Board.speedItem_quantity != 0) {
+            if (speedItem_animation > 0) {
+                speedItem_animation--;
             } else {
                 Board.bomberSpeed = Board.BOMBER_SPEED;
-                SpeedItem.speed_quantity = 0;
+                Board.speedItem_quantity = 0;
             }
         }
     }

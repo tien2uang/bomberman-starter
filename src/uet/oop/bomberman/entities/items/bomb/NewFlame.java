@@ -1,6 +1,7 @@
 package uet.oop.bomberman.entities.items.bomb;
 
 import uet.oop.bomberman.entities.AnimatedEntity;
+import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.graphics.NewSprite;
 
 import java.util.ArrayList;
