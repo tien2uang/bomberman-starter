@@ -5,9 +5,9 @@ import uet.oop.bomberman.entities.LayeredEntity;
 import uet.oop.bomberman.entities.characters.NewBomber;
 import uet.oop.bomberman.entities.enemies.Balloon;
 import uet.oop.bomberman.entities.enemies.Bat;
-import uet.oop.bomberman.entities.items.bomb.BombItem;
-import uet.oop.bomberman.entities.items.bomb.FlameItem;
-import uet.oop.bomberman.entities.items.bomb.SpeedItem;
+import uet.oop.bomberman.entities.items.buff.BombItem;
+import uet.oop.bomberman.entities.items.buff.FlameItem;
+import uet.oop.bomberman.entities.items.buff.SpeedItem;
 import uet.oop.bomberman.entities.mapMaterials.Brick;
 import uet.oop.bomberman.entities.mapMaterials.Ground;
 import uet.oop.bomberman.entities.mapMaterials.Portal;
@@ -21,18 +21,18 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class LevelLoader {
-    private Board board;
-    private int level;
 
-    public LevelLoader(Board board, int level) {
-        this.board = board;
-        this.level = level;
+
+
+    public LevelLoader() {
+
+
     }
 
     public void loadLevel(int level) {
         try {
-            List<Entity> entitiesList = board.getMapEntitiesList();
-            List<Entity> stillObjList = board.getCharacterList();
+            List<Entity> entitiesList = Board.getMapEntitiesList();
+            List<Entity> stillObjList = Board.getCharacterList();
             String path = "res/levels/Level1-" + level + ".txt";
             Scanner scanner = new Scanner(new File(path));
             String _line = scanner.nextLine().trim();
@@ -50,9 +50,7 @@ public class LevelLoader {
                 StringTokenizer stringTokenizer = new StringTokenizer(line, " ");
                 while (stringTokenizer.hasMoreTokens()) {
                     String temp = stringTokenizer.nextToken().trim();
-                    if (temp.equals("p")) {
-                        addEntity(entitiesList,stillObjList, temp, tempX, tempY);
-                    }
+
                     addEntity(entitiesList,stillObjList,temp,tempX,tempY);
                     tempX++;
                 }

@@ -411,6 +411,9 @@ public class NewSprite {
     public static NewSprite bomb_item1 = new NewSprite(SIZE, 0, 0, "bomb-item1");
     public static ArrayList<NewSprite> bombItem = new ArrayList<>(Arrays.asList(bomb_item, bomb_item1));
 
+    public static NewSprite stage_1= new NewSprite(49,9,"stage");
+    public static NewSprite stage_2= new NewSprite(51,9,"stage_2");
+    public static NewSprite game_over= new NewSprite(94,16,"gameover");
 
     public static NewSprite movingSprite(ArrayList<NewSprite> spritesList, int animate, int time) {
         int calc = animate % time;

@@ -4,11 +4,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.items.bomb.NewBomb;
-import uet.oop.bomberman.entities.items.bomb.SpeedItem;
+import uet.oop.bomberman.entities.mapMaterials.Portal;
 import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
-import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.input.Keyboard;
 
 import java.util.Vector;
@@ -17,7 +16,6 @@ public class NewBomber extends Character {
 
     public int direction;
     private boolean isMoving;
-    //public static double speed = 1.6;
     private NewSprite currentSprite;
     public static Vector<Bomb> bombs = new Vector<>();
     public int speedItem_animation = 600;
@@ -59,10 +57,7 @@ public class NewBomber extends Character {
             down();
         }
 
-//        if (X != 0 || Y != 0) {
-//            // System.out.println("YES");
-//            move(X, Y);
-//        }
+
 
     }
 
@@ -77,15 +72,36 @@ public class NewBomber extends Character {
         for (Entity entity: Board.getCharacterList()) {
             if (!(entity instanceof NewBomber)) {
                 if ((int)(this.getXUnit()) == (int) entity.getXUnit() && (int)(this.getYUnit()) == (int) (entity.getYUnit())) {
-                    isAlive = false;
+                    setAlive(false);
                 }
             }
         }
         for (Entity entity: Board.getFlames()) {
             if ((int)(this.getXUnit()) == (int) entity.getXUnit() && (int)(this.getYUnit()) == (int) entity.getYUnit()) {
-                isAlive = false;
+                setAlive(false);
             }
         }
+        //collide with portal
+        double x = (this.x + NewSprite.SCALED_SIZE / 2) / NewSprite.SCALED_SIZE;
+        double y = (this.y + NewSprite.SCALED_SIZE / 2) / NewSprite.SCALED_SIZE;
+        double xUnit = (double) ((int) x);
+        double yUnit = (double) ((int) y);
+        if(Board.getMostPoweredEntityAt(xUnit, yUnit-Game.INFO_HEIGHT) instanceof Portal) {
+
+            if(Board.hasKilledAllEnemies()){
+                if(!Board.hasWon){
+                    Board.wonTime=Game.frameTime;
+                    Board.hasWon=true;
+                    System.out.println("won");
+                }
+
+
+
+
+                ///next level
+            }
+        }
+
     }
 
     public Image chooseImage(int direction) {
@@ -111,7 +127,6 @@ public class NewBomber extends Character {
 
     @Override
     public void update() {
-        System.out.println(Board.bombItem_quantity);
         if (isAlive) {
             if (!isMoving()) {
                 animate = 0;
@@ -125,12 +140,20 @@ public class NewBomber extends Character {
                 Keyboard.setNotPlaceBomb();
             }
         } else {
-            currentSprite = NewSprite.movingSprite(NewSprite.playerDeadList, animate, 90);
-            img=currentSprite.getFxImage();
             animate();
-            if(getAnimate()==90){
-                this.status=INVALID;
+            if(animate<=59)
+            {
+                currentSprite = NewSprite.movingSprite(NewSprite.playerDeadList, animate, 60);
+                img=currentSprite.getFxImage();
             }
+            else{
+                img=null;
+                if(getAnimate()==60+60){
+                    this.status=INVALID;
+                    Board.isBomberAlive=isAlive;
+                }
+            }
+
         }
     }
 
@@ -145,6 +168,8 @@ public class NewBomber extends Character {
         double y = (this.y + NewSprite.SCALED_SIZE / 2) / NewSprite.SCALED_SIZE;
         double xUnitToPlace = (double) ((int) x);
         double yUnitToPlace = (double) ((int) y);
+        
+
         NewBomb bomb;
         if (Board.getBombQuantity() > 0) {
             if (Board.flameItem_quantity != 0) {
@@ -156,13 +181,14 @@ public class NewBomber extends Character {
             Board.getBombs().add(bomb);
             Board.bombQuantity--;
         }
+
+
     }
 
     @Override
     public void render(GraphicsContext gc) {
         double x = this.x - (double) (currentSprite.getDistanceToTopLeftX()) * NewSprite.SCALED_FACTOR;
         double y = this.y - (double) (currentSprite.getDistanceToTopLeftY()) * NewSprite.SCALED_FACTOR;
-        // System.out.println(this.x + " " + this.y +  ":"+currentSprite.getName());
         gc.drawImage(img, x, y);
     }
 
@@ -347,10 +373,5 @@ public class NewBomber extends Character {
             }
         }
     }
-//    public void placeBomb(){
-//        double x = this.x+NewSprite.SCALED_SIZE/2;
-//        double y = this.y+NewSprite.SCALED_SIZE/2;
-//        double xUnitToPlace=(double)((int)x);
-//        double yUnitToPlace=(double)((int)y);
-//    }
+
 }
