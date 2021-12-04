@@ -76,13 +76,13 @@ public class NewBomber extends Character {
     public void collide() {
         for (Entity entity: Board.getCharacterList()) {
             if (!(entity instanceof NewBomber)) {
-                if ((int)(this.getXUnit()) == (int) entity.getXUnit() && (int)(this.getYUnit()) == (int) (entity.getYUnit())) {
+                if (Math.round(this.getXUnit()) == Math.round(entity.getXUnit()) && Math.round(this.getYUnit()) == Math.round(entity.getYUnit())) {
                     isAlive = false;
                 }
             }
         }
         for (Entity entity: Board.getFlames()) {
-            if ((int)(this.getXUnit()) == (int) entity.getXUnit() && (int)(this.getYUnit()) == (int) entity.getYUnit()) {
+            if (Math.round(this.getXUnit()) == Math.round(entity.getXUnit()) && Math.round(this.getYUnit()) == Math.round(entity.getYUnit())) {
                 isAlive = false;
             }
         }
@@ -111,7 +111,6 @@ public class NewBomber extends Character {
 
     @Override
     public void update() {
-        System.out.println(Board.bombItem_quantity);
         if (isAlive) {
             if (!isMoving()) {
                 animate = 0;

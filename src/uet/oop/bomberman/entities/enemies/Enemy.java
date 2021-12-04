@@ -159,7 +159,7 @@ public abstract class Enemy extends AnimatedEntity {
         int a = (int) ( xx);
         int b = (int) ( yy);
         for (Entity entity: Board.getFlames()) {
-            if (a == (int) entity.getXUnit() && b == (int) entity.getYUnit()) {
+            if (Math.round(xx) == entity.getXUnit() && Math.round(yy) == entity.getYUnit()) {
                 killed();
                 return false;
             }
