@@ -1,27 +1,26 @@
-package uet.oop.bomberman.entities.items.bomb;
+package uet.oop.bomberman.entities.items.buff;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.characters.NewBomber;
+import uet.oop.bomberman.entities.items.buff.Item;
 import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.graphics.NewSprite;
-import uet.oop.bomberman.graphics.Sprite;
 
-public class SpeedItem extends Item {
+public class FlameItem extends Item {
     public boolean destroyed;
-    public boolean isActive;
-    public SpeedItem(double xUnit, double yUnit, Image img) {
+    public FlameItem(double xUnit, double yUnit, Image img) {
         super(xUnit, yUnit, img);
     }
 
-    public SpeedItem(double xUnit, double yUnit) {
+    public FlameItem(double xUnit, double yUnit) {
         super(xUnit, yUnit);
-        this.img = NewSprite.speed_item.getFxImage();
+        this.img = NewSprite.flame_item.getFxImage();
         this.layerPower = 1;
     }
 
     @Override
     public void update() {
-        img = NewSprite.movingSprite(NewSprite.speedItem, getAnimate(), 33).getFxImage();
+        img = NewSprite.movingSprite(NewSprite.flameItem, getAnimate(), 33).getFxImage();
         animate();
         collideBomber();
         if (destroyed) {
@@ -32,8 +31,7 @@ public class SpeedItem extends Item {
     public void collideBomber() {
         if (Board.getMostPoweredEntityAt(xUnit, yUnit) instanceof NewBomber) {
             destroyed = true;
-            Board.speedItem_quantity++;
-            Board.increaseSpeed(1.6);
+            Board.flameItem_quantity++;
         }
     }
 }

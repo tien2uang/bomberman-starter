@@ -18,7 +18,7 @@ public class NewBomb extends AnimatedEntity {
     private ArrayList<NewSprite> bombs;
     private ArrayList<NewFlame> flames;
     private int type;
-    private int range = Board.bombRange;
+    private int range ;
     private final int ANIMATION_CIRCLE = 90;
 
     public NewBomb(double xUnit, double yUnit) {
@@ -26,7 +26,7 @@ public class NewBomb extends AnimatedEntity {
         this.img = NewSprite.bomb1_1.getFxImage();
         this.layerPower = 3.5;
         type = 0;
-        range = 1;
+        range =Board.BOMB_RANGE;
         bombs = NewSprite.normalBomb;
         flames = new ArrayList<NewFlame>(Arrays.asList(
                 new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT, "central"),
@@ -98,7 +98,7 @@ public class NewBomb extends AnimatedEntity {
             if (Board.getMostPoweredEntityAt(this.getXUnit(), this.getYUnit() - i) instanceof Wall
                     || Board.getMostPoweredEntityAt(this.getXUnit(), this.getYUnit() - i) instanceof Border) {
                 Iterator<NewFlame> it = flames.iterator();
-                System.out.println(flames.size() + "");
+
                 while (it.hasNext()) {
                     NewFlame flame = it.next();
                     if(flame.getYUnit()<= this.getYUnit() - i){
@@ -111,7 +111,7 @@ public class NewBomb extends AnimatedEntity {
                 Brick brick = (Brick) (Board.getMostPoweredEntityAt(this.getXUnit(), this.getYUnit() - i));
                 brick.setDestroyed(true);
                 Iterator<NewFlame> it = flames.iterator();
-                System.out.println(flames.size() + "");
+
                 while (it.hasNext()) {
                     NewFlame flame = it.next();
                     if(flame.getYUnit()<= this.getYUnit() - i){
@@ -125,7 +125,7 @@ public class NewBomb extends AnimatedEntity {
         for (int i = 1; i <= range; i++) {
             if (Board.getMostPoweredEntityAt(this.getXUnit(), this.getYUnit() + i) instanceof Wall
                     || Board.getMostPoweredEntityAt(this.getXUnit(), this.getYUnit() + i) instanceof Border) {
-                System.out.println(flames.size() );
+
                 Iterator<NewFlame> it = flames.iterator();
                 while (it.hasNext()) {
                     NewFlame flame = it.next();
