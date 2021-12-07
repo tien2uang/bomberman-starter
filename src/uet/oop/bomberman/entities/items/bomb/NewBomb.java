@@ -28,18 +28,18 @@ public class NewBomb extends AnimatedEntity {
         this.img = NewSprite.bomb1_1.getFxImage();
         this.layerPower = 3.5;
         type = 0;
-        range =Board.BOMB_RANGE;
+        range =2;
         bombs = NewSprite.normalBomb;
         flames = new ArrayList<NewFlame>(Arrays.asList(
                 new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT, "central"),
-                //new NewFlame(this.xUnit + 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
-                //new NewFlame(this.xUnit - 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
-                new NewFlame(this.xUnit + 1, yUnit+ Game.INFO_HEIGHT, "rightLast"),
-                new NewFlame(this.xUnit - 1, yUnit+ Game.INFO_HEIGHT, "leftLast"),
-                //new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 1, "vertical"),
-                //new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 1, "vertical"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 1, "topLast"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 1, "botLast")
+                new NewFlame(this.xUnit + 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit - 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit + 2, yUnit+ Game.INFO_HEIGHT, "rightLast"),
+                new NewFlame(this.xUnit - 2, yUnit+ Game.INFO_HEIGHT, "leftLast"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 1, "vertical"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 1, "vertical"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 2, "topLast"),
+                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 2, "botLast")
         ));
     }
 

@@ -87,9 +87,7 @@ public class NewBomber extends Character {
                         isAlive = false;
                     }
                 }
-                /*if (Math.round(this.getXUnit()) == Math.round(entity.getXUnit()) && Math.round(this.getYUnit()) == Math.round(entity.getYUnit())) {
-                    isAlive = false;
-                }*/
+
             }
         }
         for (Entity entity: Board.getFlames()) {
@@ -133,9 +131,7 @@ public class NewBomber extends Character {
 
     public Image chooseImage(int direction) {
         switch (direction) {
-            case -1:
-                currentSprite = NewSprite.movingSprite(NewSprite.frogList, animate, 33);
-                return NewSprite.movingSprite(NewSprite.frogList, animate, 33).getFxImage();
+
             case 1:
                 currentSprite = NewSprite.movingSprite(NewSprite.playerLeftList, animate, 33);
                 return NewSprite.movingSprite(NewSprite.playerLeftList, animate, 33).getFxImage();

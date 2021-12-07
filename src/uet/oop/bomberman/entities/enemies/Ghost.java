@@ -45,7 +45,7 @@ public class Ghost extends Enemy {
     }
 
     @Override
-    public int random_() {
+    public int random() {
         return new Random().nextInt(4);
     }
 
@@ -54,7 +54,7 @@ public class Ghost extends Enemy {
     public void calculateMove() {
         int xa = 0, ya = 0;
         if(_steps <= 0){
-            rand = random_();
+            rand = random();
             _steps = MAX_STEPS;
         }
 
