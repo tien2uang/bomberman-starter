@@ -1,8 +1,6 @@
 package uet.oop.bomberman.entities.enemies;
 
 import javafx.scene.canvas.GraphicsContext;
-import uet.oop.bomberman.entities.characters.NewBomber;
-import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
 
@@ -64,7 +62,7 @@ public class Enemy4 extends Enemy {
     }
 
     @Override
-    public int random_() {
+    public int random() {
         return new Random().nextInt(4);
     }
 
@@ -72,7 +70,7 @@ public class Enemy4 extends Enemy {
     @Override
     public void calculateMove() {
         int xa = 0, ya = 0;
-        rand = random_();
+        rand = random();
 
         System.out.println(rand);
         if(rand == 2) ya += 2;  // 2 down
