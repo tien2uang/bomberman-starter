@@ -263,30 +263,28 @@ public class NewSprite {
     public static NewSprite player_down_2 = new NewSprite(SIZE, -1, 5, 17, 20, "player-down1");
     public static NewSprite player_down_3 = new NewSprite(SIZE, 1, 5, 17, 20, "player-down2");
     public static ArrayList<NewSprite> playerDownList = new ArrayList<NewSprite>(Arrays.asList(
-            player_down_1, player_down_2, player_down_3
+            player_down_1, player_down_3, player_down_1, player_down_2
     ));
 
     public static NewSprite player_left_1 = new NewSprite(SIZE, 0, 5, 18, 21, "player-left");
     public static NewSprite player_left_2 = new NewSprite(SIZE, 1, 5, 17, 21, "player-left1");
     public static NewSprite player_left_3 = new NewSprite(SIZE, 1, 5, 18, 21, "player-left2");
     public static ArrayList<NewSprite> playerLeftList = new ArrayList<NewSprite>(Arrays.asList(
-            player_left_1, player_left_2, player_left_3
+            player_left_1, player_left_3, player_left_1, player_left_2
     ));
 
     public static NewSprite player_right_1 = new NewSprite(SIZE, 2, 5, 18, 21, "player-right");
     public static NewSprite player_right_2 = new NewSprite(SIZE, 0, 5, 17, 21, "player-right1");
     public static NewSprite player_right_3 = new NewSprite(SIZE, 1, 5, 18, 21, "player-right2");
     public static ArrayList<NewSprite> playerRightList = new ArrayList<NewSprite>(Arrays.asList(
-            player_right_1,
-            player_right_2
-            , player_right_3
+            player_right_1, player_right_3, player_right_1, player_right_2
     ));
 
     public static NewSprite player_up_1 = new NewSprite(SIZE, 0, 5, 17, 20, "player-up");
     public static NewSprite player_up_2 = new NewSprite(SIZE, -1, 5, 17, 20, "player-up1");
     public static NewSprite player_up_3 = new NewSprite(SIZE, 1, 5, 17, 20, "player-up2");
     public static ArrayList<NewSprite> playerUpList = new ArrayList<NewSprite>(Arrays.asList(
-            player_up_1, player_up_2, player_up_3
+            player_up_1, player_up_3, player_up_1, player_up_2
     ));
 
     public static NewSprite player_dead_1 = new NewSprite(SIZE, 2, 5, 20, 20, "player-dead");
@@ -392,12 +390,12 @@ public class NewSprite {
 
     //bars
     public static NewSprite startBar = new NewSprite(272, 32, "bar");
-    public static NewSprite startBar_1 = new NewSprite(272,32,"bar2");
+    public static NewSprite startBar_1 = new NewSprite(272, 32, "bar2");
     public static NewSprite inGameBar = new NewSprite(272, 32, "bar1");
 
-    public static ArrayList<NewSprite>startBarList = new ArrayList<>(Arrays.asList(startBar,startBar_1));
+    public static ArrayList<NewSprite> startBarList = new ArrayList<>(Arrays.asList(startBar, startBar_1));
     //clock
-    public static NewSprite clock = new NewSprite(32,14,"clock");
+    public static NewSprite clock = new NewSprite(32, 14, "clock");
 
     public static NewSprite speed_item = new NewSprite(SIZE, 0, 0, "speed-item");
     public static NewSprite speed_item1 = new NewSprite(SIZE, 0, 0, "speed-item1");
@@ -411,9 +409,9 @@ public class NewSprite {
     public static NewSprite bomb_item1 = new NewSprite(SIZE, 0, 0, "bomb-item1");
     public static ArrayList<NewSprite> bombItem = new ArrayList<>(Arrays.asList(bomb_item, bomb_item1));
 
-    public static NewSprite stage_1= new NewSprite(49,9,"stage");
-    public static NewSprite stage_2= new NewSprite(51,9,"stage_2");
-    public static NewSprite game_over= new NewSprite(94,16,"gameover");
+    public static NewSprite stage_1 = new NewSprite(49, 9, "stage");
+    public static NewSprite stage_2 = new NewSprite(51, 9, "stage_2");
+    public static NewSprite game_over = new NewSprite(94, 16, "gameover");
 
     public static NewSprite movingSprite(ArrayList<NewSprite> spritesList, int animate, int time) {
         int calc = animate % time;
