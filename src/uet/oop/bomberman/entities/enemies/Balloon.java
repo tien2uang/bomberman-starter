@@ -21,7 +21,7 @@ public class Balloon extends Enemy {
 
 
     public Balloon(double x, double y) {
-        super(x, y);
+        super(x, y, 0.5, 100);
         img = NewSprite.balloon_right.getFxImage();
         this.layerPower = 2.5;
         this.animate = 0;

@@ -355,6 +355,26 @@ public class NewSprite {
     public static NewSprite frog1 = new NewSprite(SIZE, 0, 0, "frog1");
     public static NewSprite frog2 = new NewSprite(SIZE, 0, 0, "frog2");
     public static ArrayList<NewSprite> frogList = new ArrayList<>(Arrays.asList(frog, frog1, frog2));
+    public static ArrayList<NewSprite> frogMove = new ArrayList<>(Arrays.asList(frog2, frog1, frog));
+
+    // ghost
+    public static NewSprite ghost_up = new NewSprite(SIZE, 0, 0, "ghost-up");
+    public static NewSprite ghost_up1 = new NewSprite(SIZE, 0, 0, "ghost-up1");
+    public static NewSprite ghost_up2 = new NewSprite(SIZE, 0, 0, "ghost-up2");
+    public static ArrayList<NewSprite> GhostUpList = new ArrayList<>(Arrays.asList(ghost_up,ghost_up1,ghost_up2));
+
+    public static NewSprite ghost_down = new NewSprite(SIZE, 0, 0, "ghost-down");
+    public static NewSprite ghost_down1 = new NewSprite(SIZE, 0, 0, "ghost-down1");
+    public static NewSprite ghost_down2 = new NewSprite(SIZE, 0, 0, "ghost-down2");
+    public static ArrayList<NewSprite> GhostDownList = new ArrayList<>(Arrays.asList(ghost_down,ghost_down1,ghost_down2));
+
+    public static NewSprite ghost_left = new NewSprite(SIZE, 0, 0, "ghost-left");
+    public static NewSprite ghost_left1 = new NewSprite(SIZE, 0, 0, "ghost-left1");
+    public static ArrayList<NewSprite> GhostLeftList = new ArrayList<>(Arrays.asList(ghost_left,ghost_left1));
+
+    public static NewSprite Ghost_right = new NewSprite(SIZE, 0, 0, "ghost-right");
+    public static NewSprite Ghost_right1 = new NewSprite(SIZE, 0, 0, "ghost-right1");
+    public static ArrayList<NewSprite> GhostRightList = new ArrayList<>(Arrays.asList(Ghost_right,Ghost_right1));
 
 
     //enemy dead
@@ -364,6 +384,11 @@ public class NewSprite {
     public static NewSprite enemy_dead3 = new NewSprite(SIZE, 0, 0, "enemy-dead3");
     public static NewSprite enemy_dead4 = new NewSprite(SIZE, 0, 0, "enemy-dead4");
 
+    public static NewSprite ghost_dead_ = new NewSprite(SIZE, 0, 0, "ghost-dead");
+    public static NewSprite ghost_dead1 = new NewSprite(SIZE, 0, 0, "ghost-dead1");
+    public static NewSprite ghost_dead2 = new NewSprite(SIZE, 0, 0, "ghost-dead2");
+    public static NewSprite ghost_dead3 = new NewSprite(SIZE, 0, 0, "ghost-dead3");
+
     public static NewSprite balloon_dead_ = new NewSprite(SIZE, 0, 0, "balloon-dead");
     public static NewSprite bat_dead_ = new NewSprite(SIZE, 0, 0, "bat-dead");
     public static NewSprite frog_dead_ = new NewSprite(SIZE, 0, 0, "frog-dead");
@@ -371,6 +396,7 @@ public class NewSprite {
     public static ArrayList<NewSprite> frog_Dead = new ArrayList<>(Arrays.asList(frog_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
     public static ArrayList<NewSprite> balloon_dead = new ArrayList<>(Arrays.asList(balloon_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
     public static ArrayList<NewSprite> bat_dead = new ArrayList<>(Arrays.asList(bat_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
+    public static ArrayList<NewSprite> ghost_dead = new ArrayList<>(Arrays.asList(ghost_dead_, ghost_dead1, ghost_dead2, ghost_dead3));
 
     /**
      * Info Bar

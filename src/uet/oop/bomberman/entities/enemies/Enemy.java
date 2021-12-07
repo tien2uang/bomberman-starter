@@ -4,6 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.AnimatedEntity;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.characters.NewBomber;
 import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
@@ -12,8 +13,9 @@ import java.util.Random;
 
 public abstract class Enemy extends AnimatedEntity {
 
-    public static double speed = 0.5;
+    public static double speed;
     public int direction;
+    protected int point;
 
     public final double MAX_UP = 72;
     public double step_Up = 72;
@@ -23,19 +25,22 @@ public abstract class Enemy extends AnimatedEntity {
     public final double MAX_STEPS = 144;
     public double _steps = 0;
     public int rand = random_();
+    public int a = 0;
 
     public boolean isMovingUP = false;
     public boolean isMovingDOWN = false;
     protected int death_animate = 100;
 
-    public final double temp = speed / (double) NewSprite.SCALED_SIZE;
+    public final double temp = 1 / (double) NewSprite.SCALED_SIZE;
 
     public Enemy(double x, double y, Image image) {
         super(x, y, image);
     }
 
-    public Enemy(double x, double y) {
+    public Enemy(double x, double y, double speed_, int point_) {
         super(x,y);
+        speed = speed_;
+        point = point_;
     }
 
     @Override
@@ -86,42 +91,24 @@ public abstract class Enemy extends AnimatedEntity {
             _steps = 0;
         }
 
-
+        System.out.println(xUnit + " " + yUnit);
         if (Math.abs(xUnit - (int) xUnit) <= temp) {
             int tempX = (int) xUnit;
+            System.out.println(tempX);
 
-            // up
-            if (tempX == 4 || tempX == 8 || tempX == 12) {
-                if (step_Up <= 0) {
-                    isMovingUP = false;
-                    step_Up = MAX_UP;
-                } else isMovingUP = true;
-
-                if (canUp(xUnit,yUnit - temp ) && isMovingUP) {
-                    direction = 3;
-                    move(0,-speed);
-                    step_Up--;
-                } else if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
-                    yUnit = Math.round(yUnit);
-                }
-            }
-            // down
-            if (tempX == 2 || tempX == 6 || tempX == 10 || tempX == 14) {
-                if (step_Down <= 0) {
-                    isMovingDOWN = false;
-                    step_Down = MAX_DOWN;
-                } else isMovingDOWN = true;
-
-                if (canDown(xUnit, yUnit + 1 + temp ) && isMovingDOWN) {
-                    direction = 2;
-                    move(0,speed);
-                    step_Down--;
-                } else if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
-                    yUnit = Math.round(yUnit);
-                }
+            if (!isMovingDOWN && !isMovingUP) {
+                a = new Random().nextInt(2);
             }
 
+            if (tempX % 2 == 0 && a == 0) {
+                System.out.println("up");
+                up();
+            }
 
+            if (tempX % 2 == 0 && a == 1) {
+                System.out.println("down");
+                down();
+            }
         }
     }
 
@@ -134,13 +121,49 @@ public abstract class Enemy extends AnimatedEntity {
             }
         }
 
-        //left 0
+//left 0
         if (rand_ == 0) {
             if ((int) yUnit == yUnit) {
                 return getAt(xUnit, yUnit);
             }
         }
         return false;
+    }
+
+    public void up() {
+        if (step_Up <= 0) {
+            isMovingUP = false;
+            step_Up = MAX_UP;
+        } else isMovingUP = true;
+
+        if (canUp(xUnit,yUnit - temp ) && isMovingUP) {
+            direction = 3;
+            move(0,-speed);
+            step_Up--;
+        } else {
+            isMovingUP = false;
+            if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
+                yUnit = Math.round(yUnit);
+            }
+        }
+    }
+
+    public void down() {
+        if (step_Down <= 0) {
+            isMovingDOWN = false;
+            step_Down = MAX_DOWN;
+        } else isMovingDOWN = true;
+
+        if (canDown(xUnit, yUnit + 1 + temp ) && isMovingDOWN) {
+            direction = 2;
+            move(0,speed);
+            step_Down--;
+        } else {
+            isMovingDOWN = false;
+            if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
+                yUnit = Math.round(yUnit);
+            }
+        }
     }
 
     public boolean canUp(double tempX, double tempY) {
@@ -171,6 +194,26 @@ public abstract class Enemy extends AnimatedEntity {
         return false;
 
     }
+
+    public double getXUnitBomber() {
+        for (Entity entity : Board.getCharacterList()) {
+            if (entity instanceof NewBomber) {
+                return entity.getXUnit();
+            }
+        }
+        return -1;
+    }
+
+    public double getYUnitBomber() {
+        for (Entity entity : Board.getCharacterList()) {
+            if (entity instanceof NewBomber) {
+                return entity.getYUnit();
+            }
+        }
+        return -1;
+    }
+
+
 
 
     public abstract void chooseImg();
