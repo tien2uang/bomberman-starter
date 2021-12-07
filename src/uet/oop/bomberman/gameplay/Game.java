@@ -68,7 +68,6 @@ public class Game {
                 if (!gameOver) {
                     if (isIsInGame()) {
                         if (!isPaused) {
-
                             render();
                             update();
                         }

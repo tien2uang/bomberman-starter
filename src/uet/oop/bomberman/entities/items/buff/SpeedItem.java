@@ -1,9 +1,12 @@
 package uet.oop.bomberman.entities.items.buff;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.audio.Audio;
 import uet.oop.bomberman.entities.characters.NewBomber;
 import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.graphics.NewSprite;
+
+import java.io.File;
 
 public class SpeedItem extends Item {
     public boolean destroyed;
@@ -30,6 +33,7 @@ public class SpeedItem extends Item {
 
     public void collideBomber() {
         if (Board.getMostPoweredEntityAt(xUnit, yUnit) instanceof NewBomber) {
+            Audio.playSound(Audio.itemGet);
             destroyed = true;
             Board.speedItem_quantity=1;
             Board.increaseSpeed(1.6);

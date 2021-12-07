@@ -149,10 +149,17 @@ public class Board extends Game {
     }
 
     private static void updateBombs() {
-        bombs.forEach(g -> g.update());
+        /*bombs.forEach(g -> g.update());
         for (int i = 0; i < bombs.size(); i++) {
             if (bombs.get(i).getStatus() == Entity.INVALID) {
                 bombs.remove(i);
+            }
+        }*/
+        for (Iterator<Entity> e = bombs.iterator(); e.hasNext();) {
+            Entity bomb = e.next();
+            bomb.update();
+            if (bomb.getStatus() == Entity.INVALID) {
+                e.remove();
             }
         }
     }

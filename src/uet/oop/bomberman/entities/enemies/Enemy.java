@@ -2,6 +2,7 @@ package uet.oop.bomberman.entities.enemies;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import uet.oop.bomberman.audio.Audio;
 import uet.oop.bomberman.entities.AnimatedEntity;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.characters.NewBomber;
@@ -91,22 +92,22 @@ public abstract class Enemy extends AnimatedEntity {
             _steps = 0;
         }
 
-        System.out.println(xUnit + " " + yUnit);
+        //System.out.println(xUnit + " " + yUnit);
         if (Math.abs(xUnit - (int) xUnit) <= temp) {
             int tempX = (int) xUnit;
-            System.out.println(tempX);
+            //System.out.println(tempX);
 
             if (!isMovingDOWN && !isMovingUP) {
                 a = new Random().nextInt(2);
             }
 
             if (tempX % 2 == 0 && a == 0) {
-                System.out.println("up");
+                //System.out.println("up");
                 up();
             }
 
             if (tempX % 2 == 0 && a == 1) {
-                System.out.println("down");
+                //System.out.println("down");
                 down();
             }
         }
@@ -180,6 +181,7 @@ public abstract class Enemy extends AnimatedEntity {
         for (Entity entity: Board.getFlames()) {
             if (Math.round(xx) == entity.getXUnit() && Math.round(yy) == entity.getYUnit()) {
                 killed();
+                Audio.playSound(Audio.enemyDied);
                 return false;
             }
         }

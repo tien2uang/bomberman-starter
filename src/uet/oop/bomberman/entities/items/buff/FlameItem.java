@@ -1,6 +1,7 @@
 package uet.oop.bomberman.entities.items.buff;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.audio.Audio;
 import uet.oop.bomberman.entities.characters.NewBomber;
 import uet.oop.bomberman.entities.items.buff.Item;
 import uet.oop.bomberman.gameplay.Board;
@@ -18,7 +19,7 @@ public class FlameItem extends Item {
         this.layerPower = 1;
     }
 
-    @Override
+
     public void update() {
         img = NewSprite.movingSprite(NewSprite.flameItem, getAnimate(), 33).getFxImage();
         animate();
@@ -30,6 +31,7 @@ public class FlameItem extends Item {
 
     public void collideBomber() {
         if (Board.getMostPoweredEntityAt(xUnit, yUnit) instanceof NewBomber) {
+            Audio.playSound(Audio.itemGet);
             destroyed = true;
             Board.flameItem_quantity++;
         }

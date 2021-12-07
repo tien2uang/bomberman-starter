@@ -2,6 +2,7 @@ package uet.oop.bomberman.entities.characters;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import uet.oop.bomberman.audio.Audio;
 import uet.oop.bomberman.entities.Coordinate;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.items.bomb.NewBomb;
@@ -179,6 +180,7 @@ public class NewBomber extends Character {
                     Board.isBomberAlive=isAlive;
                 }
             }
+            Audio.playSound(Audio.bomberDied);
         }
     }
 
@@ -195,6 +197,7 @@ public class NewBomber extends Character {
         double yUnitToPlace = (double) ((int) y);
         NewBomb bomb;
         if (Board.getBombQuantity() > 0) {
+            Audio.playSound(Audio.placeBomb);
             if (Board.flameItem_quantity != 0) {
                 bomb = new NewBomb(xUnitToPlace, yUnitToPlace - Game.INFO_HEIGHT, 1);
                 Board.flameItem_quantity--;

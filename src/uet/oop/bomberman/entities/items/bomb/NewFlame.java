@@ -1,5 +1,6 @@
 package uet.oop.bomberman.entities.items.bomb;
 
+import uet.oop.bomberman.audio.Audio;
 import uet.oop.bomberman.entities.AnimatedEntity;
 import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.graphics.NewSprite;
@@ -19,9 +20,10 @@ public class NewFlame extends AnimatedEntity {
 
     @Override
     public void update() {
+        Audio.playSound(Audio.bombExplosion);
         img=NewSprite.movingSprite(flames,getAnimate(),ANIMATION_CIRCLE).getFxImage();
         animate();
-        if(getAnimate()==ANIMATION_CIRCLE){
+        if(getAnimate()==ANIMATION_CIRCLE) {
             this.status=INVALID;
         }
     }

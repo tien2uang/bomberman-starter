@@ -1,6 +1,7 @@
 package uet.oop.bomberman.entities.items.bomb;
 
 import javafx.scene.canvas.GraphicsContext;
+import uet.oop.bomberman.audio.Audio;
 import uet.oop.bomberman.entities.AnimatedEntity;
 import uet.oop.bomberman.entities.mapMaterials.Brick;
 import uet.oop.bomberman.entities.mapMaterials.Wall;
@@ -12,6 +13,7 @@ import uet.oop.bomberman.graphics.NewSprite;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+
 
 
 public class NewBomb extends AnimatedEntity {
@@ -82,6 +84,7 @@ public class NewBomb extends AnimatedEntity {
             }
             this.status = INVALID;
         }
+
     }
 
     @Override
