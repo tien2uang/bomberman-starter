@@ -1,6 +1,6 @@
 1 13 17
 l1  tl # # # # # # # # # # # # # tr r2
-l2  l  p g g g g g g g g g g g g r  r3
+l2  l  p g g g g g g g g g g g b r  r3
 l3  l  g w g w g w g w g w g w g r  r10
 l9  l  b g g g g g g g g g g g g r  r7
 l10 l  g w g w g w g w g w g w g r  r8

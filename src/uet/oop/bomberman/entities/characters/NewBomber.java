@@ -2,6 +2,7 @@ package uet.oop.bomberman.entities.characters;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import uet.oop.bomberman.entities.Coordinate;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.items.bomb.NewBomb;
 import uet.oop.bomberman.entities.items.buff.SpeedItem;
@@ -12,6 +13,7 @@ import uet.oop.bomberman.graphics.NewSprite;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.input.Keyboard;
 
+import java.awt.*;
 import java.util.Vector;
 
 public class NewBomber extends Character {
@@ -73,15 +75,37 @@ public class NewBomber extends Character {
     public void collide() {
         for (Entity entity: Board.getCharacterList()) {
             if (!(entity instanceof NewBomber)) {
-                if (Math.round(this.getXUnit()) == Math.round(entity.getXUnit()) && Math.round(this.getYUnit()) == Math.round(entity.getYUnit())) {
-                    isAlive = false;
+                double x = this.getXUnit() - entity.getXUnit();
+                double y = this.getYUnit() - entity.getYUnit();
+                if ((int)this.getXUnit() == entity.getXUnit()) {
+                    if (0 <= Math.abs(y) && Math.abs(y) < 1) {
+                        isAlive = false;
+                    }
+                } else if ((int)this.getYUnit() == entity.getYUnit()) {
+                    if (0 <= Math.abs(x) && Math.abs(x) < 1) {
+                        isAlive = false;
+                    }
                 }
+                /*if (Math.round(this.getXUnit()) == Math.round(entity.getXUnit()) && Math.round(this.getYUnit()) == Math.round(entity.getYUnit())) {
+                    isAlive = false;
+                }*/
             }
         }
         for (Entity entity: Board.getFlames()) {
-            if (Math.round(this.getXUnit()) == entity.getXUnit() && Math.round(this.getYUnit()) == entity.getYUnit()) {
-                isAlive = false;
+            double x = this.getXUnit() - entity.getXUnit();
+            double y = this.getYUnit() - entity.getYUnit();
+            if ((int)this.getXUnit() == entity.getXUnit()) {
+                if (0 <= Math.abs(y) && Math.abs(y) < 1) {
+                    isAlive = false;
+                }
+            } else if ((int)this.getYUnit() == entity.getYUnit()) {
+                if (0 <= Math.abs(x) && Math.abs(x) < 1) {
+                    isAlive = false;
+                }
             }
+            /*if (Math.round(this.getXUnit()) == entity.getXUnit() && Math.round(this.getYUnit()) == entity.getYUnit()) {
+                isAlive = false;
+            }*/
         }
         //collide with portal
         double x = (this.x + NewSprite.SCALED_SIZE / 2) / NewSprite.SCALED_SIZE;
