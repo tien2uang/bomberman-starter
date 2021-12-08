@@ -374,6 +374,9 @@ public class NewSprite {
     public static NewSprite red_eye2 = new NewSprite(SIZE, 0, 0, "red-eye2");
     public static ArrayList<NewSprite> redEyeList = new ArrayList<>(Arrays.asList(red_eye, red_eye1, red_eye2));
 
+    public static ArrayList<NewSprite> EyeList = new ArrayList<>(Arrays.asList(red_eye, pink_eye, red_eye1, pink_eye1, red_eye2, pink_eye2));
+
+
     // ghost
     public static NewSprite ghost_up = new NewSprite(SIZE, 0, 0, "ghost-up");
     public static NewSprite ghost_up1 = new NewSprite(SIZE, 0, 0, "ghost-up1");
