@@ -62,7 +62,7 @@ public class Enemy4 extends Enemy {
     }
 
     @Override
-    public int random() {
+    public int random1() {
         return new Random().nextInt(4);
     }
 
@@ -70,7 +70,7 @@ public class Enemy4 extends Enemy {
     @Override
     public void calculateMove() {
         int xa = 0, ya = 0;
-        rand = random();
+        rand = random1();
 
         System.out.println(rand);
         if(rand == 2) ya += 2;  // 2 down
