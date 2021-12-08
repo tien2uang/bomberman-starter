@@ -328,6 +328,12 @@ public class NewSprite {
     public static ArrayList<NewSprite> BalloonLeftList = new ArrayList<NewSprite>(Arrays.asList(
             balloon_left, balloon_left1, balloon_left2));
 
+    //Oneal
+    public static NewSprite oneal_left = new NewSprite(SIZE, 0, 0, "oneal");
+    public static NewSprite oneal_left1 = new NewSprite(SIZE, 0, 0, "oneal-1");
+    public static NewSprite oneal_left2 = new NewSprite(SIZE, 0, 0, "oneal-2");
+    public static ArrayList<NewSprite> OnealList = new ArrayList<>(Arrays.asList(oneal_left,oneal_left1,oneal_left2));
+
     // bat
     public static NewSprite bat_up = new NewSprite(SIZE, 0, 0, "bat-up");
     public static NewSprite bat_up1 = new NewSprite(SIZE, 0, 0, "bat-up1");
@@ -384,6 +390,15 @@ public class NewSprite {
     public static NewSprite enemy_dead3 = new NewSprite(SIZE, 0, 0, "enemy-dead3");
     public static NewSprite enemy_dead4 = new NewSprite(SIZE, 0, 0, "enemy-dead4");
 
+    public static NewSprite enemy_a_dead = new NewSprite(SIZE, 0, 0, "enemy-a-dead");
+    public static NewSprite enemy_a_dead1 = new NewSprite(SIZE, 0, 0, "enemy-a-dead1");
+    public static NewSprite enemy_a_dead2 = new NewSprite(SIZE, 0, 0, "enemy-a-dead2");
+    public static NewSprite enemy_a_dead3 = new NewSprite(SIZE, 0, 0, "enemy-a-dead3");
+    public static NewSprite enemy_a_dead4 = new NewSprite(SIZE, 0, 0, "enemy-a-dead4");
+
+    public static NewSprite oneal_dead_1 = new NewSprite(SIZE, 0, 0, "oneal-dead");
+    public static NewSprite oneal_dead_2 = new NewSprite(SIZE, 0, 0, "oneal-dead1");
+
     public static NewSprite ghost_dead_ = new NewSprite(SIZE, 0, 0, "ghost-dead");
     public static NewSprite ghost_dead1 = new NewSprite(SIZE, 0, 0, "ghost-dead1");
     public static NewSprite ghost_dead2 = new NewSprite(SIZE, 0, 0, "ghost-dead2");
@@ -397,6 +412,7 @@ public class NewSprite {
     public static ArrayList<NewSprite> balloonDeadList = new ArrayList<>(Arrays.asList(balloon_dead, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
     public static ArrayList<NewSprite> bat_dead = new ArrayList<>(Arrays.asList(bat_dead_, enemy_dead, enemy_dead1, enemy_dead2, enemy_dead3, enemy_dead4));
     public static ArrayList<NewSprite> ghost_dead = new ArrayList<>(Arrays.asList(ghost_dead_, ghost_dead1, ghost_dead2, ghost_dead3));
+    public static ArrayList<NewSprite> oneal_dead = new ArrayList<>(Arrays.asList(oneal_dead_1,oneal_dead_2, enemy_a_dead, enemy_a_dead1, enemy_a_dead2, enemy_a_dead3, enemy_a_dead4));
 
     /**
      * Info Bar
