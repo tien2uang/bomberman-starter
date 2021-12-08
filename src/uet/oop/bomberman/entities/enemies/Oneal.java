@@ -1,11 +1,13 @@
 package uet.oop.bomberman.entities.enemies;
 
+import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
 
 import java.util.Random;
 
 public class Oneal extends Enemy {
 
+    public boolean OnealMove = true;
 
 
     public Oneal(double x, double y) {
@@ -50,6 +52,7 @@ public class Oneal extends Enemy {
         return -2;
     }
 
+    @Override
     public void calculateMove() {
 
         double xa = 0, ya = 0;
@@ -86,5 +89,48 @@ public class Oneal extends Enemy {
 
     }
 
+    @Override
+    public void up() {
+        if (step_Up <= 0) {
+            isMovingUP = false;
+            step_Up = MAX_UP;
+        } else isMovingUP = true;
+
+        if (canUp(xUnit, yUnit - temp) && isMovingUP) {
+            direction = 3;
+            move(0, -speed);
+            step_Up--;
+            OnealMove = true;
+        } else {
+            isMovingUP = false;
+            OnealMove = false;
+            if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
+                yUnit = Math.round(yUnit);
+                this.y = (yUnit + Game.INFO_HEIGHT) * NewSprite.SCALED_SIZE;
+            }
+        }
+    }
+
+    @Override
+    public void down() {
+        if (step_Down <= 0) {
+            isMovingDOWN = false;
+            step_Down = MAX_DOWN;
+        } else isMovingDOWN = true;
+
+        if (canDown(xUnit, yUnit + 1 + temp) && isMovingDOWN) {
+            direction = 2;
+            move(0, speed);
+            step_Down--;
+            OnealMove = true;
+        } else {
+            isMovingDOWN = false;
+            OnealMove = false;
+            if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
+                yUnit = Math.round(yUnit);
+                this.y = (yUnit + Game.INFO_HEIGHT) * NewSprite.SCALED_SIZE;
+            }
+        }
+    }
 
 }
