@@ -12,7 +12,6 @@ import uet.oop.bomberman.graphics.NewSprite;
 import java.util.Random;
 
 public abstract class Enemy extends AnimatedEntity {
-    protected boolean OnealMove = true;
     protected double speed;
     protected int direction;
     protected int score;
@@ -56,7 +55,7 @@ public abstract class Enemy extends AnimatedEntity {
     public void render(GraphicsContext gc) {
 
         chooseImg();
-        gc.drawImage(img, (xUnit) * 36, (yUnit + Game.INFO_HEIGHT) * 36);
+        gc.drawImage(img, (xUnit) * NewSprite.SCALED_SIZE, (yUnit + Game.INFO_HEIGHT) * NewSprite.SCALED_SIZE);
     }
 
     public int random1() {
@@ -89,10 +88,8 @@ public abstract class Enemy extends AnimatedEntity {
             _steps -= speed;
             direction = rand;
             move(xa, ya);
-            OnealMove = true;
         } else {
             _steps = 0;
-            OnealMove = false;
         }
 
         if (Math.abs(xUnit - (int) xUnit) <= temp) {
@@ -104,14 +101,11 @@ public abstract class Enemy extends AnimatedEntity {
             if (tempX % 2 == 0 && a == 0) {
                 up();
                 xUnit = Math.round(xUnit);
-
             }
 
             if (tempX % 2 == 0 && a == 1) {
-
                 down();
                 xUnit = Math.round(xUnit);
-
             }
         }
     }
@@ -144,10 +138,8 @@ public abstract class Enemy extends AnimatedEntity {
             direction = 3;
             move(0, -speed);
             step_Up--;
-            OnealMove = true;
         } else {
             isMovingUP = false;
-            OnealMove = false;
             if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
                 yUnit = Math.round(yUnit);
                 this.y = (yUnit + Game.INFO_HEIGHT) * NewSprite.SCALED_SIZE;
@@ -165,10 +157,8 @@ public abstract class Enemy extends AnimatedEntity {
             direction = 2;
             move(0, speed);
             step_Down--;
-            OnealMove = true;
         } else {
             isMovingDOWN = false;
-            OnealMove = false;
             if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
                 yUnit = Math.round(yUnit);
                 this.y = (yUnit + Game.INFO_HEIGHT) * NewSprite.SCALED_SIZE;
