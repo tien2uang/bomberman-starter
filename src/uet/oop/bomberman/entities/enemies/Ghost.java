@@ -44,57 +44,5 @@ public class Ghost extends Enemy {
         if (direction == 3) img = NewSprite.movingSprite(NewSprite.GhostUpList,getAnimate(),30).getFxImage();
     }
 
-    @Override
-    public int random1() {
-        return new Random().nextInt(4);
-    }
 
-
-    @Override
-    public void calculateMove() {
-        int xa = 0, ya = 0;
-        if(_steps <= 0){
-            rand = random1();
-            _steps = MAX_STEPS;
-        }
-
-        if(rand == 2) ya++;  // 2 down
-        if(rand == 3) ya--; // 3 up
-        if(rand == 0) xa--; // 0 left
-        if(rand == 1) xa++; // 1 right
-
-        if(canMove(rand)) {
-            _steps -= speed;
-            direction = rand;
-            move(xa, ya);
-        } else {
-            _steps = 0;
-        }
-    }
-
-    @Override
-    public boolean canMove(int rand) {
-
-        //left
-        if (rand == 0) {
-            if (xUnit < 2) return false;
-        }
-
-        //right
-        if (rand == 1) {
-            if (xUnit > 14) return false;
-        }
-
-        //down
-        if (rand == 2) {
-            if (yUnit > 11) return false;
-        }
-
-        //up
-        if (rand == 3) {
-            if (yUnit < 1) return false;
-        }
-
-        return true;
-    }
 }

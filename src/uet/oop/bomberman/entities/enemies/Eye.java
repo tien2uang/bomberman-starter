@@ -6,15 +6,15 @@ import uet.oop.bomberman.graphics.NewSprite;
 
 import java.util.Random;
 
-public class Enemy4 extends Enemy {
+public class Eye extends Enemy {
 
 
-    public Enemy4(double x, double y) {
+    public Eye(double x, double y) {
         super(x, y, 2, 300);
-        img = NewSprite.balloon_right.getFxImage();
+        img = NewSprite.red_eye.getFxImage();
         this.layerPower = 2.5;
         this.animate = 0;
-        this.direction = 0;
+        this.direction = 1;
         this._steps = 0;
     }
 
@@ -22,22 +22,17 @@ public class Enemy4 extends Enemy {
 
     @Override
     public void update() {
-        animate();
-        /**
-         double tempX = getXUnitBomber();
-         double tempY = getYUnitBomber();
+        if (!isAlive) {
+            die();
+        } else {
+            //System.out.println(xUnit + " " + yUnit + " ");
+            animate();
+            collide();
+            int ra = new Random().nextInt(600);
+            if (ra == 100 || ra == 200) calculateMove();
 
-         if (Math.abs(tempX - (int) tempX) <= temp && Math.abs(tempY - (int) tempY) <= temp) {
-         int a = (int) tempX;
-         int b = (int) tempY;
-         if (a == 4 || a == 6|| a == 10 || a == 12) {
-         if (b == 1 || b == 5 || b == 9) {
-         calculateMove();
-         }
-         }
-         } */
-        int ra = new Random().nextInt(500);
-        if(ra == 100 || ra == 200) calculateMove();
+        }
+
     }
 
     public void move(double xa, double ya) {
@@ -56,9 +51,8 @@ public class Enemy4 extends Enemy {
 
     @Override
     public void chooseImg() {
-        if (direction == 0) img = NewSprite.movingSprite(NewSprite.frog_Dead,getAnimate(),200).getFxImage();
-        if (direction == 0) img = NewSprite.movingSprite(NewSprite.frogList,getAnimate(),45).getFxImage();
-        if (direction == 1) img = NewSprite.movingSprite(NewSprite.frogMove,getAnimate(),45).getFxImage();
+        if (direction == -1) img = NewSprite.movingSprite(NewSprite.eye_dead,getAnimate(), 200).getFxImage();
+        if (direction == 1) img = NewSprite.movingSprite(NewSprite.EyeList,getAnimate(),45).getFxImage();
     }
 
     @Override
@@ -80,7 +74,6 @@ public class Enemy4 extends Enemy {
 
         if(canMove(rand)) {
             move(xa, ya);
-            direction = 1;
         }
     }
 

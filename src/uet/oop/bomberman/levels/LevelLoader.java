@@ -80,7 +80,7 @@ public class LevelLoader {
                 break;
             case "4" :
                 mapEntities.add(new Ground(tempX, tempY));
-                notMapEntities.add(new Enemy4(tempX, tempY));
+                notMapEntities.add(new Eye(tempX, tempY));
                 break;
             case "5" :
                 mapEntities.add(new Ground(tempX, tempY));
