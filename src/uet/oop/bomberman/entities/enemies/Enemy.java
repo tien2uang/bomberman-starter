@@ -16,15 +16,14 @@ public abstract class Enemy extends AnimatedEntity {
     protected double speed;
     protected int direction;
     protected int point;
-    protected boolean OnealMove = true;
-    public final double MAX_UP = 72;
-    public double step_Up = 72;
-    public final double MAX_DOWN = 72;
-    public double step_Down = 72;
+    public final double MAX_UP = 144;
+    public double step_Up = 144;
+    public final double MAX_DOWN = 144;
+    public double step_Down = 144;
     public final double MAX_STEPS = 144;
     public double _steps = 0;
     protected int rand = random1();
-    protected int a = 0;
+    protected int rand2 = 0;
     public boolean isMovingUP = false;
     public boolean isMovingDOWN = false;
     protected int death_animate = 100;
@@ -92,30 +91,28 @@ public abstract class Enemy extends AnimatedEntity {
             _steps -= speed;
             direction = rand;
             move(xa, ya);
-            OnealMove = true;
         } else {
             _steps = 0;
-            OnealMove = false;
         }
 
-        if (Math.abs(xUnit - (int) xUnit) <= temp) {
+        if (Math.abs(xUnit - (int) xUnit) <= temp && _steps <= 72) {
             int tempX = (int) xUnit;
 //            xUnit = tempX;
 //            this.x=xUnit*NewSprite.SCALED_SIZE;
 
 
             if (!isMovingDOWN && !isMovingUP) {
-                a = random2();
+                rand2 = random2();
             }
 
-            if (tempX % 2 == 0 && a == 0) {
+            if (tempX % 2 == 0 && rand2 == 0) {
                 //System.out.println("up");
                 up();
                 xUnit = Math.round(xUnit);
 
             }
 
-            if (tempX % 2 == 0 && a == 1) {
+            if (tempX % 2 == 0 && rand2 == 1) {
                 //System.out.println("down");
                 down();
                 xUnit = Math.round(xUnit);
@@ -152,10 +149,8 @@ public abstract class Enemy extends AnimatedEntity {
             direction = 3;
             move(0, -speed);
             step_Up--;
-            OnealMove = true;
         } else {
             isMovingUP = false;
-            OnealMove = false;
             if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
                 yUnit = Math.round(yUnit);
                 this.y = (yUnit + Game.INFO_HEIGHT) * NewSprite.SCALED_SIZE;
@@ -173,10 +168,8 @@ public abstract class Enemy extends AnimatedEntity {
             direction = 2;
             move(0, speed);
             step_Down--;
-            OnealMove = true;
         } else {
             isMovingDOWN = false;
-            OnealMove = false;
             if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
                 yUnit = Math.round(yUnit);
                 this.y = (yUnit + Game.INFO_HEIGHT) * NewSprite.SCALED_SIZE;

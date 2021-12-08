@@ -23,21 +23,8 @@ public class Enemy4 extends Enemy {
     @Override
     public void update() {
         animate();
-        /**
-         double tempX = getXUnitBomber();
-         double tempY = getYUnitBomber();
-
-         if (Math.abs(tempX - (int) tempX) <= temp && Math.abs(tempY - (int) tempY) <= temp) {
-         int a = (int) tempX;
-         int b = (int) tempY;
-         if (a == 4 || a == 6|| a == 10 || a == 12) {
-         if (b == 1 || b == 5 || b == 9) {
-         calculateMove();
-         }
-         }
-         } */
-        int ra = new Random().nextInt(500);
-        if(ra == 100 || ra == 200) calculateMove();
+        int ra = new Random().nextInt(600);
+        if (ra == 100 || ra == 200) calculateMove();
     }
 
     public void move(double xa, double ya) {
