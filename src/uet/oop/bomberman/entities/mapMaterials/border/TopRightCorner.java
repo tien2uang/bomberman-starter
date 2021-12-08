@@ -1,12 +1,12 @@
 package uet.oop.bomberman.entities.mapMaterials.border;
 
 
-import uet.oop.bomberman.graphics.NewSprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 public class TopRightCorner extends Border {
     public TopRightCorner(double x, double y){
         super(x,y);
-        this.img= NewSprite.stage_top_right.getFxImage();
+        this.img= Sprite.stage_top_right.getFxImage();
         this.layerPower=5;
     }
 

@@ -2,7 +2,7 @@ package uet.oop.bomberman.levels;
 
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.LayeredEntity;
-import uet.oop.bomberman.entities.characters.NewBomber;
+import uet.oop.bomberman.entities.characters.Bomber;
 import uet.oop.bomberman.entities.enemies.*;
 import uet.oop.bomberman.entities.items.buff.BombItem;
 import uet.oop.bomberman.entities.items.buff.FlameItem;
@@ -64,7 +64,7 @@ public class LevelLoader {
         switch (temp) {
             case "p":
                 mapEntities.add(new Ground(tempX, tempY));
-                notMapEntities.add(new NewBomber(tempX, tempY));
+                notMapEntities.add(new Bomber(tempX, tempY));
                 break;
             case "1" :
                 mapEntities.add(new Ground(tempX, tempY));

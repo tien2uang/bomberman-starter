@@ -2,16 +2,14 @@ package uet.oop.bomberman.entities.enemies;
 
 import javafx.scene.canvas.GraphicsContext;
 import uet.oop.bomberman.gameplay.Game;
-import uet.oop.bomberman.graphics.NewSprite;
-
-import java.util.Random;
+import uet.oop.bomberman.graphics.Sprite;
 
 public class Eye extends Enemy {
 
 
     public Eye(double x, double y) {
         super(x, y, 2, 300);
-        img = NewSprite.red_eye.getFxImage();
+        img = Sprite.red_eye.getFxImage();
         this.layerPower = 2.5;
         this.animate = 0;
         this.direction = 1;
@@ -20,9 +18,9 @@ public class Eye extends Enemy {
 
     @Override
     public void chooseImg() {
-        if (direction == -1) img = NewSprite.movingSprite(NewSprite.eye_dead,getAnimate(), 200).getFxImage();
+        if (direction == -1) img = Sprite.movingSprite(Sprite.eye_dead,getAnimate(), 51).getFxImage();
         if (direction == 0 || direction == 1 || direction == 2 || direction == 3) {
-            img = NewSprite.movingSprite(NewSprite.EyeList,getAnimate(),45).getFxImage();
+            img = Sprite.movingSprite(Sprite.EyeList,getAnimate(),45).getFxImage();
         }
     }
 
@@ -35,7 +33,12 @@ public class Eye extends Enemy {
         double b = Math.abs(yUnit - tempY);
 
         chooseImg();
-        if( a <= 4 && b <= 4) {
+        if (isAlive) {
+            if( a <= 4 && b <= 4) {
+                gc.drawImage(img, (xUnit ) * 36, (yUnit + Game.INFO_HEIGHT) * 36 );
+            }
+        }
+        else{
             gc.drawImage(img, (xUnit ) * 36, (yUnit + Game.INFO_HEIGHT) * 36 );
         }
     }

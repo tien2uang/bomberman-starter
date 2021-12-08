@@ -2,7 +2,7 @@ package uet.oop.bomberman.entities;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import uet.oop.bomberman.graphics.NewSprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 public abstract class Entity {
     //Tọa độ X tính từ góc trái trên trong Canvas
@@ -24,8 +24,8 @@ public abstract class Entity {
 
 
     public Entity(double xUnit, double yUnit) {
-        this.x = xUnit * NewSprite.SCALED_SIZE;
-        this.y = yUnit * NewSprite.SCALED_SIZE;
+        this.x = xUnit * Sprite.SCALED_SIZE;
+        this.y = yUnit * Sprite.SCALED_SIZE;
         this.status = VALID;
         this.xUnit = xUnit;
         this.yUnit = Coordinate.canvasToBoardTileY(yUnit);

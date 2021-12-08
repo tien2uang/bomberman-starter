@@ -1,13 +1,12 @@
 package uet.oop.bomberman.entities.mapMaterials.border;
-import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.graphics.NewSprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 
 
 public class BotBorder extends Border {
     public BotBorder(double x, double y){
         super(x,y);
-        this.img= NewSprite.stage_bot.getFxImage();
+        this.img= Sprite.stage_bot.getFxImage();
         this.layerPower=5;
     }
 

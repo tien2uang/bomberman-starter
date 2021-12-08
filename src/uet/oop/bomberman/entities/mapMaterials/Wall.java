@@ -1,15 +1,13 @@
 package uet.oop.bomberman.entities.mapMaterials;
 
-import javafx.scene.image.Image;
-
 import uet.oop.bomberman.entities.StaticEntity;
-import uet.oop.bomberman.graphics.NewSprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 public class Wall extends StaticEntity {
 
     public Wall(double x, double y) {
         super(x, y);
-        img= NewSprite.wall.getFxImage();
+        img= Sprite.wall.getFxImage();
         this.layerPower=5;
     }
 

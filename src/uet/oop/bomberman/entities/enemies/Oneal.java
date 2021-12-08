@@ -1,9 +1,7 @@
 package uet.oop.bomberman.entities.enemies;
 
 import uet.oop.bomberman.gameplay.Game;
-import uet.oop.bomberman.graphics.NewSprite;
-
-import java.util.Random;
+import uet.oop.bomberman.graphics.Sprite;
 
 public class Oneal extends Enemy {
 
@@ -12,7 +10,7 @@ public class Oneal extends Enemy {
 
     public Oneal(double x, double y) {
         super(x, y, 1, 200);
-        img = NewSprite.oneal_left.getFxImage();
+        img = Sprite.oneal_left.getFxImage();
         this.layerPower = 2.5;
         this.animate = 0;
         this.direction = 1;
@@ -21,12 +19,12 @@ public class Oneal extends Enemy {
 
     @Override
     public void chooseImg() {
-        if (direction == -1) img = NewSprite.movingSprite(NewSprite.oneal_dead, getAnimate(), 200).getFxImage();
+        if (direction == -1) img = Sprite.movingSprite(Sprite.oneal_dead, getAnimate(), 51).getFxImage();
         if(direction == 0 || direction == 1 || direction == 2 || direction == 3) {
             if(OnealMove) {
-                img = NewSprite.movingSprite(NewSprite.OnealList,getAnimate(),30).getFxImage();
+                img = Sprite.movingSprite(Sprite.OnealList,getAnimate(),30).getFxImage();
             } else {
-                img = NewSprite.oneal_left.getFxImage();
+                img = Sprite.oneal_left.getFxImage();
             }
         }
     }
@@ -106,7 +104,7 @@ public class Oneal extends Enemy {
             OnealMove = false;
             if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
                 yUnit = Math.round(yUnit);
-                this.y = (yUnit + Game.INFO_HEIGHT) * NewSprite.SCALED_SIZE;
+                this.y = (yUnit + Game.INFO_HEIGHT) * Sprite.SCALED_SIZE;
             }
         }
     }
@@ -128,7 +126,7 @@ public class Oneal extends Enemy {
             OnealMove = false;
             if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
                 yUnit = Math.round(yUnit);
-                this.y = (yUnit + Game.INFO_HEIGHT) * NewSprite.SCALED_SIZE;
+                this.y = (yUnit + Game.INFO_HEIGHT) * Sprite.SCALED_SIZE;
             }
         }
     }

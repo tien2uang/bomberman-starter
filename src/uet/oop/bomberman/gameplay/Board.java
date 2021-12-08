@@ -1,9 +1,9 @@
 package uet.oop.bomberman.gameplay;
 
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.characters.NewBomber;
+import uet.oop.bomberman.entities.characters.Bomber;
 import uet.oop.bomberman.entities.enemies.Enemy;
-import uet.oop.bomberman.graphics.NewSprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -87,16 +87,16 @@ public class Board extends Game {
 
             if (Game.currentGameTime <= startTime + 1) {
                 if (Game.currentLevel == 1) {
-                    gc.drawImage(NewSprite.stage_1.getFxImage(), 36 * 17 / 2 - 60, 36 * 3 + 18 - 9);
+                    gc.drawImage(Sprite.stage_1.getFxImage(), 36 * 17 / 2 - 60, 36 * 3 + 18 - 9);
                 } else {
-                    gc.drawImage(NewSprite.stage_2.getFxImage(), 36 * 17 / 2 - 60, 36 * 3 + 18 - 9);
+                    gc.drawImage(Sprite.stage_2.getFxImage(), 36 * 17 / 2 - 60, 36 * 3 + 18 - 9);
                 }
             }
 
         } else {
             mapEntities.forEach(g -> g.render(gc));
             for (Entity entity : character) {
-                if (entity instanceof NewBomber) {
+                if (entity instanceof Bomber) {
                     entity.render(gc);
                 }
             }
@@ -182,7 +182,7 @@ public class Board extends Game {
             mob.update();
 
             if (mob.getStatus() == Entity.INVALID) {
-                if(mob instanceof NewBomber){
+                if(mob instanceof Bomber){
                     entity.remove();
                 }
                 else{

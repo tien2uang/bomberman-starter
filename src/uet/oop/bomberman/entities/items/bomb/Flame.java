@@ -1,17 +1,15 @@
 package uet.oop.bomberman.entities.items.bomb;
 
-import uet.oop.bomberman.audio.Audio;
 import uet.oop.bomberman.entities.AnimatedEntity;
-import uet.oop.bomberman.gameplay.Board;
-import uet.oop.bomberman.graphics.NewSprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.ArrayList;
 
 
-public class NewFlame extends AnimatedEntity {
-    private ArrayList<NewSprite> flames;
+public class Flame extends AnimatedEntity {
+    private ArrayList<Sprite> flames;
     private final int ANIMATION_CIRCLE=35;
-    public NewFlame(double xUnit, double yUnit, String type) {
+    public Flame(double xUnit, double yUnit, String type) {
         super(xUnit, yUnit);
         chooseFlames(type);
         this.layerPower=4;
@@ -20,7 +18,7 @@ public class NewFlame extends AnimatedEntity {
 
     @Override
     public void update() {
-        img=NewSprite.movingSprite(flames,getAnimate(),ANIMATION_CIRCLE).getFxImage();
+        img= Sprite.movingSprite(flames,getAnimate(),ANIMATION_CIRCLE).getFxImage();
         animate();
         if(getAnimate()==ANIMATION_CIRCLE) {
             this.status=INVALID;
@@ -30,25 +28,25 @@ public class NewFlame extends AnimatedEntity {
     private void chooseFlames(String type) {
         switch (type) {
             case "topLast":
-                this.flames = NewSprite.newBombExplosionVerticalTopLast;
+                this.flames = Sprite.newBombExplosionVerticalTopLast;
                 break;
             case "botLast":
-                this.flames = NewSprite.newBombExplosionVerticalBotLast;
+                this.flames = Sprite.newBombExplosionVerticalBotLast;
                 break;
             case "vertical":
-                this.flames = NewSprite.newBombExplosionVertical;
+                this.flames = Sprite.newBombExplosionVertical;
                 break;
             case "leftLast":
-                this.flames = NewSprite.newBombExplosionHorizontalLeftLast;
+                this.flames = Sprite.newBombExplosionHorizontalLeftLast;
                 break;
             case "rightLast":
-                this.flames = NewSprite.newBombExplosionHorizontalRightLast;
+                this.flames = Sprite.newBombExplosionHorizontalRightLast;
                 break;
             case "horizontal":
-                this.flames = NewSprite.newBombExplosionHorizontal;
+                this.flames = Sprite.newBombExplosionHorizontal;
                 break;
             case "central":
-                this.flames = NewSprite.newBombExplosionCentral;
+                this.flames = Sprite.newBombExplosionCentral;
                  break;
         }
     }

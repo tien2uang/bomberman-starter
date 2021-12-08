@@ -2,7 +2,7 @@ package uet.oop.bomberman.entities.mapMaterials;
 
 import uet.oop.bomberman.entities.AnimatedEntity;
 import uet.oop.bomberman.gameplay.Game;
-import uet.oop.bomberman.graphics.NewSprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 
 public class Brick extends AnimatedEntity {
@@ -13,7 +13,7 @@ public class Brick extends AnimatedEntity {
 
     public Brick(double x, double y) {
         super(x, y);
-        img = NewSprite.brick.getFxImage();
+        img = Sprite.brick.getFxImage();
         this.layerPower = 3;
         destroyed = false;
         onFire = false;
@@ -24,7 +24,7 @@ public class Brick extends AnimatedEntity {
     public void update() {
 
         if (destroyed) {
-            img = NewSprite.movingSprite(NewSprite.brickBrokenList, getAnimate(), ANIMATION_CIRCLE).getFxImage();
+            img = Sprite.movingSprite(Sprite.brickBrokenList, getAnimate(), ANIMATION_CIRCLE).getFxImage();
             animate();
             if (getAnimate() == ANIMATION_CIRCLE) {
                 this.status = INVALID;

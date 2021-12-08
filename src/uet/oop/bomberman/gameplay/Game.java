@@ -8,7 +8,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.audio.Audio;
-import uet.oop.bomberman.graphics.NewSprite;
+import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.input.Keyboard;
 import uet.oop.bomberman.levels.LevelLoader;
 
@@ -34,7 +34,7 @@ public class Game {
     public static int gameScore=0;
 
     public static void start() {
-        canvas = new Canvas(NewSprite.SCALED_SIZE * WIDTH, NewSprite.SCALED_SIZE * HEIGHT);
+        canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
 
         // Tao root container
@@ -80,7 +80,7 @@ public class Game {
                 }
                 else{
                     Audio.stopBackground();
-                    gc.drawImage(NewSprite.game_over.getFxImage(),36*17/2-105,36*7 );
+                    gc.drawImage(Sprite.game_over.getFxImage(),36*17/2-105,36*7 );
                 }
 
             }

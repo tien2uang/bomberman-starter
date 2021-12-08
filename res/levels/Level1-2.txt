@@ -3,11 +3,11 @@ l1  tl # # # # # # # # # # # # # tr r2
 l2  l  p g g g g g g g b g g g g r  r3
 l3  l  g w g w g w g w g w b w g r  r10
 l9  l  b g g g g g g g g g g g g r  r7
-l10 l  g w b w g w g w g w g w g r  r8
+l10 l  g w b w g w g w g w 4 w g r  r8
 l7  l  g g g g g 1 g b g g t g g r  r2
 l7  l  g w i w g b g w g w s w g r  r3
-l7  l  g g g g g g g g g g g g g r  r4
-l3  l  g w g w g w f w g w s w g r  r6
+l7  l  g g g g g g g g 3 g g g g r  r4
+l3  l  g w g w 5 w f w g w s w g r  r6
 l10 l  g g g g g g g g g g g g g r  r6
 l7  l  g w i w g w g w g w g w g r  r7
 l8  l  g g g g g g g g g g g g g r  r8
@@ -18,7 +18,10 @@ w:wall
 b:brick
 p:player
 1:balloon
-2:enemy2
+2:bat
+3:ghost
+4:eye
+5:oneal
 t:portal
 s: SpeedItem
 f:FlameItem

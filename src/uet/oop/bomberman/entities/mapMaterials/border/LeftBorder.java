@@ -1,12 +1,11 @@
 package uet.oop.bomberman.entities.mapMaterials.border;
 
-import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.graphics.NewSprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 public class LeftBorder extends Border {
     public LeftBorder(double x, double y){
         super(x, y);
-        this.img= NewSprite.stage_left_1.getFxImage();
+        this.img= Sprite.stage_left_1.getFxImage();
         this.layerPower=5;
     }
 

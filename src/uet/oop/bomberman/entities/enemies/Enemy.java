@@ -1,13 +1,12 @@
 package uet.oop.bomberman.entities.enemies;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.AnimatedEntity;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.characters.NewBomber;
+import uet.oop.bomberman.entities.characters.Bomber;
 import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.gameplay.Game;
-import uet.oop.bomberman.graphics.NewSprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.Random;
 
@@ -25,9 +24,9 @@ public abstract class Enemy extends AnimatedEntity {
     protected int a = 0;
     public boolean isMovingUP = false;
     public boolean isMovingDOWN = false;
-    protected int death_animate = 100;
+    protected int death_animate = 50;
     protected boolean isAlive;
-    public final double temp = 1 / (double) NewSprite.SCALED_SIZE;
+    public final double temp = 1 / (double) Sprite.SCALED_SIZE;
 
 
 
@@ -53,7 +52,7 @@ public abstract class Enemy extends AnimatedEntity {
     public void render(GraphicsContext gc) {
 
         chooseImg();
-        gc.drawImage(img, (xUnit) * NewSprite.SCALED_SIZE, (yUnit + Game.INFO_HEIGHT) * NewSprite.SCALED_SIZE);
+        gc.drawImage(img, (xUnit) * Sprite.SCALED_SIZE, (yUnit + Game.INFO_HEIGHT) * Sprite.SCALED_SIZE);
     }
 
     public int random1() {
@@ -68,8 +67,8 @@ public abstract class Enemy extends AnimatedEntity {
     public void move(double xa, double ya) {
         x += xa;
         y += ya;
-        xUnit += xa / NewSprite.SCALED_SIZE;
-        yUnit += ya / NewSprite.SCALED_SIZE;
+        xUnit += xa / Sprite.SCALED_SIZE;
+        yUnit += ya / Sprite.SCALED_SIZE;
     }
 
     public void calculateMove() {
@@ -140,7 +139,7 @@ public abstract class Enemy extends AnimatedEntity {
             isMovingUP = false;
             if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
                 yUnit = Math.round(yUnit);
-                this.y = (yUnit + Game.INFO_HEIGHT) * NewSprite.SCALED_SIZE;
+                this.y = (yUnit + Game.INFO_HEIGHT) * Sprite.SCALED_SIZE;
             }
         }
     }
@@ -159,7 +158,7 @@ public abstract class Enemy extends AnimatedEntity {
             isMovingDOWN = false;
             if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
                 yUnit = Math.round(yUnit);
-                this.y = (yUnit + Game.INFO_HEIGHT) * NewSprite.SCALED_SIZE;
+                this.y = (yUnit + Game.INFO_HEIGHT) * Sprite.SCALED_SIZE;
             }
         }
     }
@@ -241,7 +240,7 @@ public abstract class Enemy extends AnimatedEntity {
 
     public double getXUnitBomber() {
         for (Entity entity : Board.getCharacterList()) {
-            if (entity instanceof NewBomber) {
+            if (entity instanceof Bomber) {
                 return entity.getXUnit();
             }
         }
@@ -250,7 +249,7 @@ public abstract class Enemy extends AnimatedEntity {
 
     public double getYUnitBomber() {
         for (Entity entity : Board.getCharacterList()) {
-            if (entity instanceof NewBomber) {
+            if (entity instanceof Bomber) {
                 return entity.getYUnit();
             }
         }

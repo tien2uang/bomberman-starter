@@ -2,7 +2,7 @@ package uet.oop.bomberman.gameplay;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Digit;
-import uet.oop.bomberman.graphics.NewSprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.gameplay.Board.speedItemTime;
 
@@ -16,7 +16,7 @@ public class Info extends Game {
     public static int speedItem = 8;
     public static int lives = 2;
     public static int animate;
-    private static Image img = NewSprite.startBar.getFxImage();
+    private static Image img = Sprite.startBar.getFxImage();
 
     public static void update() {
 
@@ -26,9 +26,9 @@ public class Info extends Game {
         updateItems();
         if (Game.isIsInGame()) {
             animate = 0;
-            img = NewSprite.inGameBar.getFxImage();
+            img = Sprite.inGameBar.getFxImage();
         } else {
-            img = NewSprite.movingSprite(NewSprite.startBarList, animate, 75).getFxImage();
+            img = Sprite.movingSprite(Sprite.startBarList, animate, 75).getFxImage();
             animate++;
         }
 
@@ -104,8 +104,8 @@ public class Info extends Game {
         for (int i = 7; i >= 0; i--) {
             digit.render(gc, Digit.LAST_DIGIT_OF_SCORE_X - (double) (7 - i) * Digit.WIDTH);
         }
-        gc.drawImage(NewSprite.clock.getFxImage(),
-                Digit.MINUTE_X * NewSprite.SCALED_FACTOR, Digit.Y * NewSprite.SCALED_FACTOR);
+        gc.drawImage(Sprite.clock.getFxImage(),
+                Digit.MINUTE_X * Sprite.SCALED_FACTOR, Digit.Y * Sprite.SCALED_FACTOR);
 
         digit.render(gc, Digit.MINUTE_X);
         digit.render(gc, Digit.FIRST_DIGIT_OF_SECOND_X);

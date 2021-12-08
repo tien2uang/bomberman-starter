@@ -1,9 +1,7 @@
 package uet.oop.bomberman.entities.mapMaterials;
 
-import javafx.scene.image.Image;
-import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.StaticEntity;
-import uet.oop.bomberman.graphics.NewSprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 public class Ground extends StaticEntity {
 
@@ -11,7 +9,7 @@ public class Ground extends StaticEntity {
     public Ground(double x, double y) {
         super(x, y);
         this.layerPower=1;
-        this.img= NewSprite.ground.getFxImage();
+        this.img= Sprite.ground.getFxImage();
     }
 
     @Override
