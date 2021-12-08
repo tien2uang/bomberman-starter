@@ -6,10 +6,10 @@ import uet.oop.bomberman.graphics.NewSprite;
 
 import java.util.Random;
 
-public class Enemy4 extends Enemy {
+public class Eye extends Enemy {
 
 
-    public Enemy4(double x, double y) {
+    public Eye(double x, double y) {
         super(x, y, 2, 300);
         img = NewSprite.balloon_right.getFxImage();
         this.layerPower = 2.5;
@@ -43,9 +43,8 @@ public class Enemy4 extends Enemy {
 
     @Override
     public void chooseImg() {
-        if (direction == 0) img = NewSprite.movingSprite(NewSprite.frog_Dead,getAnimate(),200).getFxImage();
-        if (direction == 0) img = NewSprite.movingSprite(NewSprite.frogList,getAnimate(),45).getFxImage();
-        if (direction == 1) img = NewSprite.movingSprite(NewSprite.frogMove,getAnimate(),45).getFxImage();
+        if (direction == -1) img = NewSprite.movingSprite(NewSprite.eye_dead,getAnimate(), 200).getFxImage();
+        if (direction == 1) img = NewSprite.movingSprite(NewSprite.redEyeList,getAnimate(),45).getFxImage();
     }
 
     @Override
