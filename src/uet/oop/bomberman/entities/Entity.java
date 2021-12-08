@@ -17,16 +17,11 @@ public abstract class Entity {
     protected double yUnit;
 
     protected Image img;
-    public double layerPower = 0;
-    protected boolean isAlive = true;
+    protected double layerPower = 0;
+
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
-    public Entity(double xUnit, double yUnit, Image img) {
-        this.x = xUnit * NewSprite.SCALED_SIZE;
-        this.y = yUnit * NewSprite.SCALED_SIZE;
-        this.img = img;
-        this.status = VALID;
-    }
+
 
     public Entity(double xUnit, double yUnit) {
         this.x = xUnit * NewSprite.SCALED_SIZE;
@@ -74,8 +69,6 @@ public abstract class Entity {
         return this;
     }
 
-    public boolean isAlive() {
-        return isAlive;
-    }
+
 
 }

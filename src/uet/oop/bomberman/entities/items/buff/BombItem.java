@@ -8,10 +8,8 @@ import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.graphics.NewSprite;
 
 public class BombItem extends Item {
-    public boolean destroyed;
-    public BombItem(double xUnit, double yUnit, Image img) {
-        super(xUnit, yUnit, img);
-    }
+
+
 
     public BombItem(double xUnit, double yUnit) {
         super(xUnit, yUnit);

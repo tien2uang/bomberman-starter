@@ -26,12 +26,10 @@ public abstract class Enemy extends AnimatedEntity {
     public boolean isMovingUP = false;
     public boolean isMovingDOWN = false;
     protected int death_animate = 100;
-
+    protected boolean isAlive;
     public final double temp = 1 / (double) NewSprite.SCALED_SIZE;
 
-    public Enemy(double x, double y, Image image) {
-        super(x, y, image);
-    }
+
 
     public Enemy(double x, double y, double speed, int score) {
         super(x, y);

@@ -1,9 +1,10 @@
 package uet.oop.bomberman.entities.mapMaterials.sky;
 
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.StaticEntity;
 import uet.oop.bomberman.graphics.NewSprite;
 
-public class Sky extends Entity {
+public class Sky extends StaticEntity {
     public Sky(double x, double y, String name) {
         super(x, y);
         this.layerPower=5;

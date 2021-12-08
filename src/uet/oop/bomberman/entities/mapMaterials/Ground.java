@@ -2,9 +2,10 @@ package uet.oop.bomberman.entities.mapMaterials;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.StaticEntity;
 import uet.oop.bomberman.graphics.NewSprite;
 
-public class Ground extends Entity {
+public class Ground extends StaticEntity {
 
 
     public Ground(double x, double y) {

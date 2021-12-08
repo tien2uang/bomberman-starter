@@ -15,7 +15,7 @@ public class Bat extends Enemy {
 
     @Override
     public void chooseImg() {
-        if (direction == -1) img = NewSprite.movingSprite(NewSprite.bat_dead, getAnimate(), 200).getFxImage();
+        if (direction == -1) img = NewSprite.movingSprite(NewSprite.bat_dead, getAnimate(), 51).getFxImage();
         if (direction == 0) img = NewSprite.movingSprite(NewSprite.BatLeftList,getAnimate(),30).getFxImage();
         if (direction == 1) img = NewSprite.movingSprite(NewSprite.BatRightList,getAnimate(),30).getFxImage();
         if (direction == 2) img = NewSprite.movingSprite(NewSprite.BatDownList,getAnimate(),30).getFxImage();

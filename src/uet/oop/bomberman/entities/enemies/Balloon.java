@@ -31,7 +31,7 @@ public class Balloon extends Enemy {
 
     @Override
     public void chooseImg() {
-        if (direction == -1) img = NewSprite.movingSprite(NewSprite.balloonDeadList, getAnimate(), 101).getFxImage();
+        if (direction == -1) img = NewSprite.movingSprite(NewSprite.balloonDeadList, getAnimate(), 51).getFxImage();
         if (direction == 0) img = NewSprite.movingSprite(NewSprite.BalloonLeftList,getAnimate(),30).getFxImage();
         if (direction == 1) img = NewSprite.movingSprite(NewSprite.BalloonRightList,getAnimate(),30).getFxImage();
         if (direction == 2) img = NewSprite.movingSprite(NewSprite.BalloonLeftList,getAnimate(),30).getFxImage();

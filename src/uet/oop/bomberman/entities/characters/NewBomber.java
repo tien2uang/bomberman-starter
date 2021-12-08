@@ -21,7 +21,7 @@ public class NewBomber extends Character {
     public int direction;
     private boolean isMoving;
     private NewSprite currentSprite;
-    public static Vector<Bomb> bombs = new Vector<>();
+
     public int speedItem_animation = 600;
     public static int bombQuantity;
 

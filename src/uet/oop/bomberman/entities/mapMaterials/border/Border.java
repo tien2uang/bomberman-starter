@@ -1,6 +1,8 @@
 package uet.oop.bomberman.entities.mapMaterials.border;
 import uet.oop.bomberman.entities.Entity;
-public class Border  extends Entity{
+import uet.oop.bomberman.entities.StaticEntity;
+
+public class Border  extends StaticEntity {
     public Border(double x, double y){
         super(x,y);
         this.layerPower=5;

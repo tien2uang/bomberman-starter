@@ -3,12 +3,8 @@ package uet.oop.bomberman.entities;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class AnimatedEntity extends Entity {
+public abstract class AnimatedEntity extends Entity {
     protected int animate = 0;
-    public AnimatedEntity(double x, double y, Image image) {
-        super(x, y, image);
-    }
-
     public AnimatedEntity(double x, double y) {
         super(x, y);
     }
@@ -21,13 +17,7 @@ public class AnimatedEntity extends Entity {
         return animate;
     }
 
-    @Override
-    public void update() {
 
-    }
 
-    @Override
-    public void render(GraphicsContext gc) {
-        super.render(gc);
-    }
+
 }

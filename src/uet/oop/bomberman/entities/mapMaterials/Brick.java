@@ -6,7 +6,7 @@ import uet.oop.bomberman.graphics.NewSprite;
 
 
 public class Brick extends AnimatedEntity {
-    public int deathTime;
+    private int deathTime;
     public boolean destroyed;
     public final int ANIMATION_CIRCLE = 35;
     public boolean onFire;

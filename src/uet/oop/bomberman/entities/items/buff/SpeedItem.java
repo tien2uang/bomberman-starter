@@ -8,11 +8,8 @@ import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
 
 public class SpeedItem extends Item {
-    public boolean destroyed;
-    public boolean isActive;
-    public SpeedItem(double xUnit, double yUnit, Image img) {
-        super(xUnit, yUnit, img);
-    }
+
+
 
     public SpeedItem(double xUnit, double yUnit) {
         super(xUnit, yUnit);
