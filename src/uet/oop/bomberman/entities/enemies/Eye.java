@@ -11,10 +11,10 @@ public class Eye extends Enemy {
 
     public Eye(double x, double y) {
         super(x, y, 2, 300);
-        img = NewSprite.balloon_right.getFxImage();
+        img = NewSprite.red_eye.getFxImage();
         this.layerPower = 2.5;
         this.animate = 0;
-        this.direction = 0;
+        this.direction = 1;
         this._steps = 0;
     }
 
@@ -22,9 +22,17 @@ public class Eye extends Enemy {
 
     @Override
     public void update() {
-        animate();
-        int ra = new Random().nextInt(600);
-        if (ra == 100 || ra == 200) calculateMove();
+        if (!isAlive) {
+            die();
+        } else {
+            //System.out.println(xUnit + " " + yUnit + " ");
+            animate();
+            collide();
+            int ra = new Random().nextInt(600);
+            if (ra == 100 || ra == 200) calculateMove();
+
+        }
+
     }
 
     public void move(double xa, double ya) {
@@ -44,7 +52,7 @@ public class Eye extends Enemy {
     @Override
     public void chooseImg() {
         if (direction == -1) img = NewSprite.movingSprite(NewSprite.eye_dead,getAnimate(), 200).getFxImage();
-        if (direction == 1) img = NewSprite.movingSprite(NewSprite.redEyeList,getAnimate(),45).getFxImage();
+        if (direction == 1) img = NewSprite.movingSprite(NewSprite.EyeList,getAnimate(),45).getFxImage();
     }
 
     @Override
@@ -66,7 +74,6 @@ public class Eye extends Enemy {
 
         if(canMove(rand)) {
             move(xa, ya);
-            direction = 1;
         }
     }
 
