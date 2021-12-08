@@ -13,16 +13,17 @@ import java.util.Random;
 
 public abstract class Enemy extends AnimatedEntity {
 
-    public double speed;
-    public int direction;
+    protected double speed;
+    protected int direction;
     protected int point;
+    protected boolean OnealMove = true;
     public final double MAX_UP = 72;
     public double step_Up = 72;
     public final double MAX_DOWN = 72;
     public double step_Down = 72;
     public final double MAX_STEPS = 144;
     public double _steps = 0;
-    protected int rand = random();
+    protected int rand = random1();
     protected int a = 0;
     public boolean isMovingUP = false;
     public boolean isMovingDOWN = false;
@@ -61,7 +62,11 @@ public abstract class Enemy extends AnimatedEntity {
         gc.drawImage(img, (xUnit) * 36, (yUnit + Game.INFO_HEIGHT) * 36);
     }
 
-    public int random() {
+    public int random1() {
+        return new Random().nextInt(2);
+    }
+
+    public int random2() {
         return new Random().nextInt(2);
     }
 
@@ -76,7 +81,7 @@ public abstract class Enemy extends AnimatedEntity {
     public void calculateMove() {
         double xa = 0, ya = 0;
         if (_steps <= 0) {
-            rand = random();
+            rand = random1();
             _steps = MAX_STEPS;
         }
 
@@ -87,9 +92,10 @@ public abstract class Enemy extends AnimatedEntity {
             _steps -= speed;
             direction = rand;
             move(xa, ya);
-
+            OnealMove = true;
         } else {
             _steps = 0;
+            OnealMove = false;
         }
 
         if (Math.abs(xUnit - (int) xUnit) <= temp) {
@@ -99,17 +105,21 @@ public abstract class Enemy extends AnimatedEntity {
 
 
             if (!isMovingDOWN && !isMovingUP) {
-                a = new Random().nextInt(2);
+                a = random2();
             }
 
             if (tempX % 2 == 0 && a == 0) {
                 //System.out.println("up");
                 up();
+                xUnit = Math.round(xUnit);
+
             }
 
             if (tempX % 2 == 0 && a == 1) {
                 //System.out.println("down");
                 down();
+                xUnit = Math.round(xUnit);
+
             }
         }
     }
@@ -126,7 +136,7 @@ public abstract class Enemy extends AnimatedEntity {
 //left 0
         if (rand == 0) {
             if ((int) yUnit == yUnit) {
-                return getAt(xUnit, yUnit);
+                return getAt(xUnit - temp, yUnit);
             }
         }
         return false;
@@ -142,8 +152,10 @@ public abstract class Enemy extends AnimatedEntity {
             direction = 3;
             move(0, -speed);
             step_Up--;
+            OnealMove = true;
         } else {
             isMovingUP = false;
+            OnealMove = false;
             if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
                 yUnit = Math.round(yUnit);
                 this.y = (yUnit + Game.INFO_HEIGHT) * NewSprite.SCALED_SIZE;
@@ -161,8 +173,10 @@ public abstract class Enemy extends AnimatedEntity {
             direction = 2;
             move(0, speed);
             step_Down--;
+            OnealMove = true;
         } else {
             isMovingDOWN = false;
+            OnealMove = false;
             if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
                 yUnit = Math.round(yUnit);
                 this.y = (yUnit + Game.INFO_HEIGHT) * NewSprite.SCALED_SIZE;
