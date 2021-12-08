@@ -15,31 +15,30 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 
-
 public class NewBomb extends AnimatedEntity {
     private ArrayList<NewSprite> bombs;
     private ArrayList<NewFlame> flames;
     private int type;
-    private int range ;
+    private int range;
     private final int ANIMATION_CIRCLE = 90;
 
     public NewBomb(double xUnit, double yUnit) {
-        super(xUnit, yUnit+ Game.INFO_HEIGHT);
+        super(xUnit, yUnit + Game.INFO_HEIGHT);
         this.img = NewSprite.bomb1_1.getFxImage();
         this.layerPower = 3.5;
         type = 0;
-        range =2;
+        range = 2;
         bombs = NewSprite.normalBomb;
         flames = new ArrayList<NewFlame>(Arrays.asList(
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT, "central"),
-                new NewFlame(this.xUnit + 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
-                new NewFlame(this.xUnit - 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
-                new NewFlame(this.xUnit + 2, yUnit+ Game.INFO_HEIGHT, "rightLast"),
-                new NewFlame(this.xUnit - 2, yUnit+ Game.INFO_HEIGHT, "leftLast"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 1, "vertical"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 1, "vertical"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 2, "topLast"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 2, "botLast")
+                new NewFlame(this.xUnit, yUnit + Game.INFO_HEIGHT, "central"),
+                new NewFlame(this.xUnit + 1, yUnit + Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit - 1, yUnit + Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit + 2, yUnit + Game.INFO_HEIGHT, "rightLast"),
+                new NewFlame(this.xUnit - 2, yUnit + Game.INFO_HEIGHT, "leftLast"),
+                new NewFlame(this.xUnit, yUnit + Game.INFO_HEIGHT - 1, "vertical"),
+                new NewFlame(this.xUnit, yUnit + Game.INFO_HEIGHT + 1, "vertical"),
+                new NewFlame(this.xUnit, yUnit + Game.INFO_HEIGHT - 2, "topLast"),
+                new NewFlame(this.xUnit, yUnit + Game.INFO_HEIGHT + 2, "botLast")
         ));
     }
 
@@ -51,19 +50,19 @@ public class NewBomb extends AnimatedEntity {
             range = 3;
         }
         flames = new ArrayList<NewFlame>(Arrays.asList(
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT, "central"),
-                new NewFlame(this.xUnit + 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
-                new NewFlame(this.xUnit + 2, yUnit+ Game.INFO_HEIGHT, "horizontal"),
-                new NewFlame(this.xUnit - 1, yUnit+ Game.INFO_HEIGHT, "horizontal"),
-                new NewFlame(this.xUnit - 2, yUnit+ Game.INFO_HEIGHT, "horizontal"),
-                new NewFlame(this.xUnit + 3, yUnit+ Game.INFO_HEIGHT, "rightLast"),
-                new NewFlame(this.xUnit - 3, yUnit+ Game.INFO_HEIGHT, "leftLast"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 1, "vertical"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 2, "vertical"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 1, "vertical"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 2, "vertical"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT - 3, "topLast"),
-                new NewFlame(this.xUnit, yUnit+ Game.INFO_HEIGHT + 3, "botLast")
+                new NewFlame(this.xUnit, yUnit + Game.INFO_HEIGHT, "central"),
+                new NewFlame(this.xUnit + 1, yUnit + Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit + 2, yUnit + Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit - 1, yUnit + Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit - 2, yUnit + Game.INFO_HEIGHT, "horizontal"),
+                new NewFlame(this.xUnit + 3, yUnit + Game.INFO_HEIGHT, "rightLast"),
+                new NewFlame(this.xUnit - 3, yUnit + Game.INFO_HEIGHT, "leftLast"),
+                new NewFlame(this.xUnit, yUnit + Game.INFO_HEIGHT - 1, "vertical"),
+                new NewFlame(this.xUnit, yUnit + Game.INFO_HEIGHT - 2, "vertical"),
+                new NewFlame(this.xUnit, yUnit + Game.INFO_HEIGHT + 1, "vertical"),
+                new NewFlame(this.xUnit, yUnit + Game.INFO_HEIGHT + 2, "vertical"),
+                new NewFlame(this.xUnit, yUnit + Game.INFO_HEIGHT - 3, "topLast"),
+                new NewFlame(this.xUnit, yUnit + Game.INFO_HEIGHT + 3, "botLast")
         ));
 
     }
@@ -73,19 +72,25 @@ public class NewBomb extends AnimatedEntity {
         img = NewSprite.movingSprite(bombs, getAnimate(), ANIMATION_CIRCLE).getFxImage();
         animate();
         if (getAnimate() == ANIMATION_CIRCLE) {
-            checkCollisionWithMapForFlames();
-            if (Board.bombQuantity == 0) {
-                Board.bombQuantity++;
-            } else if (Board.bombQuantity == 1) {
-                Board.bombItem_quantity--;
-            }
-            for (NewFlame newFlame : flames) {
-                Board.getFlames().add(newFlame);
-            }
-            Audio.playSound(Audio.bombExplosion);
-            this.status = INVALID;
+            explode();
+        }else if(collideWithFlames()){
+            explode();
         }
 
+    }
+
+    private void explode() {
+        checkCollisionWithMapForFlames();
+        if (Board.bombQuantity == 0) {
+            Board.bombQuantity++;
+        } else if (Board.bombQuantity == 1) {
+            Board.bombItem_quantity--;
+        }
+        for (NewFlame newFlame : flames) {
+            Board.getFlames().add(newFlame);
+        }
+        Audio.playSound(Audio.bombExplosion);
+        this.status = INVALID;
     }
 
     @Override
@@ -93,19 +98,27 @@ public class NewBomb extends AnimatedEntity {
         super.render(gc);
     }
 
+    private boolean collideWithFlames(){
+        if(Board.getMostPoweredEntityAt(this.getXUnit(), this.getYUnit() ) instanceof NewFlame) {
+            System.out.println("ÝE");
+            return true;
+        }
+        return false;
+    }
     private void checkCollisionWithMapForFlames() {
-        //kiểm tra chạm tường
+        //kiểm tra chạm tường, bom, brick
         // nếu va chạm với brick thì cho nổ brick, setOnFire ở brick
 
         //top
         for (int i = 1; i <= range; i++) {
             if (Board.getMostPoweredEntityAt(this.getXUnit(), this.getYUnit() - i) instanceof Wall
-                    || Board.getMostPoweredEntityAt(this.getXUnit(), this.getYUnit() - i) instanceof Border) {
+                    || Board.getMostPoweredEntityAt(this.getXUnit(), this.getYUnit() - i) instanceof Border
+                    || Board.getMostPoweredEntityAt(this.getXUnit(), this.getYUnit() - i) instanceof NewFlame) {
                 Iterator<NewFlame> it = flames.iterator();
 
                 while (it.hasNext()) {
                     NewFlame flame = it.next();
-                    if(flame.getYUnit()<= this.getYUnit() - i){
+                    if (flame.getYUnit() <= this.getYUnit() - i) {
                         it.remove();
                     }
                 }
@@ -118,7 +131,7 @@ public class NewBomb extends AnimatedEntity {
 
                 while (it.hasNext()) {
                     NewFlame flame = it.next();
-                    if(flame.getYUnit()<= this.getYUnit() - i){
+                    if (flame.getYUnit() <= this.getYUnit() - i) {
                         it.remove();
                     }
                 }
@@ -128,12 +141,13 @@ public class NewBomb extends AnimatedEntity {
         //bot
         for (int i = 1; i <= range; i++) {
             if (Board.getMostPoweredEntityAt(this.getXUnit(), this.getYUnit() + i) instanceof Wall
-                    || Board.getMostPoweredEntityAt(this.getXUnit(), this.getYUnit() + i) instanceof Border) {
+                    || Board.getMostPoweredEntityAt(this.getXUnit(), this.getYUnit() + i) instanceof Border
+                    || Board.getMostPoweredEntityAt(this.getXUnit(), this.getYUnit() + i) instanceof NewFlame) {
 
                 Iterator<NewFlame> it = flames.iterator();
                 while (it.hasNext()) {
                     NewFlame flame = it.next();
-                    if(flame.getYUnit()>= this.getYUnit() + i){
+                    if (flame.getYUnit() >= this.getYUnit() + i) {
                         it.remove();
                     }
                 }
@@ -144,7 +158,7 @@ public class NewBomb extends AnimatedEntity {
                 Iterator<NewFlame> it = flames.iterator();
                 while (it.hasNext()) {
                     NewFlame flame = it.next();
-                    if(flame.getYUnit()>= this.getYUnit() + i){
+                    if (flame.getYUnit() >= this.getYUnit() + i) {
                         it.remove();
                     }
                 }
@@ -154,11 +168,12 @@ public class NewBomb extends AnimatedEntity {
         //right
         for (int i = 1; i <= range; i++) {
             if (Board.getMostPoweredEntityAt(this.getXUnit() + i, this.getYUnit()) instanceof Wall
-                    || Board.getMostPoweredEntityAt(this.getXUnit() + i, this.getYUnit()) instanceof Border) {
+                    || Board.getMostPoweredEntityAt(this.getXUnit() + i, this.getYUnit()) instanceof Border
+                    || Board.getMostPoweredEntityAt(this.getXUnit() + i, this.getYUnit()) instanceof NewFlame) {
                 Iterator<NewFlame> it = flames.iterator();
                 while (it.hasNext()) {
                     NewFlame flame = it.next();
-                    if(flame.getXUnit()>= this.getXUnit() + i){
+                    if (flame.getXUnit() >= this.getXUnit() + i) {
                         it.remove();
                     }
                 }
@@ -169,7 +184,7 @@ public class NewBomb extends AnimatedEntity {
                 Iterator<NewFlame> it = flames.iterator();
                 while (it.hasNext()) {
                     NewFlame flame = it.next();
-                    if(flame.getXUnit()>= this.getXUnit() + i){
+                    if (flame.getXUnit() >= this.getXUnit() + i) {
                         it.remove();
                     }
                 }
@@ -179,11 +194,12 @@ public class NewBomb extends AnimatedEntity {
         //left
         for (int i = 1; i <= range; i++) {
             if (Board.getMostPoweredEntityAt(this.getXUnit() - i, this.getYUnit()) instanceof Wall
-                    || Board.getMostPoweredEntityAt(this.getXUnit() - i, this.getYUnit()) instanceof Border) {
+                    || Board.getMostPoweredEntityAt(this.getXUnit() - i, this.getYUnit()) instanceof Border
+                    || Board.getMostPoweredEntityAt(this.getXUnit() - i, this.getYUnit()) instanceof NewFlame) {
                 Iterator<NewFlame> it = flames.iterator();
                 while (it.hasNext()) {
                     NewFlame flame = it.next();
-                    if(flame.getXUnit()<= this.getXUnit() - i){
+                    if (flame.getXUnit() <= this.getXUnit() - i) {
                         it.remove();
                     }
                 }
@@ -194,7 +210,7 @@ public class NewBomb extends AnimatedEntity {
                 Iterator<NewFlame> it = flames.iterator();
                 while (it.hasNext()) {
                     NewFlame flame = it.next();
-                    if(flame.getXUnit()<= this.getXUnit() - i){
+                    if (flame.getXUnit() <= this.getXUnit() - i) {
                         it.remove();
                     }
                 }

@@ -31,7 +31,7 @@ public class Game {
     protected static GraphicsContext gc;
     protected static Canvas canvas;
     private static LevelLoader levelLoader = new LevelLoader();
-    public static int score=0;
+    public static int gameScore=0;
 
     public static void start() {
         canvas = new Canvas(NewSprite.SCALED_SIZE * WIDTH, NewSprite.SCALED_SIZE * HEIGHT);
@@ -95,7 +95,8 @@ public class Game {
         frameTime=0;
         currentLevel=1;
         isInGame = false;
-        score=0;
+        gameScore=0;
+        Board.levelScore=0;
         isPaused = false;
         gameOver = false;
         Board.restart();

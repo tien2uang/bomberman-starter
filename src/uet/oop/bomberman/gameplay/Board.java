@@ -2,6 +2,7 @@ package uet.oop.bomberman.gameplay;
 
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.characters.NewBomber;
+import uet.oop.bomberman.entities.enemies.Enemy;
 import uet.oop.bomberman.graphics.NewSprite;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class Board extends Game {
     public static final double BOARD_COORDINATE_Y = Game.INFO_HEIGHT;
     public static long levelTime = 250;
     public static int lives = 2;
+    public static int levelScore=0;
     public static boolean isBomberAlive = true;
     public static boolean hasWon = false;
     public static long startTime;
@@ -22,20 +24,25 @@ public class Board extends Game {
     public static int BOMB_QUANTITY = 1;
     public static int BOMB_RANGE = 1;
     public static double BOMBER_SPEED = 1.6;
+    public static double BOMBER_FAST_SPEED = 3.5;
 
 
     public static int bombQuantity = BOMB_QUANTITY;
     public static int bombRange = BOMB_RANGE;
     public static double bomberSpeed = BOMBER_SPEED;
 
-    public static int speedItem_quantity = 0;
+    public static int speedItemTime = 0;
     public static int flameItem_quantity = 0;
     public static int bombItem_quantity = 0;
+
+    public static long speedItemCollidedTime = 0;
 
     public static List<Entity> mapEntities = new ArrayList<>();
     public static List<Entity> character = new ArrayList<>();
     public static List<Entity> bombs = new ArrayList<>();
     public static List<Entity> flames = new ArrayList<>();
+
+
 
 
     public static void update() {
@@ -60,7 +67,9 @@ public class Board extends Game {
             updateBombs();
             updateFlames();
             updateCharacter();
+            updateItems();
             levelTime = 250 - (Game.currentGameTime - startTime);
+
         } else {
             updateMap();
         }
@@ -125,6 +134,15 @@ public class Board extends Game {
                 }
             }
         }
+        for (Entity entity : flames) {
+
+            if (Double.compare(xUnit, entity.getXUnit()) == 0 && Double.compare(yUnit, entity.getYUnit()) == 0) {
+                if (entity.getLayerPower() >= temp) {
+                    result = entity.getMostPoweredEntity();
+                    temp = entity.getLayerPower();
+                }
+            }
+        }
         return result;
     }
 
@@ -149,12 +167,6 @@ public class Board extends Game {
     }
 
     private static void updateBombs() {
-        /*bombs.forEach(g -> g.update());
-        for (int i = 0; i < bombs.size(); i++) {
-            if (bombs.get(i).getStatus() == Entity.INVALID) {
-                bombs.remove(i);
-            }
-        }*/
         for (Iterator<Entity> e = bombs.iterator(); e.hasNext();) {
             Entity bomb = e.next();
             bomb.update();
@@ -170,7 +182,15 @@ public class Board extends Game {
             mob.update();
 
             if (mob.getStatus() == Entity.INVALID) {
-                entity.remove();
+                if(mob instanceof NewBomber){
+                    entity.remove();
+                }
+                else{
+                    Enemy enemy=(Enemy)mob;
+                    levelScore+=enemy.getScore();
+                    entity.remove();
+                }
+
             }
         }
 
@@ -216,14 +236,16 @@ public class Board extends Game {
             startTime = Game.currentGameTime;
             wonTime = 0;
             lives--;
+            levelScore=0;
             hasWon = false;
             System.out.println(lives);
-            speedItem_quantity = 0;
+            speedItemTime = 0;
             flameItem_quantity = 0;
             bombItem_quantity = 0;
             bombQuantity = BOMB_QUANTITY;
             bombRange = BOMB_RANGE;
             bomberSpeed = BOMBER_SPEED;
+            speedItemCollidedTime=0;
         }
 
     }
@@ -240,7 +262,8 @@ public class Board extends Game {
         hasWon = false;
         wonTime = 0;
         lives = 2;
-        speedItem_quantity = 0;
+        speedItemTime = 0;
+        speedItemCollidedTime=0;
         flameItem_quantity = 0;
         bombItem_quantity = 0;
         bombQuantity = BOMB_QUANTITY;
@@ -251,7 +274,8 @@ public class Board extends Game {
     public static void nextLevel() {
         if (Game.currentLevel == 1) {
             Game.currentLevel++;
-            System.out.println(Game.currentLevel);
+            Game.gameScore=Board.levelScore;
+            Board.levelScore=0;
             mapEntities.clear();
             character.clear();
             bombs.clear();
@@ -262,7 +286,8 @@ public class Board extends Game {
             wonTime = 0;
             lives = 2;
             hasWon = false;
-            speedItem_quantity = 0;
+            speedItemTime = 0;
+            speedItemCollidedTime=0;
             flameItem_quantity = 0;
             bombItem_quantity = 0;
             bombQuantity = BOMB_QUANTITY;
@@ -270,9 +295,20 @@ public class Board extends Game {
             bomberSpeed = BOMBER_SPEED;
             System.out.println("next level");
         }
+        else{
+            System.out.println("YOU WIN");
+        }
     }
 
     public static boolean hasKilledAllEnemies() {
         return character.size() == 1;
+    }
+    private static void updateItems(){
+        if(speedItemTime>0){
+            speedItemTime=(int)(10-(Game.currentGameTime - Board.speedItemCollidedTime));
+        }
+        else {
+            speedItemTime=0;
+        }
     }
 }

@@ -3,19 +3,18 @@ package uet.oop.bomberman.entities.characters;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.audio.Audio;
-import uet.oop.bomberman.entities.Coordinate;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.items.bomb.NewBomb;
-import uet.oop.bomberman.entities.items.buff.SpeedItem;
 import uet.oop.bomberman.entities.mapMaterials.Portal;
 import uet.oop.bomberman.gameplay.Board;
 import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
-import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.input.Keyboard;
 
-import java.awt.*;
 import java.util.Vector;
+
+import static uet.oop.bomberman.gameplay.Board.BOMBER_FAST_SPEED;
+import static uet.oop.bomberman.gameplay.Board.BOMBER_SPEED;
 
 public class NewBomber extends Character {
 
@@ -80,12 +79,12 @@ public class NewBomber extends Character {
                 double y = this.getYUnit() - entity.getYUnit();
                 if ((int)this.getXUnit() == entity.getXUnit()) {
                     if (0 <= Math.abs(y) && Math.abs(y) < 1) {
-                        isAlive = false;
+                        setAlive(false);
                         Audio.playSound(Audio.bomberDied);
                     }
                 } else if ((int)this.getYUnit() == entity.getYUnit()) {
                     if (0 <= Math.abs(x) && Math.abs(x) < 1) {
-                        isAlive = false;
+                        setAlive(false);
                         Audio.playSound(Audio.bomberDied);
                     }
                 }
@@ -159,8 +158,8 @@ public class NewBomber extends Character {
             if (!isMoving()) {
                 animate = 0;
             }
-            calculateMove();
             collide();
+            calculateMove();
             pickUpItem();
             img = chooseImage(direction);
             if (Keyboard.isPlaceBomb()) {
@@ -388,13 +387,12 @@ public class NewBomber extends Character {
     }
 
     public void pickUpItem() {
-        if (Board.speedItem_quantity != 0) {
-            if (speedItem_animation > 0) {
-                speedItem_animation--;
-            } else {
-                Board.bomberSpeed = Board.BOMBER_SPEED;
-                Board.speedItem_quantity = 0;
-            }
+        if (Board.speedItemTime != 0) {
+            Board.bomberSpeed=BOMBER_FAST_SPEED;
+        }
+        else
+        {
+            Board.bomberSpeed=BOMBER_SPEED;
         }
     }
 

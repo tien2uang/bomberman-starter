@@ -90,7 +90,10 @@ public class LevelLoader {
                 mapEntities.add(new TopBorder(tempX, tempY));
                 break;
             case"t":
-                mapEntities.add(new Portal(tempX, tempY));
+                arrayEntities= new ArrayList<Entity>();
+                arrayEntities.add(0,new Portal(tempX,tempY));
+                arrayEntities.add(0,new Brick(tempX,tempY));
+                mapEntities.add(new LayeredEntity(tempX,tempY,arrayEntities));
                 break;
             case "l":
                 mapEntities.add(new LeftBorder(tempX, tempY));

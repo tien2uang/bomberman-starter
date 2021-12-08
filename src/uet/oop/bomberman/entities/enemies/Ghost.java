@@ -13,7 +13,7 @@ public class Ghost extends Enemy {
     public Ghost(double x, double y) {
         super(x, y, 1, 400);
         img = NewSprite.ghost_down.getFxImage();
-        this.layerPower = 5;
+        this.layerPower = 3;
         this.animate = 0;
         this.direction = 1;
         this._steps = 0;

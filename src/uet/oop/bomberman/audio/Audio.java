@@ -19,7 +19,7 @@ public class Audio {
     {
         try {
             MediaPlayer sound = new MediaPlayer(new Media(new File(path).toURI().toString()));
-            sound.setVolume(0.7);
+            sound.setVolume(0.8);
             sound.play();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -28,7 +28,7 @@ public class Audio {
 
     public static void playBackground() {
         soundBackground.setVolume(0.5);
-        //soundBackground.play();
+        soundBackground.play();
     }
 
     public static void stopBackground() {

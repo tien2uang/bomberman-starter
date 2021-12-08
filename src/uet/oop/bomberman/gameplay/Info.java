@@ -4,6 +4,8 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Digit;
 import uet.oop.bomberman.graphics.NewSprite;
 
+import static uet.oop.bomberman.gameplay.Board.speedItemTime;
+
 public class Info extends Game {
     public static final double INFO_WIDTH = 17;
     public static final double INFO_HEIGHT = 2;
@@ -17,12 +19,16 @@ public class Info extends Game {
     private static Image img = NewSprite.startBar.getFxImage();
 
     public static void update() {
-        time = (int) Board.levelTime;
+
+        updateLives();
+        updateScore();
+        updateTime();
+        updateItems();
         if (Game.isIsInGame()) {
             animate = 0;
             img = NewSprite.inGameBar.getFxImage();
         } else {
-            img = NewSprite.movingSprite(NewSprite.startBarList,animate,75).getFxImage();
+            img = NewSprite.movingSprite(NewSprite.startBarList, animate, 75).getFxImage();
             animate++;
         }
 
@@ -37,19 +43,26 @@ public class Info extends Game {
             renderTime();
             renderLives();
             renderItems();
-        }
-        else{
+        } else {
             renderLives();
         }
 
     }
 
-    public static void updateScore() {
-
+    private static void updateScore() {
+        score = Game.gameScore + Board.levelScore;
     }
 
-    public static void updateTime() {
-
+    private static void updateTime() {
+        time = (int) Board.levelTime;
+    }
+    private static void updateLives() {
+        lives =  Board.lives;
+    }
+    private static void updateItems(){
+        bombItem=Board.bombItem_quantity;
+        flameItem=Board.flameItem_quantity;
+        speedItem= speedItemTime;
     }
 
     public static void reset() {

@@ -12,11 +12,10 @@ import uet.oop.bomberman.graphics.NewSprite;
 import java.util.Random;
 
 public abstract class Enemy extends AnimatedEntity {
-
+    protected boolean OnealMove = true;
     protected double speed;
     protected int direction;
-    protected int point;
-    protected boolean OnealMove = true;
+    protected int score;
     public final double MAX_UP = 72;
     public double step_Up = 72;
     public final double MAX_DOWN = 72;
@@ -35,10 +34,10 @@ public abstract class Enemy extends AnimatedEntity {
         super(x, y, image);
     }
 
-    public Enemy(double x, double y, double speed, int point) {
+    public Enemy(double x, double y, double speed, int score) {
         super(x, y);
         this.speed = speed;
-        this.point = point;
+        this.score = score;
         this.isAlive = true;
     }
 
@@ -47,11 +46,9 @@ public abstract class Enemy extends AnimatedEntity {
         if (!isAlive) {
             die();
         } else {
-            //System.out.println(xUnit + " " + yUnit + " ");
             animate();
-            collide();
             calculateMove();
-
+            collide();
         }
     }
 
@@ -100,23 +97,18 @@ public abstract class Enemy extends AnimatedEntity {
 
         if (Math.abs(xUnit - (int) xUnit) <= temp) {
             int tempX = (int) xUnit;
-//            xUnit = tempX;
-//            this.x=xUnit*NewSprite.SCALED_SIZE;
-
-
             if (!isMovingDOWN && !isMovingUP) {
                 a = random2();
             }
 
             if (tempX % 2 == 0 && a == 0) {
-                //System.out.println("up");
                 up();
                 xUnit = Math.round(xUnit);
 
             }
 
             if (tempX % 2 == 0 && a == 1) {
-                //System.out.println("down");
+
                 down();
                 xUnit = Math.round(xUnit);
 
@@ -194,11 +186,11 @@ public abstract class Enemy extends AnimatedEntity {
 
     public void collide() {
         // có 1 ít sai số ở đây
-        if ( (int)xUnit==xUnit) {
+        if ((int) xUnit == xUnit) {
             if ((int) yUnit == yUnit) {
                 for (Entity entity : Board.getFlames()) {
                     if (xUnit == entity.getXUnit() && yUnit == entity.getYUnit()) {
-                        animate = 0;
+
                         killed();
                         return;
                     }
@@ -207,7 +199,7 @@ public abstract class Enemy extends AnimatedEntity {
                 for (int i = 0; i < 2; i++) {
                     for (Entity entity : Board.getFlames()) {
                         if (xUnit == entity.getXUnit() && ((int) yUnit + i) == entity.getYUnit()) {
-                            animate = 0;
+
                             killed();
                             return;
                         }
@@ -218,7 +210,7 @@ public abstract class Enemy extends AnimatedEntity {
             if ((int) xUnit == xUnit) {
                 for (Entity entity : Board.getFlames()) {
                     if (xUnit == entity.getXUnit() && yUnit == entity.getYUnit()) {
-                        animate = 0;
+
                         killed();
                         return;
                     }
@@ -227,7 +219,6 @@ public abstract class Enemy extends AnimatedEntity {
                 for (int i = 0; i < 2; i++) {
                     for (Entity entity : Board.getFlames()) {
                         if (((int) xUnit + i) == entity.getXUnit() && yUnit == entity.getYUnit()) {
-                            animate = 0;
                             killed();
                             return;
                         }
@@ -292,7 +283,12 @@ public abstract class Enemy extends AnimatedEntity {
     }
 
     public void killed() {
+        animate=0;
         isAlive = false;
+    }
+
+    public int getScore() {
+        return score;
     }
 }
 
