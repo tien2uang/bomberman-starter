@@ -81,10 +81,12 @@ public class NewBomber extends Character {
                 if ((int)this.getXUnit() == entity.getXUnit()) {
                     if (0 <= Math.abs(y) && Math.abs(y) < 1) {
                         isAlive = false;
+                        Audio.playSound(Audio.bomberDied);
                     }
                 } else if ((int)this.getYUnit() == entity.getYUnit()) {
                     if (0 <= Math.abs(x) && Math.abs(x) < 1) {
                         isAlive = false;
+                        Audio.playSound(Audio.bomberDied);
                     }
                 }
 
@@ -96,10 +98,12 @@ public class NewBomber extends Character {
             if ((int)this.getXUnit() == entity.getXUnit()) {
                 if (0 <= Math.abs(y) && Math.abs(y) < 1) {
                     isAlive = false;
+                    Audio.playSound(Audio.bomberDied);
                 }
             } else if ((int)this.getYUnit() == entity.getYUnit()) {
                 if (0 <= Math.abs(x) && Math.abs(x) < 1) {
                     isAlive = false;
+                    Audio.playSound(Audio.bomberDied);
                 }
             }
             /*if (Math.round(this.getXUnit()) == entity.getXUnit() && Math.round(this.getYUnit()) == entity.getYUnit()) {
@@ -131,7 +135,6 @@ public class NewBomber extends Character {
 
     public Image chooseImage(int direction) {
         switch (direction) {
-
             case 1:
                 currentSprite = NewSprite.movingSprite(NewSprite.playerLeftList, animate, 33);
                 return NewSprite.movingSprite(NewSprite.playerLeftList, animate, 33).getFxImage();
@@ -176,7 +179,6 @@ public class NewBomber extends Character {
                     Board.isBomberAlive=isAlive;
                 }
             }
-            Audio.playSound(Audio.bomberDied);
         }
     }
 

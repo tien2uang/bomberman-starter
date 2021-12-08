@@ -20,7 +20,6 @@ public class NewFlame extends AnimatedEntity {
 
     @Override
     public void update() {
-        Audio.playSound(Audio.bombExplosion);
         img=NewSprite.movingSprite(flames,getAnimate(),ANIMATION_CIRCLE).getFxImage();
         animate();
         if(getAnimate()==ANIMATION_CIRCLE) {

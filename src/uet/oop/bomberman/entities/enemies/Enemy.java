@@ -46,7 +46,7 @@ public abstract class Enemy extends AnimatedEntity {
         if (!isAlive) {
             die();
         } else {
-            System.out.println(xUnit + " " + yUnit + " ");
+            //System.out.println(xUnit + " " + yUnit + " ");
             animate();
             collide();
             calculateMove();

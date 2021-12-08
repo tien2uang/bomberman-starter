@@ -7,6 +7,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import uet.oop.bomberman.BombermanGame;
+import uet.oop.bomberman.audio.Audio;
 import uet.oop.bomberman.graphics.NewSprite;
 import uet.oop.bomberman.input.Keyboard;
 import uet.oop.bomberman.levels.LevelLoader;
@@ -63,11 +64,11 @@ public class Game {
                 if (!isPaused) {
                     frameTime++;
                     currentGameTime = frameTime / 60;
-
                 }
                 if (!gameOver) {
                     if (isIsInGame()) {
                         if (!isPaused) {
+                            Audio.playBackground();
                             render();
                             update();
                         }
@@ -78,6 +79,7 @@ public class Game {
                     }
                 }
                 else{
+                    Audio.stopBackground();
                     gc.drawImage(NewSprite.game_over.getFxImage(),36*17/2-105,36*7 );
                 }
 

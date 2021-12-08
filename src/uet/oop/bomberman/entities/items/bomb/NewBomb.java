@@ -82,6 +82,7 @@ public class NewBomb extends AnimatedEntity {
             for (NewFlame newFlame : flames) {
                 Board.getFlames().add(newFlame);
             }
+            Audio.playSound(Audio.bombExplosion);
             this.status = INVALID;
         }
 
