@@ -194,7 +194,7 @@ public abstract class Enemy extends AnimatedEntity {
 
     public void collide() {
         // có 1 ít sai số ở đây
-        if ( xUnit>(int)xUnit+0.97||xUnit<(int)xUnit+0.03) {
+        if ( (int)xUnit==xUnit) {
             if ((int) yUnit == yUnit) {
                 for (Entity entity : Board.getFlames()) {
                     if (xUnit == entity.getXUnit() && yUnit == entity.getYUnit()) {

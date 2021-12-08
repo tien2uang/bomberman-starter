@@ -97,13 +97,15 @@ public class NewBomber extends Character {
             double y = this.getYUnit() - entity.getYUnit();
             if ((int)this.getXUnit() == entity.getXUnit()) {
                 if (0 <= Math.abs(y) && Math.abs(y) < 1) {
-                    isAlive = false;
+                    setAlive(false);
                     Audio.playSound(Audio.bomberDied);
+                    return;
                 }
             } else if ((int)this.getYUnit() == entity.getYUnit()) {
                 if (0 <= Math.abs(x) && Math.abs(x) < 1) {
-                    isAlive = false;
+                    setAlive(false);
                     Audio.playSound(Audio.bomberDied);
+                    return;
                 }
             }
             /*if (Math.round(this.getXUnit()) == entity.getXUnit() && Math.round(this.getYUnit()) == entity.getYUnit()) {
