@@ -1,12 +1,13 @@
 package uet.oop.bomberman.entities.enemies;
 
+import uet.oop.bomberman.gameplay.Game;
 import uet.oop.bomberman.graphics.NewSprite;
 
 import java.util.Random;
 
 public class Oneal extends Enemy {
 
-
+    public boolean OnealMove = true;
 
     public Oneal(double x, double y) {
         super(x, y, 1, 200);
@@ -74,16 +75,58 @@ public class Oneal extends Enemy {
 
         if (Math.abs(xUnit - Math.round(xUnit)) <= temp) {
             double tempX = Math.round(xUnit);
-            a = random2();
+            rand2 = random2();
 
-            if (tempX % 2 == 0 && a == 0) {
+            if (tempX % 2 == 0 && rand2 == 0) {
                 up();
             }
-            if (tempX % 2 == 0 && a == 1) {
+            if (tempX % 2 == 0 && rand2 == 1) {
                 down();
             }
         }
 
+    }
+
+    public void up() {
+        if (step_Up <= 0) {
+            isMovingUP = false;
+            step_Up = MAX_UP;
+        } else isMovingUP = true;
+
+        if (canUp(xUnit, yUnit - temp) && isMovingUP) {
+            direction = 3;
+            move(0, -speed);
+            step_Up--;
+            OnealMove = true;
+        } else {
+            isMovingUP = false;
+            OnealMove = false;
+            if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
+                yUnit = Math.round(yUnit);
+                this.y = (yUnit + Game.INFO_HEIGHT) * NewSprite.SCALED_SIZE;
+            }
+        }
+    }
+
+    public void down() {
+        if (step_Down <= 0) {
+            isMovingDOWN = false;
+            step_Down = MAX_DOWN;
+        } else isMovingDOWN = true;
+
+        if (canDown(xUnit, yUnit + 1 + temp) && isMovingDOWN) {
+            direction = 2;
+            move(0, speed);
+            step_Down--;
+            OnealMove = true;
+        } else {
+            isMovingDOWN = false;
+            OnealMove = false;
+            if (Math.abs(yUnit - Math.round(yUnit)) <= temp) {
+                yUnit = Math.round(yUnit);
+                this.y = (yUnit + Game.INFO_HEIGHT) * NewSprite.SCALED_SIZE;
+            }
+        }
     }
 
 }
