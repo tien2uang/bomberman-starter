@@ -8,7 +8,7 @@ public class Eye extends Enemy {
 
 
     public Eye(double x, double y) {
-        super(x, y, 2, 300);
+        super(x, y, 1, 300);
         img = Sprite.red_eye.getFxImage();
         this.layerPower = 2.5;
         this.animate = 0;
