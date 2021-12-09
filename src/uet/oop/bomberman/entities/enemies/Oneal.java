@@ -75,12 +75,12 @@ public class Oneal extends Enemy {
 
         if (Math.abs(xUnit - Math.round(xUnit)) <= temp) {
             double tempX = Math.round(xUnit);
-            a = random2();
+            rand2 = random2();
 
-            if (tempX % 2 == 0 && a == 0) {
+            if (tempX % 2 == 0 && rand2 == 0) {
                 up();
             }
-            if (tempX % 2 == 0 && a == 1) {
+            if (tempX % 2 == 0 && rand2 == 1) {
                 down();
             }
         }
