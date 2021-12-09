@@ -4,7 +4,7 @@ import uet.oop.bomberman.graphics.Sprite;
 
 public class Bat extends Enemy {
     public Bat(double x, double y) {
-        super(x, y, 0.5, 200);
+        super(x, y, 1, 200);
         img = Sprite.balloon_right.getFxImage();
         this.layerPower = 3;
         this.animate = 0;
