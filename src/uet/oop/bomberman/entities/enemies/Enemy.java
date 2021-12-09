@@ -21,7 +21,7 @@ public abstract class Enemy extends AnimatedEntity {
     public final double MAX_STEPS = 144;
     public double _steps = 0;
     protected int rand = random1();
-    protected int a = 0;
+    protected int rand2 = 0;
     public boolean isMovingUP = false;
     public boolean isMovingDOWN = false;
     protected int death_animate = 50;
@@ -92,15 +92,15 @@ public abstract class Enemy extends AnimatedEntity {
         if (Math.abs(xUnit - (int) xUnit) <= temp) {
             int tempX = (int) xUnit;
             if (!isMovingDOWN && !isMovingUP) {
-                a = random2();
+                rand2 = random2();
             }
 
-            if (tempX % 2 == 0 && a == 0) {
+            if (tempX % 2 == 0 && rand2 == 0) {
                 up();
                 xUnit = Math.round(xUnit);
             }
 
-            if (tempX % 2 == 0 && a == 1) {
+            if (tempX % 2 == 0 && rand2 == 1) {
                 down();
                 xUnit = Math.round(xUnit);
             }
